@@ -50,6 +50,7 @@ struct Cube_t{
 
 Face *createFace(int type, int value[9]);
 void displayFace(Face *cubeFace);
+void displayCube(Cube *cube);
 Cube *createCube(int value[6][9]);
 
 #endif // cube_H

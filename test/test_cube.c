@@ -1,5 +1,6 @@
 #include "unity.h"
 #include "cube.h"
+#include "customAssertion.h"
 
 void setUp(void)
 {
@@ -53,6 +54,24 @@ void test_display_face(void){
 	displayFace(face);
 }
 
+/*  printing result:
+ *        0 0 0
+ *        0 0 0
+ *        0 0 0
+ *
+ *1 1 1   2 2 2   3 3 3
+ *1 1 1   2 2 2   3 3 3
+ *1 1 1   2 2 2   3 3 3
+ *
+ *        4 4 4
+ *        4 4 4
+ *        4 4 4
+ *
+ *        5 5 5
+ *        5 5 5
+ *        5 5 5 
+ *        
+ */
 void test_display_cube(){
   int value[6][9] = {{0,0,0,0,0,0,0,0,0},
                {1,1,1,1,1,1,1,1,1},
