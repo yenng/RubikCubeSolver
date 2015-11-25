@@ -6,19 +6,22 @@
 - :test: test_create_face
   :line: 12
   :message: ''
+- :test: test_create_cube
+  :line: 26
+  :message: ''
 - :test: test_display_face
-  :line: 25
+  :line: 36
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 2
-  :passed: 2
+  :total: 3
+  :passed: 3
   :failed: 0
   :ignored: 0
 :stdout:
 - 'FRONT:'
-- 'R R R '
-- 'R R R '
-- 'R R R '
+- '2 2 2 '
+- '2 2 2 '
+- '2 2 2 '
 - ''

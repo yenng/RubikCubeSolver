@@ -31,6 +31,7 @@ char* GlobalOrderError;
 extern void setUp(void);
 extern void tearDown(void);
 extern void test_create_face(void);
+extern void test_create_cube(void);
 extern void test_display_face(void);
 
 
@@ -48,7 +49,8 @@ int main(void)
 {
   UnityBegin("test_cube.c");
   RUN_TEST(test_create_face, 12);
-  RUN_TEST(test_display_face, 25);
+  RUN_TEST(test_create_cube, 26);
+  RUN_TEST(test_display_face, 36);
 
   return (UnityEnd());
 }
