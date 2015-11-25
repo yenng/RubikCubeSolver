@@ -60,3 +60,36 @@ void displayFace(Face *cubeFace){
 		i++;
 	}
 }
+
+void displayCube(Cube *cube){
+  int i = 0;
+  while(i<9){
+    printf("        %d %d %d \t\t\n", cube->topFace->faceValue[i],cube->topFace->faceValue[i+1],cube->topFace->faceValue[i+2]);
+		i+=3;
+	}
+	printf("\n");
+  i = 0;
+  while(i<9){
+    printf("%d %d %d   %d %d %d   %d %d %d \t\n",
+    cube->leftFace->faceValue[i],cube->leftFace->faceValue[i+1],cube->leftFace->faceValue[i+2],
+    cube->frontFace->faceValue[i],cube->frontFace->faceValue[i+1],cube->frontFace->faceValue[i+2],
+    cube->rightFace->faceValue[i],cube->rightFace->faceValue[i+1],cube->rightFace->faceValue[i+2]);
+		i+=3;
+  }
+	printf("\n");
+  i = 0;
+  while(i<9){
+    printf("        %d %d %d \t\t\n", cube->bottomFace->faceValue[i],cube->bottomFace->faceValue[i+1],cube->bottomFace->faceValue[i+2]);
+		i+=3;
+	}
+	printf("\n");
+  i = 0;
+  while(i<9){
+    printf("        %d %d %d \t\t\n", cube->backFace->faceValue[i],cube->backFace->faceValue[i+1],cube->backFace->faceValue[i+2]);
+		i+=3;
+	}
+}
+
+
+
+

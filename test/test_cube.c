@@ -31,10 +31,35 @@ void test_create_cube(){
                {4,4,4,4,4,4,4,4,4},
                {5,5,5,5,5,5,5,5,5}};
   Cube *cube = createCube(value);
+  
+	TEST_ASSERT_EQUAL(TOP, cube->topFace->faceType);
+	TEST_ASSERT_EQUAL(LEFT, cube->leftFace->faceType);
+	TEST_ASSERT_EQUAL(FRONT, cube->frontFace->faceType);
+	TEST_ASSERT_EQUAL(RIGHT, cube->rightFace->faceType);
+	TEST_ASSERT_EQUAL(BOTTOM, cube->bottomFace->faceType);
+	TEST_ASSERT_EQUAL(BACK, cube->backFace->faceType);
+  
+  TEST_ASSERT_EQUAL(W,cube->topFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(R,cube->leftFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(B,cube->frontFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(G,cube->rightFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(O,cube->bottomFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(Y,cube->backFace->faceValue[0]);
 }
 
 void test_display_face(void){
   int value[] = {2,2,2,2,2,2,2,2,2};
 	Face *face = createFace(FRONT, value);
 	displayFace(face);
+}
+
+void test_display_cube(){
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},
+               {1,1,1,1,1,1,1,1,1},
+               {2,2,2,2,2,2,2,2,2},
+               {3,3,3,3,3,3,3,3,3},
+               {4,4,4,4,4,4,4,4,4},
+               {5,5,5,5,5,5,5,5,5}};
+  Cube *cube = createCube(value);
+  displayCube(cube);
 }

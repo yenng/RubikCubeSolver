@@ -33,6 +33,7 @@ extern void tearDown(void);
 extern void test_create_face(void);
 extern void test_create_cube(void);
 extern void test_display_face(void);
+extern void test_display_cube(void);
 
 
 //=======Test Reset Option=====
@@ -50,7 +51,8 @@ int main(void)
   UnityBegin("test_cube.c");
   RUN_TEST(test_create_face, 12);
   RUN_TEST(test_create_cube, 26);
-  RUN_TEST(test_display_face, 36);
+  RUN_TEST(test_display_face, 50);
+  RUN_TEST(test_display_cube, 56);
 
   return (UnityEnd());
 }
