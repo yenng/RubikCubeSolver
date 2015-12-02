@@ -17,6 +17,22 @@
 							|_____|
 							
  */
+ /*      0 0 0              
+         0 0 0              
+         0 0 0              
+ 
+ 1 1 1   2 2 2   3 3 3      
+ 1 1 1   2 2 2   3 3 3      
+ 1 1 1   2 2 2   3 3 3      
+ 
+         4 4 4              
+         4 4 4              
+         4 4 4              
+
+         5 5 5              
+         5 5 5              
+         5 5 5
+*/
 #define TOP 		0
 #define LEFT 		1
 #define FRONT 	2
@@ -24,12 +40,12 @@
 #define BOTTOM	4
 #define BACK		5
 
-#define W	 0	//WHITE
-#define R	 1	//RED
-#define B	 2	//BLUE
-#define G	 3	//GREEN
-#define O	 4	//ORANGE
-#define Y	 5	//YELLOW
+#define cW	 0	//WHITE
+#define cR	 1	//RED
+#define cB	 2	//BLUE
+#define cO	 3	//ORANGE
+#define cY	 4	//YELLOW
+#define cG	 5	//GREEN
 
 
 typedef struct Face_t Face;

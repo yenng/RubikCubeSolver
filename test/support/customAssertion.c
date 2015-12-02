@@ -1,6 +1,6 @@
 #include "customAssertion.h"
 #include "unity.h"
-#include "Token.h"
+#include "cube.h"
 
 void customTestAssertCube(Cube *expectedCube, Cube *actualCube, int lineNumber){
   int i = 0;
@@ -29,6 +29,7 @@ void customTestAssertCube(Cube *expectedCube, Cube *actualCube, int lineNumber){
       CUSTOM_TEST_FAIL(lineNumber, "BackFace value[%d] Expected %d was %d", i, 
       expectedCube->backFace->faceValue[i], actualCube->backFace->faceValue[i]);
     }
+		i++;
   }
 }
 
@@ -39,5 +40,6 @@ void customTestAssertFace(Face *expectedFace, Face *actualFace, int lineNumber){
       CUSTOM_TEST_FAIL(lineNumber, "Face value[%d] Expected %d was %d", i, 
       expectedFace->faceValue[i], actualFace->faceValue[i]);
     }
+		i++;
   }
 }

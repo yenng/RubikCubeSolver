@@ -49,10 +49,10 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_cube.c");
-  RUN_TEST(test_create_face, 12);
-  RUN_TEST(test_create_cube, 26);
-  RUN_TEST(test_display_face, 50);
-  RUN_TEST(test_display_cube, 56);
+  RUN_TEST(test_create_face, 9);
+  RUN_TEST(test_create_cube, 23);
+  RUN_TEST(test_display_face, 47);
+  RUN_TEST(test_display_cube, 71);
 
   return (UnityEnd());
 }

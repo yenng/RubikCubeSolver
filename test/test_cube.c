@@ -2,26 +2,22 @@
 #include "cube.h"
 #include "customAssertion.h"
 
-void setUp(void)
-{
-}
+void setUp(void){}
 
-void tearDown(void)
-{
-}
+void tearDown(void){}
 
 void test_create_face(){
   int value[] = {0,0,0,0,0,0,0,0,0};
 	Face *face = createFace(FRONT, value);
 	TEST_ASSERT_EQUAL(FRONT, face->faceType);
-	TEST_ASSERT_EQUAL(W, face->faceValue[0]);
-	TEST_ASSERT_EQUAL(W, face->faceValue[1]);
-	TEST_ASSERT_EQUAL(W, face->faceValue[3]);
-	TEST_ASSERT_EQUAL(W, face->faceValue[4]);
-	TEST_ASSERT_EQUAL(W, face->faceValue[5]);
-	TEST_ASSERT_EQUAL(W, face->faceValue[6]);
-	TEST_ASSERT_EQUAL(W, face->faceValue[7]);
-	TEST_ASSERT_EQUAL(W, face->faceValue[8]);
+	TEST_ASSERT_EQUAL(cW, face->faceValue[0]);
+	TEST_ASSERT_EQUAL(cW, face->faceValue[1]);
+	TEST_ASSERT_EQUAL(cW, face->faceValue[3]);
+	TEST_ASSERT_EQUAL(cW, face->faceValue[4]);
+	TEST_ASSERT_EQUAL(cW, face->faceValue[5]);
+	TEST_ASSERT_EQUAL(cW, face->faceValue[6]);
+	TEST_ASSERT_EQUAL(cW, face->faceValue[7]);
+	TEST_ASSERT_EQUAL(cW, face->faceValue[8]);
 }
 
 void test_create_cube(){
@@ -40,12 +36,12 @@ void test_create_cube(){
 	TEST_ASSERT_EQUAL(BOTTOM, cube->bottomFace->faceType);
 	TEST_ASSERT_EQUAL(BACK, cube->backFace->faceType);
   
-  TEST_ASSERT_EQUAL(W,cube->topFace->faceValue[0]);
-  TEST_ASSERT_EQUAL(R,cube->leftFace->faceValue[0]);
-  TEST_ASSERT_EQUAL(B,cube->frontFace->faceValue[0]);
-  TEST_ASSERT_EQUAL(G,cube->rightFace->faceValue[0]);
-  TEST_ASSERT_EQUAL(O,cube->bottomFace->faceValue[0]);
-  TEST_ASSERT_EQUAL(Y,cube->backFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(cW,cube->topFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(cR,cube->leftFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(cB,cube->frontFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(cO,cube->rightFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(cY,cube->bottomFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(cG,cube->backFace->faceValue[0]);
 }
 
 void test_display_face(void){

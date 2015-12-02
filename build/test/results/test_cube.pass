@@ -4,16 +4,16 @@
   :file: test_cube.c
 :successes:
 - :test: test_create_face
-  :line: 12
+  :line: 9
   :message: ''
 - :test: test_create_cube
-  :line: 26
+  :line: 23
   :message: ''
 - :test: test_display_face
-  :line: 50
+  :line: 47
   :message: ''
 - :test: test_display_cube
-  :line: 56
+  :line: 71
   :message: ''
 :failures: []
 :ignores: []

@@ -30,7 +30,8 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_module_generator_needs_to_be_implemented(void);
+extern void test_face_rotation_clockwise(void);
+extern void test_face_rotation_anticlockwise(void);
 
 
 //=======Test Reset Option=====
@@ -46,7 +47,8 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_rotation.c");
-  RUN_TEST(test_module_generator_needs_to_be_implemented, 12);
+  RUN_TEST(test_face_rotation_clockwise, 10);
+  RUN_TEST(test_face_rotation_anticlockwise, 21);
 
   return (UnityEnd());
 }
