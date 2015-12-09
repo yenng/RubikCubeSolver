@@ -21,11 +21,14 @@
 - :test: test_create_side_rotation_down_face_clockwise
   :line: 91
   :message: ''
+- :test: test_create_rotation_down_face_clockwise
+  :line: 114
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 6
-  :passed: 6
+  :total: 7
+  :passed: 7
   :failed: 0
   :ignored: 0
 :stdout:

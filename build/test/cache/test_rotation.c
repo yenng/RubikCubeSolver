@@ -217,3 +217,49 @@ void test_create_side_rotation_down_face_clockwise(void){
  ; customTestAssertCube(expectedCube, cube, 111);;
 
 }
+
+
+
+void test_create_rotation_down_face_clockwise(void){
+
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},
+
+               {1,1,1,1,1,1,1,1,1},
+
+               {2,2,2,2,2,2,2,2,2},
+
+               {3,3,3,3,3,3,3,3,3},
+
+               {4,4,4,1,4,4,4,4,4},
+
+               {5,5,5,5,5,5,5,5,5}};
+
+  Cube *cube = createCube(value);
+
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+
+               {1,1,1,1,1,1,5,5,5},
+
+               {2,2,2,2,2,2,1,1,1},
+
+               {3,3,3,3,3,3,2,2,2},
+
+               {4,1,4,4,4,4,4,4,4},
+
+               {3,3,3,5,5,5,5,5,5}};
+
+  Cube *expectedCube = createCube(expectedValue);
+
+
+
+  int rotation = 8;
+
+  Rotate *rotate = createRotation(cube, rotation);
+
+ fullRotation(cube, rotate);
+
+
+
+ ; customTestAssertCube(expectedCube, cube, 134);;
+
+}

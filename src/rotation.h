@@ -28,4 +28,5 @@ struct Rotate_t{
 void faceRotation(int direction, Face *face);
 Rotate *createRotation(Cube *cube, int rotation);
 void faceSideRotation(Cube *cube, Rotate *rotate);
+void fullRotation(Cube *cube, Rotate *rotate);
 #endif // rotation_H

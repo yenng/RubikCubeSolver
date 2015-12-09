@@ -142,7 +142,10 @@ void faceSideRotation(Cube *cube, Rotate *rotate){
   }
 }
 
-
+void fullRotation(Cube *cube, Rotate *rotate){
+  faceSideRotation(cube, rotate);
+  faceRotation(rotate->direction, rotate->face);
+}
 
 
 
