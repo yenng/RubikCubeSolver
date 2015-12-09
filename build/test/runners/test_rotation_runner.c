@@ -32,6 +32,8 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_face_rotation_clockwise(void);
 extern void test_face_rotation_anticlockwise(void);
+extern void test_create_rotation_clockwise(void);
+extern void test_create_rotation_anticlockwise(void);
 
 
 //=======Test Reset Option=====
@@ -49,6 +51,8 @@ int main(void)
   UnityBegin("test_rotation.c");
   RUN_TEST(test_face_rotation_clockwise, 10);
   RUN_TEST(test_face_rotation_anticlockwise, 21);
+  RUN_TEST(test_create_rotation_clockwise, 32);
+  RUN_TEST(test_create_rotation_anticlockwise, 50);
 
   return (UnityEnd());
 }

@@ -9,11 +9,17 @@
 - :test: test_face_rotation_anticlockwise
   :line: 21
   :message: ''
+- :test: test_create_rotation_clockwise
+  :line: 32
+  :message: ''
+- :test: test_create_rotation_anticlockwise
+  :line: 50
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 2
-  :passed: 2
+  :total: 4
+  :passed: 4
   :failed: 0
   :ignored: 0
 :stdout:

@@ -9,22 +9,70 @@ void tearDown(void){}
 
 void test_face_rotation_clockwise(void){
   int value[] = {0,1,2,3,4,5,1,2,0};
-  int value_actual[] = {1,3,0,2,4,1,0,5,2};
+  int value_expected[] = {1,3,0,2,4,1,0,5,2};
 	int direction = CLOCKWISE;
 	Face *face = createFace(FRONT, value);
-	Face *face_actual = createFace(FRONT, value_actual);
+	Face *face_expected = createFace(FRONT, value_expected);
 	faceRotation(direction, face);
 	
-	TEST_ASSERT_EQUAL_FACE(face, face_actual); 
+	TEST_ASSERT_EQUAL_FACE(face_expected,face); 
 }
 
 void test_face_rotation_anticlockwise(void){
   int value[] = {0,1,2,3,4,5,1,2,0};
-  int value_actual[] = {2,5,0,1,4,2,0,3,1};
+  int value_expected[] = {2,5,0,1,4,2,0,3,1};
 	int direction = ANTICLOCKWISE;
 	Face *face = createFace(FRONT, value);
-	Face *face_actual = createFace(FRONT, value_actual);
+	Face *face_expected = createFace(FRONT, value_expected);
 	faceRotation(direction, face);
 	
-	TEST_ASSERT_EQUAL_FACE(face, face_actual); 
+	TEST_ASSERT_EQUAL_FACE(face_expected,face); 
 }
+
+void test_create_rotation_clockwise(void){
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},
+               {1,1,1,1,1,1,1,1,1},
+               {2,2,2,2,2,2,2,2,2},
+               {3,3,3,3,3,3,3,3,3},
+               {4,4,4,4,4,4,4,4,4},
+               {5,5,5,5,5,5,5,5,5}};
+  Cube *cube = createCube(value);
+  
+  int rotation = F;
+  Rotate *rotate = createRotation(cube, rotation);
+	Face *face_expected = createFace(FRONT, value[2]);
+	
+  TEST_ASSERT_EQUAL(CLOCKWISE,rotate->direction);
+	TEST_ASSERT_EQUAL_FACE(face_expected,rotate->face); 
+}
+
+
+void test_create_rotation_anticlockwise(void){
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},
+               {1,1,1,1,1,1,1,1,1},
+               {2,2,2,2,2,2,2,2,2},
+               {3,3,3,3,3,3,3,3,3},
+               {4,4,4,4,4,4,4,4,4},
+               {5,5,5,5,5,5,5,5,5}};
+  Cube *cube = createCube(value);
+  
+  int rotation = Ui;
+  Rotate *rotate = createRotation(cube, rotation);
+	Face *face_expected = createFace(UP, value[0]);
+	
+  TEST_ASSERT_EQUAL(ANTICLOCKWISE,rotate->direction);
+	TEST_ASSERT_EQUAL_FACE(face_expected,rotate->face); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

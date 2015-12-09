@@ -21,11 +21,11 @@ Cube *createCube(int value[6][9]){
       face[i] = createFace(i,value[i]);
       i++;
   }
-  cube->topFace = face[0];
+  cube->upFace = face[0];
   cube->leftFace = face[1];
   cube->frontFace = face[2];
   cube->rightFace = face[3];
-  cube->bottomFace = face[4];
+  cube->downFace = face[4];
   cube->backFace = face[5];
   return cube;
 }
@@ -36,8 +36,8 @@ void displayFace(Face *cubeFace){
 		case FRONT:
 			printf("FRONT:\n");
 			break;
-		case TOP:
-			printf("TOP:\n");
+		case UP:
+			printf("UP:\n");
 			break;
 		case LEFT:
 			printf("LEFT:\n");
@@ -45,8 +45,8 @@ void displayFace(Face *cubeFace){
 		case RIGHT:
 			printf("RIGHT:\n");
 			break;
-		case BOTTOM:
-			printf("BOTTOM:\n");
+		case DOWN:
+			printf("DOWN:\n");
 			break;
 		case BACK:
 			printf("BACK:\n");
@@ -64,7 +64,7 @@ void displayFace(Face *cubeFace){
 void displayCube(Cube *cube){
   int i = 0;
   while(i<9){
-    printf("        %d %d %d \t\t\n", cube->topFace->faceValue[i],cube->topFace->faceValue[i+1],cube->topFace->faceValue[i+2]);
+    printf("        %d %d %d \t\t\n", cube->upFace->faceValue[i],cube->upFace->faceValue[i+1],cube->upFace->faceValue[i+2]);
 		i+=3;
 	}
 	printf("\n");
@@ -79,7 +79,7 @@ void displayCube(Cube *cube){
 	printf("\n");
   i = 0;
   while(i<9){
-    printf("        %d %d %d \t\t\n", cube->bottomFace->faceValue[i],cube->bottomFace->faceValue[i+1],cube->bottomFace->faceValue[i+2]);
+    printf("        %d %d %d \t\t\n", cube->downFace->faceValue[i],cube->downFace->faceValue[i+1],cube->downFace->faceValue[i+2]);
 		i+=3;
 	}
 	printf("\n");

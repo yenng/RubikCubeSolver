@@ -29,18 +29,18 @@ void test_create_cube(){
                {5,5,5,5,5,5,5,5,5}};
   Cube *cube = createCube(value);
   
-	TEST_ASSERT_EQUAL(TOP, cube->topFace->faceType);
+	TEST_ASSERT_EQUAL(UP, cube->upFace->faceType);
 	TEST_ASSERT_EQUAL(LEFT, cube->leftFace->faceType);
 	TEST_ASSERT_EQUAL(FRONT, cube->frontFace->faceType);
 	TEST_ASSERT_EQUAL(RIGHT, cube->rightFace->faceType);
-	TEST_ASSERT_EQUAL(BOTTOM, cube->bottomFace->faceType);
+	TEST_ASSERT_EQUAL(DOWN, cube->downFace->faceType);
 	TEST_ASSERT_EQUAL(BACK, cube->backFace->faceType);
   
-  TEST_ASSERT_EQUAL(cW,cube->topFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(cW,cube->upFace->faceValue[0]);
   TEST_ASSERT_EQUAL(cR,cube->leftFace->faceValue[0]);
   TEST_ASSERT_EQUAL(cB,cube->frontFace->faceValue[0]);
   TEST_ASSERT_EQUAL(cO,cube->rightFace->faceValue[0]);
-  TEST_ASSERT_EQUAL(cY,cube->bottomFace->faceValue[0]);
+  TEST_ASSERT_EQUAL(cY,cube->downFace->faceValue[0]);
   TEST_ASSERT_EQUAL(cG,cube->backFace->faceValue[0]);
 }
 

@@ -33,11 +33,11 @@
          5 5 5              
          5 5 5
 */
-#define TOP 		0
+#define UP 		  0
 #define LEFT 		1
 #define FRONT 	2
 #define RIGHT 	3
-#define BOTTOM	4
+#define DOWN	  4
 #define BACK		5
 
 #define cW	 0	//WHITE
@@ -56,11 +56,11 @@ struct Face_t{
 
 typedef struct Cube_t Cube;
 struct Cube_t{
-  Face *topFace;
+  Face *upFace;
   Face *leftFace;
   Face *frontFace;
   Face *rightFace;
-  Face *bottomFace;
+  Face *downFace;
   Face *backFace;
 };
 
