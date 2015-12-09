@@ -21,16 +21,9 @@ int valueTableL[12] = {0,3,6,  0,3,6,  0,3,6,  0,3,6};
 int valueTableF[12] = {8,5,2,  6,7,8,  0,3,6,  2,1,0};
 int valueTableR[12] = {8,5,2,  8,5,2,  8,5,2,  8,5,2};
 int valueTableD[12] = {6,7,8,  6,7,8,  6,7,8,  2,1,0};
-int valueTableB[12] = {8,5,8,  2,1,0,  0,3,6,  6,7,8};
+int valueTableB[12] = {8,5,2,  2,1,0,  0,3,6,  6,7,8};
 
-int *ptrToTableU[4] = {valueTableL,valueTableB,valueTableR,valueTableF};
-int *ptrToTableL[4] = {valueTableB,valueTableU,valueTableF,valueTableD};
-int *ptrToTableF[4] = {valueTableL,valueTableU,valueTableR,valueTableD};
-int *ptrToTableR[4] = {valueTableF,valueTableU,valueTableB,valueTableD};
-int *ptrToTableD[4] = {valueTableL,valueTableF,valueTableR,valueTableB};
-int *ptrToTableB[4] = {valueTableR,valueTableU,valueTableL,valueTableD};
-
-int **ptrToPtrToTable[6] = {ptrToTableU,ptrToTableL,ptrToTableF,ptrToTableR,ptrToTableD,ptrToTableB};
+int *ptrToTable[6] = {valueTableU,valueTableL,valueTableF,valueTableR,valueTableD,valueTableB};
 
 Rotate *createRotation(Cube *cube, int rotation){
   Rotate *rotate = malloc(sizeof(Rotate));
@@ -105,14 +98,49 @@ void faceRotation(int direction, Face *face){
 	}
 }
 
-void faceSideRotation(int direction, Cube *cube, int rotation){
-  int sideValue_t[12];
-  int i = 0;
-  // int *ptr  = 
+void faceSideRotation(Cube *cube, Rotate *rotate){
+  /**************************faceValue pointer declaration.*******************************************/ 
+  int *ptrToValueU[4] = { cube->leftFace->faceValue,cube->backFace->faceValue,
+                          cube->rightFace->faceValue,cube->frontFace->faceValue};
+  int *ptrToValueL[4] = { cube->backFace->faceValue,cube->upFace->faceValue,
+                          cube->frontFace->faceValue,cube->downFace->faceValue};
+  int *ptrToValueF[4] = { cube->leftFace->faceValue,cube->upFace->faceValue,
+                          cube->rightFace->faceValue,cube->downFace->faceValue};
+  int *ptrToValueR[4] = { cube->frontFace->faceValue,cube->upFace->faceValue,
+                          cube->backFace->faceValue,cube->downFace->faceValue};
+  int *ptrToValueD[4] = { cube->leftFace->faceValue,cube->frontFace->faceValue,
+                          cube->rightFace->faceValue,cube->backFace->faceValue};
+  int *ptrToValueB[4] = { cube->rightFace->faceValue,cube->upFace->faceValue,
+                          cube->leftFace->faceValue,cube->downFace->faceValue};
+
+  int **ptrToPtrToValue[6] = {ptrToValueU,ptrToValueL,ptrToValueF,ptrToValueR,ptrToValueD,ptrToValueB};
+  /************************declaration ended.**********************************************************/
   
+  int sideValue_t[12], sideValue_t1[12];
+  int i = 0; int j = 0;
+  int **ptrPtrValue  = ptrToPtrToValue[rotate->face->faceType];
+  int *ptrValue, *ptrTable;
+  ptrTable = ptrToTable[rotate->face->faceType];
+	int *translationPtr = sideTranslationTable[rotate->direction];
+  while (i<12){
+    ptrValue = ptrPtrValue[i/3];
+    sideValue_t[i] = ptrValue[ptrTable[i]];
+    i++;
+  }
+  
+  i = 0;
+  while (i < 12){
+    sideValue_t1[i] = sideValue_t[translationPtr[i]];
+    i++;
+  }
+  
+  i = 0;
+  while (i<12){
+    ptrValue = ptrPtrValue[i/3];
+    ptrValue[ptrTable[i]] = sideValue_t1[i];
+    i++;
+  }
 }
-
-
 
 
 

@@ -64,7 +64,52 @@ void test_create_rotation_anticlockwise(void){
 	TEST_ASSERT_EQUAL_FACE(face_expected,rotate->face); 
 }
 
+void test_create_side_rotation_up_face_anticlockwise(void){
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},
+               {1,1,1,1,1,1,1,1,1},
+               {2,2,2,2,2,2,2,2,2},
+               {3,3,3,3,3,3,3,3,3},
+               {4,4,4,4,4,4,4,4,4},
+               {5,5,5,5,5,5,5,5,5}};
+  Cube *cube = createCube(value);
+  int expectedValue[6][9] = 
+              {{0,0,0,0,0,0,0,0,0},
+               {cG,cG,cG,1,1,1,1,1,1},
+               {cR,cR,cR,2,2,2,2,2,2},
+               {cB,cB,cB,3,3,3,3,3,3},
+               {4,4,4,4,4,4,4,4,4},
+               {5,5,5,5,5,5,cO,cO,cO}};
+  Cube *expectedCube = createCube(expectedValue);
+  
+  int rotation = Ui;
+  Rotate *rotate = createRotation(cube, rotation);
+	faceSideRotation(cube, rotate);
+  
+	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
 
+void test_create_side_rotation_down_face_clockwise(void){
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},
+               {1,1,1,1,1,1,1,1,1},
+               {2,2,2,2,2,2,2,2,2},
+               {3,3,3,3,3,3,3,3,3},
+               {4,4,4,4,4,4,4,4,4},
+               {5,5,5,5,5,5,5,5,5}};
+  Cube *cube = createCube(value);
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+               {1,1,1,1,1,1,5,5,5},
+               {2,2,2,2,2,2,1,1,1},
+               {3,3,3,3,3,3,2,2,2},
+               {4,4,4,4,4,4,4,4,4},
+               {3,3,3,5,5,5,5,5,5}};
+  Cube *expectedCube = createCube(expectedValue);
+  
+  int rotation = D;
+  Rotate *rotate = createRotation(cube, rotation);
+	faceSideRotation(cube, rotate);
+  
+	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
 
 
 

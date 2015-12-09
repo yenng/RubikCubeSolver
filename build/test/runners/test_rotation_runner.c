@@ -34,6 +34,8 @@ extern void test_face_rotation_clockwise(void);
 extern void test_face_rotation_anticlockwise(void);
 extern void test_create_rotation_clockwise(void);
 extern void test_create_rotation_anticlockwise(void);
+extern void test_create_side_rotation_up_face_anticlockwise(void);
+extern void test_create_side_rotation_down_face_clockwise(void);
 
 
 //=======Test Reset Option=====
@@ -53,6 +55,8 @@ int main(void)
   RUN_TEST(test_face_rotation_anticlockwise, 21);
   RUN_TEST(test_create_rotation_clockwise, 32);
   RUN_TEST(test_create_rotation_anticlockwise, 50);
+  RUN_TEST(test_create_side_rotation_up_face_anticlockwise, 67);
+  RUN_TEST(test_create_side_rotation_down_face_clockwise, 91);
 
   return (UnityEnd());
 }
