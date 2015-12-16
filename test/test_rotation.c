@@ -128,8 +128,8 @@ void test_create_rotation_down_face_clockwise(void){
   Cube *expectedCube = createCube(expectedValue);
   
   int rotation = D;
-  Rotate *rotate = createRotation(cube, rotation);
-	fullRotation(cube, rotate);
+  
+	fullRotation(cube, rotation);
   
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }

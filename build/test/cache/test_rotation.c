@@ -254,9 +254,9 @@ void test_create_rotation_down_face_clockwise(void){
 
   int rotation = 8;
 
-  Rotate *rotate = createRotation(cube, rotation);
 
- fullRotation(cube, rotate);
+
+ fullRotation(cube, rotation);
 
 
 

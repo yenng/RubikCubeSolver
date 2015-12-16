@@ -25,6 +25,7 @@ int valueTableB[12] = {8,5,2,  2,1,0,  0,3,6,  6,7,8};
 
 int *ptrToTable[6] = {valueTableU,valueTableL,valueTableF,valueTableR,valueTableD,valueTableB};
 
+
 Rotate *createRotation(Cube *cube, int rotation){
   Rotate *rotate = malloc(sizeof(Rotate));
   switch(rotation){
@@ -142,7 +143,8 @@ void faceSideRotation(Cube *cube, Rotate *rotate){
   }
 }
 
-void fullRotation(Cube *cube, Rotate *rotate){
+void fullRotation(Cube *cube, int rotation){
+  Rotate *rotate = createRotation(cube, rotation);
   faceSideRotation(cube, rotate);
   faceRotation(rotate->direction, rotate->face);
 }

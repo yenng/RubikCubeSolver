@@ -88,6 +88,7 @@ void displayCube(Cube *cube){
     printf("        %d %d %d \t\t\n", cube->backFace->faceValue[i],cube->backFace->faceValue[i+1],cube->backFace->faceValue[i+2]);
 		i+=3;
 	}
+	printf("\n\n\n");
 }
 
 
