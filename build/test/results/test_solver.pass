@@ -10,13 +10,13 @@
   :line: 31
   :message: ''
 - :test: test_side_corner_solver_one_by_one
-  :line: 43
+  :line: 52
   :message: ''
 - :test: test_solver_side_corner
-  :line: 62
+  :line: 71
   :message: ''
 - :test: test_solver_side_corner1
-  :line: 81
+  :line: 90
   :message: ''
 :failures: []
 :ignores: []

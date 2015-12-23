@@ -67,13 +67,31 @@ void test_front_side_corner_solver2(void){
 
                     {5,5,5,5,5,0,1,2,3}};
 
+  int expectedValue[6][9] = {{1,3,0,3,0,2,5,1,2},
+
+                             {0,2,1,1,1,1,1,1,1},
+
+                             {0,0,3,2,2,5,2,2,2},
+
+                             {0,0,3,3,3,5,3,3,3},
+
+                             {4,4,4,4,4,4,4,4,4},
+
+                             {5,5,5,5,5,0,2,0,5}};
+
+  Cube *expectedCube = createCube(expectedValue);
+
   Cube *cube = createCube(value);
 
   sideCornerSolver(cube);
 
   displayCube(cube);
 
+ ; customTestAssertCube(expectedCube, cube, 48);;
+
 }
+
+
 
 
 
@@ -111,7 +129,7 @@ void test_side_corner_solver_one_by_one(void){
 
   sideCornerSolver(cube);
 
- ; customTestAssertCube(expectedCube, cube, 60);;
+ ; customTestAssertCube(expectedCube, cube, 69);;
 
 }
 
@@ -147,7 +165,7 @@ void test_solver_side_corner(){
 
   fullSideCornerSolver(cube);
 
- ; customTestAssertCube(expectedCube, cube, 78);;
+ ; customTestAssertCube(expectedCube, cube, 87);;
 
 }
 
@@ -187,6 +205,6 @@ void test_solver_side_corner1(){
 
   fullSideCornerSolver(cube);
 
- ; customTestAssertCube(expectedCube, cube, 98);;
+ ; customTestAssertCube(expectedCube, cube, 107);;
 
 }

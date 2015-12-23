@@ -37,8 +37,8 @@ void test_front_side_corner_solver2(void){
                     {cG,cG,cG,cG,cG,cW,cR,cB,cO}};
   int expectedValue[6][9] = {{1,3,0,3,0,2,5,1,2},
                              {0,2,1,1,1,1,1,1,1},
-                             {0,0,3,2,2,2,2,2,2},
-                             {0,0,3,3,3,3,3,3,3},
+                             {0,0,3,2,2,5,2,2,2},
+                             {0,0,3,3,3,5,3,3,3},
                              {4,4,4,4,4,4,4,4,4},
                              {5,5,5,5,5,0,2,0,5}};
   Cube *expectedCube = createCube(expectedValue);
