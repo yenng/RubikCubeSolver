@@ -32,7 +32,9 @@ extern void setUp(void);
 extern void tearDown(void);
 extern void test_front_side_corner_solver1(void);
 extern void test_front_side_corner_solver2(void);
-extern void test_front_side_corner_solver3(void);
+extern void test_side_corner_solver_one_by_one(void);
+extern void test_solver_side_corner(void);
+extern void test_solver_side_corner1(void);
 
 
 //=======Test Reset Option=====
@@ -50,7 +52,9 @@ int main(void)
   UnityBegin("test_solver.c");
   RUN_TEST(test_front_side_corner_solver1, 11);
   RUN_TEST(test_front_side_corner_solver2, 31);
-  RUN_TEST(test_front_side_corner_solver3, 44);
+  RUN_TEST(test_side_corner_solver_one_by_one, 43);
+  RUN_TEST(test_solver_side_corner, 62);
+  RUN_TEST(test_solver_side_corner1, 81);
 
   return (UnityEnd());
 }
