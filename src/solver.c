@@ -42,6 +42,11 @@ int *formulaGPtr[6] = {NULL,formulaRG,NULL,formulaOG,NULL,NULL};
 
 int **formulaPtrPtr[6] = {formulaWPtr,formulaRPtr,formulaBPtr,formulaOPtr,NULL,formulaGPtr};
 
+/****************Top Face formula*************************/
+int topFormula[8] = {U,U,Ri,Ui,Fi,U,F,R};
+
+int *ptrTopFormula[] = {topFormula};
+
 void baseSolver(Cube *cube){
   
 }
@@ -68,15 +73,6 @@ void fullSideCornerSolver(Cube *cube){
     //displayCube(cube);
   }
 }
-
-
-
-
-
-
-
-
-
 
 void sideCornerSolver1(Cube *cube){
   //declare side corner of the up face.
@@ -113,6 +109,14 @@ void sideCornerSolver1(Cube *cube){
   }
   while(i<8){
     fullRotation(cube,ptrToFormula[i]);
+    i++;
+  }
+}
+
+void topFaceSolver(Cube *cube){
+  int i = 0;
+  while(i<8){
+    fullRotation(cube,topFormula[i]);
     i++;
   }
 }

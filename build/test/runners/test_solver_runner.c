@@ -52,9 +52,9 @@ int main(void)
   UnityBegin("test_solver.c");
   RUN_TEST(test_front_side_corner_solver1, 11);
   RUN_TEST(test_front_side_corner_solver2, 31);
-  RUN_TEST(test_side_corner_solver_one_by_one, 52);
-  RUN_TEST(test_solver_side_corner, 71);
-  RUN_TEST(test_solver_side_corner1, 90);
+  RUN_TEST(test_side_corner_solver_one_by_one, 51);
+  RUN_TEST(test_solver_side_corner, 70);
+  RUN_TEST(test_solver_side_corner1, 89);
 
   return (UnityEnd());
 }

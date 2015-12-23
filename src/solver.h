@@ -6,4 +6,5 @@
 void sideCornerSolver1(Cube *cube);
 void fullSideCornerSolver(Cube *cube);
 void sideCornerSolver(Cube *cube);
+void topFaceSolver(Cube *cube);
 #endif // solver_H

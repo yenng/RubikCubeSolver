@@ -85,9 +85,7 @@ void test_front_side_corner_solver2(void){
 
   sideCornerSolver(cube);
 
-  displayCube(cube);
-
- ; customTestAssertCube(expectedCube, cube, 48);;
+ ; customTestAssertCube(expectedCube, cube, 47);;
 
 }
 
@@ -129,7 +127,7 @@ void test_side_corner_solver_one_by_one(void){
 
   sideCornerSolver(cube);
 
- ; customTestAssertCube(expectedCube, cube, 69);;
+ ; customTestAssertCube(expectedCube, cube, 68);;
 
 }
 
@@ -165,7 +163,7 @@ void test_solver_side_corner(){
 
   fullSideCornerSolver(cube);
 
- ; customTestAssertCube(expectedCube, cube, 87);;
+ ; customTestAssertCube(expectedCube, cube, 86);;
 
 }
 
@@ -205,6 +203,12 @@ void test_solver_side_corner1(){
 
   fullSideCornerSolver(cube);
 
- ; customTestAssertCube(expectedCube, cube, 107);;
+ displayCube(cube);
+
+  ; customTestAssertCube(expectedCube, cube, 107);;
+
+   topFaceSolver(cube);
+
+   displayCube(cube);
 
 }

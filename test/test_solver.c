@@ -103,7 +103,10 @@ void test_solver_side_corner1(){
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
   fullSideCornerSolver(cube);
-	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+	displayCube(cube);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+   topFaceSolver(cube);
+   displayCube(cube);
 }
 
 
