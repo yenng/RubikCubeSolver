@@ -35,6 +35,7 @@ extern void test_front_side_corner_solver2(void);
 extern void test_side_corner_solver_one_by_one(void);
 extern void test_solver_side_corner(void);
 extern void test_solver_side_corner1(void);
+extern void test_top_face_solver(void);
 
 
 //=======Test Reset Option=====
@@ -55,6 +56,7 @@ int main(void)
   RUN_TEST(test_side_corner_solver_one_by_one, 51);
   RUN_TEST(test_solver_side_corner, 70);
   RUN_TEST(test_solver_side_corner1, 89);
+  RUN_TEST(test_top_face_solver, 110);
 
   return (UnityEnd());
 }

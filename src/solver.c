@@ -65,7 +65,7 @@ void sideCornerSolver(Cube *cube){
 }
 
 void fullSideCornerSolver(Cube *cube){
-  while(cube->frontFace->faceValue[3] != cB || cube->leftFace->faceValue[5]  !=cR  ||
+  while(cube->frontFace->faceValue[3] != cB || cube->leftFace->faceValue[5]  != cR ||
         cube->frontFace->faceValue[5] != cB || cube->rightFace->faceValue[3] != cO || 
         cube->rightFace->faceValue[5] != cO || cube->backFace->faceValue[5]  != cG ||
         cube->backFace->faceValue[3]  != cG || cube->leftFace->faceValue[3]  != cR){

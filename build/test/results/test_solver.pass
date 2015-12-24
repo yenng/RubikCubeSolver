@@ -18,11 +18,14 @@
 - :test: test_solver_side_corner1
   :line: 89
   :message: ''
+- :test: test_top_face_solver
+  :line: 110
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 5
-  :passed: 5
+  :total: 6
+  :passed: 6
   :failed: 0
   :ignored: 0
 :stdout:
@@ -41,24 +44,6 @@
 - "        5 5 5 \t\t"
 - "        5 5 5 \t\t"
 - "        5 0 3 \t\t"
-- ''
-- ''
-- ''
-- "        3 0 5 \t\t"
-- "        0 0 0 \t\t"
-- "        0 0 0 \t\t"
-- ''
-- "2 2 1   2 3 3   5 1 1 \t"
-- "1 1 1   2 2 2   3 3 3 \t"
-- "1 1 1   2 2 2   3 3 3 \t"
-- ''
-- "        4 4 4 \t\t"
-- "        4 4 4 \t\t"
-- "        4 4 4 \t\t"
-- ''
-- "        5 5 5 \t\t"
-- "        5 5 5 \t\t"
-- "        0 5 0 \t\t"
 - ''
 - ''
 - ''
