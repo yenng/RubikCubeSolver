@@ -38,6 +38,7 @@ extern void test_solver_side_corner1(void);
 extern void test_top_face_solver(void);
 extern void test_top_face_full_solver_with_pattern_3(void);
 extern void test_top_face_full_solver_with_pattern_0(void);
+extern void test_top_face_full_solver_with_pattern_4(void);
 
 
 //=======Test Reset Option=====
@@ -61,6 +62,7 @@ int main(void)
   RUN_TEST(test_top_face_solver, 109);
   RUN_TEST(test_top_face_full_solver_with_pattern_3, 128);
   RUN_TEST(test_top_face_full_solver_with_pattern_0, 147);
+  RUN_TEST(test_top_face_full_solver_with_pattern_4, 166);
 
   return (UnityEnd());
 }

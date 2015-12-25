@@ -125,6 +125,25 @@ void test_top_face_solver(){
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
+void test_top_face_full_solver_with_pattern_0(){
+  int value[6][9] = {{cB,cO,cW,cG,cW,cB,cW,cR,cG},
+                     {cR,cW,cO,1,1,1,1,1,1},
+                     {cG,cW,cR,2,2,2,2,2,2},
+                     {cW,cW,cB,3,3,3,3,3,3},
+                     {4,4,4,4,4,4,4,4,4},
+                     {5,5,5,5,5,5,cW,cW,cO}};
+  int expectedValue[6][9] = {{1,0,0,0,0,0,3,0,0},
+                             {0,1,0,1,1,1,1,1,1},
+                             {2,3,5,2,2,2,2,2,2},
+                             {1,5,3,3,3,3,3,3,3},
+                             {4,4,4,4,4,4,4,4,4},
+                             {5,5,5,5,5,5,2,2,5}}; 
+  Cube *cube = createCube(value);
+  Cube *expectedCube = createCube(expectedValue);
+  fullTopFaceSolver(cube);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
 void test_top_face_full_solver_with_pattern_3(){							//white color form 『 shape
   int value[6][9] = {{0,1,0,2,0,0,0,0,0},											//TOP FACE
                      {1,0,3,1,1,1,1,1,1},											//	x x x						x W x
@@ -144,21 +163,24 @@ void test_top_face_full_solver_with_pattern_3(){							//white color form 『 sh
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
-void test_top_face_full_solver_with_pattern_0(){
-  int value[6][9] = {{cB,cO,cW,cG,cW,cB,cW,cR,cG},
-                     {cR,cW,cO,1,1,1,1,1,1},
-                     {cG,cW,cR,2,2,2,2,2,2},
-                     {cW,cW,cB,3,3,3,3,3,3},
+
+void test_top_face_full_solver_with_pattern_4(){
+  int value[6][9] = {{cW,cB,cG,cW,cW,cW,cR,cR,cW},
+                     {cO,cO,cB,1,1,1,1,1,1},
+                     {cW,cW,cG,2,2,2,2,2,2},
+                     {cR,cG,cW,3,3,3,3,3,3},
                      {4,4,4,4,4,4,4,4,4},
-                     {5,5,5,5,5,5,cW,cW,cO}};
-  int expectedValue[6][9] = {{1,0,0,0,0,0,3,0,0},
-                             {0,1,0,1,1,1,1,1,1},
-                             {2,3,5,2,2,2,2,2,2},
-                             {1,5,3,3,3,3,3,3,3},
+                     {5,5,5,5,5,5,cB,cW,cO}};
+  int expectedValue[6][9] = {{0,0,2,0,0,0,1,0,0},
+                             {2,5,0,1,1,1,1,1,1},
+                             {5,2,3,2,2,2,2,2,2},
+                             {5,1,3,3,3,3,3,3,3},
                              {4,4,4,4,4,4,4,4,4},
-                             {5,5,5,5,5,5,2,2,5}}; 
+                             {5,5,5,5,5,5,1,3,0}}; 
+
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
   fullTopFaceSolver(cube);
+	displayCube(cube);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
