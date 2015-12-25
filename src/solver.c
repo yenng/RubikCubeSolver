@@ -42,11 +42,48 @@ int *formulaGPtr[6] = {NULL,formulaRG,NULL,formulaOG,NULL,NULL};
 
 int **formulaPtrPtr[6] = {formulaWPtr,formulaRPtr,formulaBPtr,formulaOPtr,NULL,formulaGPtr};
 
-/****************Top Face formula*************************/
-int topFormula[8] = {U,U,Ri,Ui,Fi,U,F,R};
+/***************************Top Face formula********************************/
+/*														TOP FACE VALUE	
+ * ____________________________________________________________________________
+ * |topFormula0				topFormula1				topFormula2					topFormula3				 |
+ * |	X W X							X W X							X X X								X X X						 |
+ * |	W W X							X W W							X W W								W W X            |
+ * |	X	X X 						X X X             X W X								X W X						 |
+ * | pattern6					 pattern1					 pattern3						 pattern5					 |
+ * |																																					 |
+ * |topFormula0 x 2	 topFormula1 + topFormula0																 |
+ * |	X W X										X X X																						 |
+ * |	X W X										W W W																						 |
+ * |	X W	X										X X	X																						 |
+ * | pattern2							 	 pattern4																					 |
+ * |___________________________________________________________________________|
+ *		PS:  W = white colour, X = any color.
+ */
+ 
+int topFormula0[6] = {Ri,Ui,Fi,U,F,R};						
+int topFormula1[7] = {U,Ri,Ui,Fi,U,F,R};
+int topFormula2[8] = {U,U,Ri,Ui,Fi,U,F,R};
+int topFormula3[7] = {Ui,Ri,Ui,Fi,U,F,R};
 
-int *ptrTopFormula[] = {topFormula};
+int *ptrTopFormula[] = {topFormula0,topFormula1,topFormula2,topFormula3};
 
+ /*baseSolver solve the cube to the following result.
+				 X X X              X: any color
+         X X X              R: Red color
+         X X X              B: Blue color
+														O: Orange color
+ X X X   X X X   X X X      Y: Yellow color
+ X R X   X B X   X O X      G: Green color  
+ R R R   B B B   O O O      
+ 
+         Y Y Y              
+         Y Y Y              
+         Y Y Y              
+
+         G G G               
+         X G X              
+         X X X
+*/
 void baseSolver(Cube *cube){
   
 }
@@ -64,6 +101,23 @@ void sideCornerSolver(Cube *cube){
   }
 }
 
+ /* Side corner solver solve the cube to the following result.
+				 X X X              X: any color
+         X X X              R: Red color
+         X X X              B: Blue color
+														O: Orange color
+ X X X   X X X   X X X      Y: Yellow color
+ R R R   B B B   O O O      G: Green color
+ R R R   B B B   O O O      
+ 
+         Y Y Y              
+         Y Y Y              
+         Y Y Y              
+
+         G G G              
+         G G G              
+         X X X
+*/
 void fullSideCornerSolver(Cube *cube){
   while(cube->frontFace->faceValue[3] != cB || cube->leftFace->faceValue[5]  != cR ||
         cube->frontFace->faceValue[5] != cB || cube->rightFace->faceValue[3] != cO || 
@@ -74,49 +128,81 @@ void fullSideCornerSolver(Cube *cube){
   }
 }
 
-void sideCornerSolver1(Cube *cube){
-  //declare side corner of the up face.
-  int sideConer0[2] = {cube->upFace->faceValue[5],cube->rightFace->faceValue[1]};
-  int sideConer1[2] = {cube->upFace->faceValue[1],cube->backFace->faceValue[7]};
-  int sideConer2[2] = {cube->upFace->faceValue[3],cube->leftFace->faceValue[1]};
-  int sideConer3[2] = {cube->upFace->faceValue[7],cube->frontFace->faceValue[1]};
-  
-  int *sideCornerPtr[4] = {sideConer0,sideConer1,sideConer2,sideConer3};
-  
-  int *ptrToSide;
-  int *ptrToFormula;
-  int i = 0;
-  int j = 0;
-  
-  while(j<4){
-    ptrToSide = sideCornerPtr[j];
-    int turnCount = j;
-    if(ptrToSide[0]==cB&&ptrToSide[1]==cO){
-      while(turnCount > 0){
-        fullRotation(cube,U);
-        turnCount --;
-      }
-      ptrToFormula = formulaPtr[1];
-    }
-    else if(ptrToSide[1]==cB&&ptrToSide[0]==cO){
-      while(turnCount+1 > 0){
-        fullRotation(cube,U);
-        turnCount --;
-      }
-      ptrToFormula = formulaPtr[0];
-    }
-    j++;
-  }
-  while(i<8){
-    fullRotation(cube,ptrToFormula[i]);
+ /*Top face solver solve the cube to the following result.
+				 X W X              X: any color
+         W W W              R: Red color
+         X W X              B: Blue color
+														O: Orange color
+ X X X   X X X   X X X      Y: Yellow color
+ R R R   B B B   O O O      G: Green color
+ R R R   B B B   O O O      W: White color
+ 
+         Y Y Y              
+         Y Y Y              
+         Y Y Y              
+
+         G G G              
+         G G G              
+         X X X
+*/
+void topFaceSolver(Cube *cube, int formulaNo, int arrSize){
+	int *upFormula = ptrTopFormula[formulaNo]; 
+	int i = 0;
+  while(i<arrSize){
+    fullRotation(cube,upFormula[i]);
     i++;
   }
 }
 
-void topFaceSolver(Cube *cube){
-  int i = 0;
-  while(i<8){
-    fullRotation(cube,topFormula[i]);
-    i++;
-  }
+
+void fullTopFaceSolver(Cube *cube){
+	int upFaceCrossValue[4] = {cube->upFace->faceValue[1],cube->upFace->faceValue[5],
+														 cube->upFace->faceValue[7],cube->upFace->faceValue[3]};
+	int i = 0;
+	int pattern = 0;
+	while(i<4){
+		if(upFaceCrossValue[i] == 0){
+			pattern = pattern + i;
+			if(i == 3 && pattern == 3)
+				pattern *= 2;
+		}
+		i++;
+	}
+	switch(pattern){
+		case pattern0:
+			topFaceSolver(cube,0,6);
+	displayCube(cube);
+			fullTopFaceSolver(cube);
+	displayCube(cube);
+			break;
+		case pattern1:
+			topFaceSolver(cube,3,7);
+			break;
+		case pattern2:
+			topFaceSolver(cube,0,6);
+			topFaceSolver(cube,0,6);
+			break;
+		case pattern3:
+			topFaceSolver(cube,2,8);
+			break;
+		case pattern4:
+			topFaceSolver(cube,1,7);
+			topFaceSolver(cube,0,6);
+			break;
+		case pattern5:
+			topFaceSolver(cube,1,7);
+			break;
+		case pattern6:
+			topFaceSolver(cube,0,6);
+			break;
+	}
 }
+
+
+
+
+
+
+
+
+
