@@ -247,7 +247,7 @@ void test_top_face_solver(){
 
 
 
-void xtest_top_face_full_solver_with_pattern_3(){
+void test_top_face_full_solver_with_pattern_3(){
 
   int value[6][9] = {{0,1,0,2,0,0,0,0,0},
 
@@ -299,10 +299,24 @@ void test_top_face_full_solver_with_pattern_0(){
 
                      {5,5,5,5,5,5,0,0,3}};
 
+  int expectedValue[6][9] = {{1,0,0,0,0,0,3,0,0},
+
+                             {0,1,0,1,1,1,1,1,1},
+
+                             {2,3,5,2,2,2,2,2,2},
+
+                             {1,5,3,3,3,3,3,3,3},
+
+                             {4,4,4,4,4,4,4,4,4},
+
+                             {5,5,5,5,5,5,2,2,5}};
+
   Cube *cube = createCube(value);
 
- displayCube(cube);
+  Cube *expectedCube = createCube(expectedValue);
 
   fullTopFaceSolver(cube);
+
+  ; customTestAssertCube(expectedCube, cube, 163);;
 
 }

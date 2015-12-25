@@ -125,7 +125,7 @@ void test_top_face_solver(){
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
-void xtest_top_face_full_solver_with_pattern_3(){							//white color form 『 shape
+void test_top_face_full_solver_with_pattern_3(){							//white color form 『 shape
   int value[6][9] = {{0,1,0,2,0,0,0,0,0},											//TOP FACE
                      {1,0,3,1,1,1,1,1,1},											//	x x x						x W x
                      {5,5,1,2,2,2,2,2,2},											//  x W W   >>>     W W W
@@ -151,12 +151,14 @@ void test_top_face_full_solver_with_pattern_0(){
                      {cW,cW,cB,3,3,3,3,3,3},
                      {4,4,4,4,4,4,4,4,4},
                      {5,5,5,5,5,5,cW,cW,cO}};
+  int expectedValue[6][9] = {{1,0,0,0,0,0,3,0,0},
+                             {0,1,0,1,1,1,1,1,1},
+                             {2,3,5,2,2,2,2,2,2},
+                             {1,5,3,3,3,3,3,3,3},
+                             {4,4,4,4,4,4,4,4,4},
+                             {5,5,5,5,5,5,2,2,5}}; 
   Cube *cube = createCube(value);
-	displayCube(cube);
+  Cube *expectedCube = createCube(expectedValue);
   fullTopFaceSolver(cube);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
-
-
-
-
-

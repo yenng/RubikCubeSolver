@@ -30,14 +30,13 @@ char* GlobalOrderError;
 //=======External Functions This Runner Calls=====
 extern void setUp(void);
 extern void tearDown(void);
-extern void test_front_side_corner_solver1(void);
-extern void test_front_side_corner_solver2(void);
-extern void test_side_corner_solver_one_by_one(void);
-extern void test_solver_side_corner(void);
-extern void test_solver_side_corner1(void);
-extern void test_top_face_solver(void);
-extern void test_top_face_full_solver_with_pattern_3(void);
-extern void test_top_face_full_solver_with_pattern_0(void);
+extern void test_face_rotation_clockwise(void);
+extern void test_face_rotation_anticlockwise(void);
+extern void test_create_rotation_clockwise(void);
+extern void test_create_rotation_anticlockwise(void);
+extern void test_create_side_rotation_up_face_anticlockwise(void);
+extern void test_create_side_rotation_down_face_clockwise(void);
+extern void test_create_rotation_down_face_clockwise(void);
 
 
 //=======Test Reset Option=====
@@ -52,15 +51,14 @@ void resetTest(void)
 //=======MAIN=====
 int main(void)
 {
-  UnityBegin("test_solver.c");
-  RUN_TEST(test_front_side_corner_solver1, 11);
-  RUN_TEST(test_front_side_corner_solver2, 31);
-  RUN_TEST(test_side_corner_solver_one_by_one, 51);
-  RUN_TEST(test_solver_side_corner, 70);
-  RUN_TEST(test_solver_side_corner1, 89);
-  RUN_TEST(test_top_face_solver, 109);
-  RUN_TEST(test_top_face_full_solver_with_pattern_3, 128);
-  RUN_TEST(test_top_face_full_solver_with_pattern_0, 147);
+  UnityBegin("test_rotation.c");
+  RUN_TEST(test_face_rotation_clockwise, 10);
+  RUN_TEST(test_face_rotation_anticlockwise, 21);
+  RUN_TEST(test_create_rotation_clockwise, 32);
+  RUN_TEST(test_create_rotation_anticlockwise, 50);
+  RUN_TEST(test_create_side_rotation_up_face_anticlockwise, 67);
+  RUN_TEST(test_create_side_rotation_down_face_clockwise, 91);
+  RUN_TEST(test_create_rotation_down_face_clockwise, 114);
 
   return (UnityEnd());
 }

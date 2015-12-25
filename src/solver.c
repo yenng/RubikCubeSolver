@@ -171,9 +171,7 @@ void fullTopFaceSolver(Cube *cube){
 	switch(pattern){
 		case pattern0:
 			topFaceSolver(cube,0,6);
-	displayCube(cube);
 			fullTopFaceSolver(cube);
-	displayCube(cube);
 			break;
 		case pattern1:
 			topFaceSolver(cube,3,7);
