@@ -239,9 +239,47 @@ void test_top_face_solver(){
 
   Cube *expectedCube = createCube(expectedValue);
 
-  topFaceSolver(cube, 2,8);
+  topSideSolver(cube, 2,8);
 
   ; customTestAssertCube(expectedCube, cube, 125);;
+
+}
+
+
+
+void test_top_face_full_solver_with_pattern_0(){
+
+  int value[6][9] = {{2,3,0,5,0,2,0,1,5},
+
+                     {1,0,3,1,1,1,1,1,1},
+
+                     {5,0,1,2,2,2,2,2,2},
+
+                     {0,0,2,3,3,3,3,3,3},
+
+                     {4,4,4,4,4,4,4,4,4},
+
+                     {5,5,5,5,5,5,0,0,3}};
+
+  int expectedValue[6][9] = {{1,0,3,0,0,0,0,0,0},
+
+                             {5,2,2,1,1,1,1,1,1},
+
+                             {3,3,1,2,2,2,2,2,2},
+
+                             {2,5,5,3,3,3,3,3,3},
+
+                             {4,4,4,4,4,4,4,4,4},
+
+                             {5,5,5,5,5,5,0,1,0}};
+
+  Cube *cube = createCube(value);
+
+  Cube *expectedCube = createCube(expectedValue);
+
+  fullTopSideSolver(cube);
+
+  ; customTestAssertCube(expectedCube, cube, 144);;
 
 }
 
@@ -277,49 +315,13 @@ void test_top_face_full_solver_with_pattern_3(){
 
   Cube *expectedCube = createCube(expectedValue);
 
-  fullTopFaceSolver(cube);
-
-  ; customTestAssertCube(expectedCube, cube, 144);;
-
-}
-
-
-
-void test_top_face_full_solver_with_pattern_0(){
-
-  int value[6][9] = {{2,3,0,5,0,2,0,1,5},
-
-                     {1,0,3,1,1,1,1,1,1},
-
-                     {5,0,1,2,2,2,2,2,2},
-
-                     {0,0,2,3,3,3,3,3,3},
-
-                     {4,4,4,4,4,4,4,4,4},
-
-                     {5,5,5,5,5,5,0,0,3}};
-
-  int expectedValue[6][9] = {{1,0,0,0,0,0,3,0,0},
-
-                             {0,1,0,1,1,1,1,1,1},
-
-                             {2,3,5,2,2,2,2,2,2},
-
-                             {1,5,3,3,3,3,3,3,3},
-
-                             {4,4,4,4,4,4,4,4,4},
-
-                             {5,5,5,5,5,5,2,2,5}};
-
-  Cube *cube = createCube(value);
-
-  Cube *expectedCube = createCube(expectedValue);
-
-  fullTopFaceSolver(cube);
+  fullTopSideSolver(cube);
 
   ; customTestAssertCube(expectedCube, cube, 163);;
 
 }
+
+
 
 
 
@@ -337,17 +339,17 @@ void test_top_face_full_solver_with_pattern_4(){
 
                      {5,5,5,5,5,5,2,0,3}};
 
-  int expectedValue[6][9] = {{0,0,2,0,0,0,1,0,0},
+  int expectedValue[6][9] = {{5,0,3,0,0,0,0,0,2},
 
-                             {2,5,0,1,1,1,1,1,1},
+                             {3,3,5,1,1,1,1,1,1},
 
-                             {5,2,3,2,2,2,2,2,2},
+                             {1,2,0,2,2,2,2,2,2},
 
-                             {5,1,3,3,3,3,3,3,3},
+                             {1,1,0,3,3,3,3,3,3},
 
                              {4,4,4,4,4,4,4,4,4},
 
-                             {5,5,5,5,5,5,1,3,0}};
+                             {5,5,5,5,5,5,0,5,2}};
 
 
 
@@ -355,10 +357,168 @@ void test_top_face_full_solver_with_pattern_4(){
 
   Cube *expectedCube = createCube(expectedValue);
 
-  fullTopFaceSolver(cube);
-
- displayCube(cube);
+  fullTopSideSolver(cube);
 
   ; customTestAssertCube(expectedCube, cube, 184);;
+
+}
+
+
+
+
+
+void test_top_face_corner_solver(){
+
+  int value[6][9] = {{1,0,2,0,0,0,0,0,3},
+
+                     {5,2,3,1,1,1,1,1,1},
+
+                     {5,3,0,2,2,2,2,2,2},
+
+                     {2,5,0,3,3,3,3,3,3},
+
+                     {4,4,4,4,4,4,4,4,4},
+
+                     {5,5,5,5,5,5,0,1,1}};
+
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+
+                             {3,1,1,1,1,1,1,1,1},
+
+                             {2,3,5,2,2,2,2,2,2},
+
+                             {1,2,3,3,3,3,3,3,3},
+
+                             {4,4,4,4,4,4,4,4,4},
+
+                             {5,5,5,5,5,5,2,5,5}};
+
+  Cube *cube = createCube(value);
+
+  Cube *expectedCube = createCube(expectedValue);
+
+  topFaceCornerSolver(cube);
+
+  ; customTestAssertCube(expectedCube, cube, 204);;
+
+}
+
+
+
+
+
+void test_full_top_face_corner_solver(){
+
+  int value[6][9] = {{1,0,0,0,0,0,5,0,3},
+
+                     {0,2,1,1,1,1,1,1,1},
+
+                     {0,1,5,2,2,2,2,2,2},
+
+                     {0,5,2,3,3,3,3,3,3},
+
+                     {4,4,4,4,4,4,4,4,4},
+
+                     {5,5,5,5,5,5,2,3,3}};
+
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+
+                             {2,3,5,1,1,1,1,1,1},
+
+                             {1,2,3,2,2,2,2,2,2},
+
+                             {5,5,2,3,3,3,3,3,3},
+
+                             {4,4,4,4,4,4,4,4,4},
+
+                             {5,5,5,5,5,5,1,1,3}};
+
+  Cube *cube = createCube(value);
+
+  Cube *expectedCube = createCube(expectedValue);
+
+  fullTopFaceCornerSolver(cube);
+
+  ; customTestAssertCube(expectedCube, cube, 224);;
+
+}
+
+
+
+
+
+void test_full_top_face_corner_solver_with_two_corners_is_white(){
+
+  int value[6][9] = {{0,0,0,0,0,0,2,0,5},
+
+                     {3,3,0,1,1,1,1,1,1},
+
+                     {1,2,1,2,2,2,2,2,2},
+
+                     {0,1,3,3,3,3,3,3,3},
+
+                     {4,4,4,4,4,4,4,4,4},
+
+                     {5,5,5,5,5,5,2,5,5}};
+
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+
+                             {5,3,2,1,1,1,1,1,1},
+
+                             {3,2,1,2,2,2,2,2,2},
+
+                             {2,5,5,3,3,3,3,3,3},
+
+                             {4,4,4,4,4,4,4,4,4},
+
+                             {5,5,5,5,5,5,3,1,1}};
+
+  Cube *cube = createCube(value);
+
+  Cube *expectedCube = createCube(expectedValue);
+
+  fullTopFaceCornerSolver(cube);
+
+  ; customTestAssertCube(expectedCube, cube, 244);;
+
+}
+
+
+
+
+
+void test_full_top_face_corner_solver_with_no_corner_is_white(){
+
+  int value[6][9] = {{5,0,2,0,0,0,5,0,2},
+
+                     {0,1,0,1,1,1,1,1,1},
+
+                     {3,5,3,2,2,2,2,2,2},
+
+                     {0,3,0,3,3,3,3,3,3},
+
+                     {4,4,4,4,4,4,4,4,4},
+
+                     {5,5,5,5,5,5,1,2,1}};
+
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+
+                             {1,3,3,1,1,1,1,1,1},
+
+                             {5,5,2,2,2,2,2,2,2},
+
+                             {3,2,1,3,3,3,3,3,3},
+
+                             {4,4,4,4,4,4,4,4,4},
+
+                             {5,5,5,5,5,5,5,1,2}};
+
+  Cube *cube = createCube(value);
+
+  Cube *expectedCube = createCube(expectedValue);
+
+  fullTopFaceCornerSolver(cube);
+
+  ; customTestAssertCube(expectedCube, cube, 264);;
 
 }

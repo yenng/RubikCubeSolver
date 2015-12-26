@@ -17,5 +17,9 @@
 void sideCornerSolver1(Cube *cube);
 void fullSideCornerSolver(Cube *cube);
 void sideCornerSolver(Cube *cube);
-void topFaceSolver(Cube *cube, int formulaNo, int arrSize);
+void topSideSolver(Cube *cube, int formulaNo, int arrSize);
+void fullTopSideSolver(Cube *cube);
+int topFaceDetermination(Cube *cube);
+void topFaceCornerSolver(Cube *cube);
+void fullTopFaceCornerSolver(Cube *cube);
 #endif // solver_H
