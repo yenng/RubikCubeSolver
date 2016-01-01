@@ -263,4 +263,171 @@ void test_full_top_face_corner_solver_with_no_corner_is_white(){//	Top face
   fullTopFaceCornerSolver(cube);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
+
+
+void test_top_corner_solver_A_and_B_is_correct(){		//pattern1
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},									//		 ___________											 ___________
+                     {1,5,2,1,1,1,1,1,1},									//		| A |		|	B |										 	| A |	  |	B |
+                     {3,3,1,2,2,2,2,2,2},									//		|___|___|___|										 	|___|___|___|
+                     {2,1,3,3,3,3,3,3,3},									//		|		|		|		|					\\\\				|		|		|		|
+                     {4,4,4,4,4,4,4,4,4},									//		|___|___|___|					////				|___|___|___|
+										 {5,5,5,5,5,5,5,2,5}};						 		//		| D |   | C |											| C |   | D |
+																													//		|___|___|___|											|___|___|___|
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+                             {1,2,1,1,1,1,1,1,1},
+                             {2,5,2,2,2,2,2,2,2},
+                             {3,3,3,3,3,3,3,3,3},
+                             {4,4,4,4,4,4,4,4,4},
+                             {5,5,5,5,5,5,5,1,5}};
+  Cube *cube = createCube(value);
+  Cube *expectedCube = createCube(expectedValue);
+	topCornerSolver(cube,1);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+
+void test_top_corner_solver_A_and_C_is_correct(){		//pattern2
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},									//		 ___________											 ___________
+                     {1,1,1,1,1,1,1,1,1},									//		| A |		|	D |										 	| A |	  |	B |
+                     {2,2,3,2,2,2,2,2,2},									//		|___|___|___|										 	|___|___|___|
+                     {5,5,2,3,3,3,3,3,3},									//		|		|		|		|					\\\\				|		|		|		|
+                     {4,4,4,4,4,4,4,4,4},									//		|___|___|___|					////				|___|___|___|
+										 {5,5,5,5,5,5,5,3,3}};						 		//		| C |   | B |											| C |   | D |
+																													//		|___|___|___|											|___|___|___|
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+                             {1,3,1,1,1,1,1,1,1},
+                             {2,1,2,2,2,2,2,2,2},
+                             {3,2,3,3,3,3,3,3,3},
+                             {4,4,4,4,4,4,4,4,4},
+                             {5,5,5,5,5,5,5,5,5}};
+  Cube *cube = createCube(value);
+  Cube *expectedCube = createCube(expectedValue);
+	topCornerSolver(cube,2);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+
+void test_full_top_corner_solver_A_and_B_is_correct(){		//pattern1
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},									//		 ___________											 ___________
+                     {1,5,2,1,1,1,1,1,1},									//		| A |		|	B |										 	| A |	  |	B |
+                     {3,3,1,2,2,2,2,2,2},									//		|___|___|___|										 	|___|___|___|
+                     {2,1,3,3,3,3,3,3,3},									//		|		|		|		|					\\\\				|		|		|		|
+                     {4,4,4,4,4,4,4,4,4},									//		|___|___|___|					////				|___|___|___|
+										 {5,5,5,5,5,5,5,2,5}};						 		//		| D |   | C |											| C |   | D |
+																													//		|___|___|___|											|___|___|___|
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+                             {1,2,1,1,1,1,1,1,1},
+                             {2,5,2,2,2,2,2,2,2},
+                             {3,3,3,3,3,3,3,3,3},
+                             {4,4,4,4,4,4,4,4,4},
+                             {5,5,5,5,5,5,5,1,5}};
+  Cube *cube = createCube(value);
+  Cube *expectedCube = createCube(expectedValue);
+	topCornerFullSolver(cube);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+
+void test_full_top_corner_solver_A_and_C_is_correct(){		//pattern2
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},									//		 ___________											 ___________
+                     {1,1,1,1,1,1,1,1,1},									//		| A |		|	D |										 	| A |	  |	B |
+                     {2,2,3,2,2,2,2,2,2},									//		|___|___|___|										 	|___|___|___|
+                     {5,5,2,3,3,3,3,3,3},									//		|		|		|		|					\\\\				|		|		|		|
+                     {4,4,4,4,4,4,4,4,4},									//		|___|___|___|					////				|___|___|___|
+										 {5,5,5,5,5,5,5,3,3}};						 		//		| C |   | B |											| C |   | D |
+																													//		|___|___|___|											|___|___|___|
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+                             {1,3,1,1,1,1,1,1,1},
+                             {2,1,2,2,2,2,2,2,2},
+                             {3,2,3,3,3,3,3,3,3},
+                             {4,4,4,4,4,4,4,4,4},
+                             {5,5,5,5,5,5,5,5,5}};
+  Cube *cube = createCube(value);
+  Cube *expectedCube = createCube(expectedValue);
+	topCornerFullSolver(cube);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+void test_full_top_corner_solver_B_and_C_is_correct(){		//pattern3
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},									//		 ___________											 ___________
+                     {3,5,1,1,1,1,1,1,1},									//		| D |		|	B |										 	| A |	  |	B |
+                     {2,3,5,2,2,2,2,2,2},									//		|___|___|___|										 	|___|___|___|
+                     {1,1,3,3,3,3,3,3,3},									//		|		|		|		|					\\\\				|		|		|		|
+                     {4,4,4,4,4,4,4,4,4},									//		|___|___|___|					////				|___|___|___|
+										 {5,5,5,5,5,5,2,2,5}};						 		//		| C |   | A |											| C |   | D |
+																													//		|___|___|___|											|___|___|___|
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+                             {1,2,1,1,1,1,1,1,1},
+                             {2,5,2,2,2,2,2,2,2},
+                             {3,3,3,3,3,3,3,3,3},
+                             {4,4,4,4,4,4,4,4,4},
+                             {5,5,5,5,5,5,5,1,5}};
+  Cube *cube = createCube(value);
+  Cube *expectedCube = createCube(expectedValue);
+	topCornerFullSolver(cube);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+void test_full_top_corner_solver_B_and_D_is_correct(){		//pattern4
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},									//		 ___________											 ___________
+                     {2,5,5,1,1,1,1,1,1},									//		| A |		|	B |										 	| A |	  |	B |
+                     {1,3,2,2,2,2,2,2,2},									//		|___|___|___|										 	|___|___|___|
+                     {3,1,3,3,3,3,3,3,3},									//		|		|		|		|					\\\\				|		|		|		|
+                     {4,4,4,4,4,4,4,4,4},									//		|___|___|___|					////				|___|___|___|
+										 {5,5,5,5,5,5,1,2,5}};						 		//		| C |   | D |											| C |   | D |
+																													//		|___|___|___|											|___|___|___|
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+                             {1,2,1,1,1,1,1,1,1},
+                             {2,5,2,2,2,2,2,2,2},
+                             {3,3,3,3,3,3,3,3,3},
+                             {4,4,4,4,4,4,4,4,4},
+                             {5,5,5,5,5,5,5,1,5}};
+  Cube *cube = createCube(value);
+  Cube *expectedCube = createCube(expectedValue);
+	topCornerFullSolver(cube);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+void test_full_top_corner_solver_C_and_D_is_correct(){		//pattern5
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},									//		 ___________											 ___________
+                     {5,1,1,1,1,1,1,1,1},									//		| B |		|	A |										 	| A |	  |	B |
+                     {2,2,2,2,2,2,2,2,2},									//		|___|___|___|										 	|___|___|___|
+                     {3,5,5,3,3,3,3,3,3},									//		|		|		|		|					\\\\				|		|		|		|
+                     {4,4,4,4,4,4,4,4,4},									//		|___|___|___|					////				|___|___|___|
+										 {5,5,5,5,5,5,3,3,1}};						 		//		| C |   | D |											| C |   | D |
+																													//		|___|___|___|											|___|___|___|
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+                             {1,3,1,1,1,1,1,1,1},
+                             {2,1,2,2,2,2,2,2,2},
+                             {3,2,3,3,3,3,3,3,3},
+                             {4,4,4,4,4,4,4,4,4},
+                             {5,5,5,5,5,5,5,5,5}};
+  Cube *cube = createCube(value);
+  Cube *expectedCube = createCube(expectedValue);
+	topCornerFullSolver(cube);
 	// displayCube(cube);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+
+void test_full_top_corner_solver_A_and_D_is_correct(){		//pattern6
+  int value[6][9] = {{0,0,0,0,0,0,0,0,0},									//		 ___________											 ___________
+                     {1,3,3,1,1,1,1,1,1},									//		| A |		|	C |										 	| A |	  |	B |
+                     {5,5,2,2,2,2,2,2,2},									//		|___|___|___|										 	|___|___|___|
+                     {3,2,1,3,3,3,3,3,3},									//		|		|		|		|					\\\\				|		|		|		|
+                     {4,4,4,4,4,4,4,4,4},									//		|___|___|___|					////				|___|___|___|
+										 {5,5,5,5,5,5,5,1,2}};						 		//		| B |   | D |											| C |   | D |
+																													//		|___|___|___|											|___|___|___|
+  int expectedValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+                             {1,5,1,1,1,1,1,1,1},
+                             {2,2,2,2,2,2,2,2,2},
+                             {3,1,3,3,3,3,3,3,3},
+                             {4,4,4,4,4,4,4,4,4},
+                             {5,5,5,5,5,5,5,3,5}};
+  Cube *cube = createCube(value);
+  Cube *expectedCube = createCube(expectedValue);
+	topCornerFullSolver(cube);
+  TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+	
+	

@@ -42,11 +42,35 @@
 - :test: test_full_top_face_corner_solver_with_no_corner_is_white
   :line: 248
   :message: ''
+- :test: test_top_corner_solver_A_and_B_is_correct
+  :line: 268
+  :message: ''
+- :test: test_top_corner_solver_A_and_C_is_correct
+  :line: 289
+  :message: ''
+- :test: test_full_top_corner_solver_A_and_B_is_correct
+  :line: 310
+  :message: ''
+- :test: test_full_top_corner_solver_A_and_C_is_correct
+  :line: 331
+  :message: ''
+- :test: test_full_top_corner_solver_B_and_C_is_correct
+  :line: 351
+  :message: ''
+- :test: test_full_top_corner_solver_B_and_D_is_correct
+  :line: 371
+  :message: ''
+- :test: test_full_top_corner_solver_C_and_D_is_correct
+  :line: 391
+  :message: ''
+- :test: test_full_top_corner_solver_A_and_D_is_correct
+  :line: 413
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 13
-  :passed: 13
+  :total: 21
+  :passed: 21
   :failed: 0
   :ignored: 0
 :stdout:

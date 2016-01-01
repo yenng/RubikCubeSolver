@@ -43,6 +43,14 @@ extern void test_top_face_corner_solver(void);
 extern void test_full_top_face_corner_solver(void);
 extern void test_full_top_face_corner_solver_with_two_corners_is_white(void);
 extern void test_full_top_face_corner_solver_with_no_corner_is_white(void);
+extern void test_top_corner_solver_A_and_B_is_correct(void);
+extern void test_top_corner_solver_A_and_C_is_correct(void);
+extern void test_full_top_corner_solver_A_and_B_is_correct(void);
+extern void test_full_top_corner_solver_A_and_C_is_correct(void);
+extern void test_full_top_corner_solver_B_and_C_is_correct(void);
+extern void test_full_top_corner_solver_B_and_D_is_correct(void);
+extern void test_full_top_corner_solver_C_and_D_is_correct(void);
+extern void test_full_top_corner_solver_A_and_D_is_correct(void);
 
 
 //=======Test Reset Option=====
@@ -71,6 +79,14 @@ int main(void)
   RUN_TEST(test_full_top_face_corner_solver, 208);
   RUN_TEST(test_full_top_face_corner_solver_with_two_corners_is_white, 228);
   RUN_TEST(test_full_top_face_corner_solver_with_no_corner_is_white, 248);
+  RUN_TEST(test_top_corner_solver_A_and_B_is_correct, 268);
+  RUN_TEST(test_top_corner_solver_A_and_C_is_correct, 289);
+  RUN_TEST(test_full_top_corner_solver_A_and_B_is_correct, 310);
+  RUN_TEST(test_full_top_corner_solver_A_and_C_is_correct, 331);
+  RUN_TEST(test_full_top_corner_solver_B_and_C_is_correct, 351);
+  RUN_TEST(test_full_top_corner_solver_B_and_D_is_correct, 371);
+  RUN_TEST(test_full_top_corner_solver_C_and_D_is_correct, 391);
+  RUN_TEST(test_full_top_corner_solver_A_and_D_is_correct, 413);
 
   return (UnityEnd());
 }

@@ -72,8 +72,24 @@ int *ptrTopFormula[] = {topFormula0,topFormula1,topFormula2,topFormula3,topFormu
 //××××××××××××××Top Face Corner Solver×××××××××××××××××××××××××××××××××××××××/
 int topFaceCornerFormula[8]={R,U,Ri,U,R,U,U,Ri};					//solve the top face corner only. Ignore the location of the top corner.
 
+/***************Top corner correct sequence***********************************************/
+int topAcorrect[2] = {cR,cG}; //1 5
+int topBcorrect[2] = {cG,cO}; //5 3
+int topCcorrect[2] = {cB,cR}; //2 1
+int topDcorrect[2] = {cO,cB}; //3 2
+
+int *topCornerCorrect[4] = {topAcorrect,topBcorrect,topCcorrect,topDcorrect};
+	
 /**********************Top Corner Solver***************************/
-int topCornerFormula[13] = {Ri,F,Ri,B,B,R,Fi,Ri,B,B,R,R,Ui};
+int topCornerFormula1[13] = {Ri,F,Ri,B,B,R,Fi,Ri,B,B,R,R,Ui};
+int topCornerFormula2[15] = {U,Ri,F,Ri,B,B,R,Fi,Ri,B,B,R,R,Ui,Ui};
+int topCornerFormula3[29] = {Ri,F,Ri,B,B,R,Fi,Ri,B,B,R,R,Ui,U,U,Ri,F,Ri,B,B,R,Fi,Ri,B,B,R,R,Ui,Ui};
+int topCornerFormula4[15] = {Ui,Ri,F,Ri,B,B,R,Fi,Ri,B,B,R,R,Ui,U};
+int topCornerFormula5[17] = {Ui,Ui,Ri,F,Ri,B,B,R,Fi,Ri,B,B,R,R,Ui,U,U};
+int topCornerFormula6[25] = {Ri,F,Ri,B,B,R,Fi,Ri,B,B,R,R,U,Ri,F,Ri,B,B,R,Fi,Ri,B,B,R,R};
+
+int *ptrTopCornerFormula[7] = {NULL,topCornerFormula1,topCornerFormula2,topCornerFormula3,topCornerFormula4,topCornerFormula5,topCornerFormula6};
+int topCornerFormulaLength[7] = {0,13,15,29,15,17,25};
 
  /*baseSolver solve the cube to the following result.
 				 X X X              X: any color
@@ -283,21 +299,66 @@ void fullTopFaceCornerSolver(Cube *cube){
          G X G
 */
 
-void topCornerSolver(Cube *cube){																																	//		 ___________
+/************top corner solver **************************
+ *	solve the top corner to the correct sequence.				*
+ ********************************************************/
+//		Correct Sequence.
+//		 ___________
+//		| A |		|	B |
+//		|___|___|___|
+//		|		|   |   |
+//		|___|___|___|
+//		| C |   | D |
+//		|___|___|___|
+
+void topCornerSolver(Cube *cube, int formulaNo){
+	int *topFormula = ptrTopCornerFormula[formulaNo];
+	int topFormulaArrSize = topCornerFormulaLength[formulaNo];
+	int i = 0;
+  while(i<topFormulaArrSize){
+    fullRotation(cube,topFormula[i]);
+    i++;
+  }
+}
+
+void topCornerFullSolver(Cube *cube){																																	//		 ___________
 	int topA[2] = {cube->leftFace->faceValue[0],cube->backFace->faceValue[6]};													//		| A |		|	B |
-	int topB[2] = {cube->backFace->faceValue[8],cube->rightFace->faceValue[2]};												//		|___|___|___|
-	int topC[2] = {cube->frontFace->faceValue[0],cube->leftFace->faceValue[2]};												//		|		|   |   |
+	int topB[2] = {cube->backFace->faceValue[8],cube->rightFace->faceValue[2]};													//		|___|___|___|
+	int topC[2] = {cube->frontFace->faceValue[0],cube->leftFace->faceValue[2]};													//		|		|   |   |
 	int topD[2] = {cube->rightFace->faceValue[0],cube->frontFace->faceValue[2]};												//		|___|___|___|
-																																																	//		| C |   | D |
-																																																	//		|___|___|___|
+																																																			//		| C |   | D |
+	int *topCorner[4] = {topA,topB,topC,topD};																													//		|___|___|___|
 	
+	int topCornerFormulaNo;
 	
-	// int topCornerCorrectSequence[8]={cB,cB,cO,cO,cG,cG,cR,cR};
-	// int topCornerSequence[8]={cube->frontFace->faceValue[0],cube->frontFace->faceValue[2],
-														// cube->rightFace->faceValue[0],cube->rightFace->faceValue[2],
-														// cube->backFace->faceValue[8], cube->backFace->faceValue[6] ,
-														// cube->leftFace->faceValue[0], cube->leftFace->faceValue[2]};
-	
+	int topCornerSequence[4];
+	int i = 0;
+	int j = 0;
+	int topCornerPattern = 0;
+	while(j<4){
+		while(i<4){
+			int *actualCorner = topCorner[i];
+			int *expectedCorner = topCornerCorrect[j];
+			if(actualCorner[0]==expectedCorner[0] && actualCorner[1]==expectedCorner[1]){
+				topCornerSequence[j] = i;
+			}
+			i++;
+		}
+		i = 0;
+		if(topCornerSequence[j] == j){
+			topCornerPattern += j;
+			if(topCornerPattern == 3 && j == 3)
+				topCornerPattern *= 2;
+		}
+		j++;
+	}
+	while(i<7){
+		if(topCornerPattern == i){
+			topCornerFormulaNo = i;
+		}
+		i++;
+	}
+	topCornerSolver(cube, topCornerFormulaNo);
 }
 
 
