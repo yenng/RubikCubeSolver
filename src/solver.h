@@ -14,14 +14,18 @@
 
 
 
-void sideCornerSolver1(Cube *cube);
-void fullSideCornerSolver(Cube *cube);
 void sideCornerSolver(Cube *cube);
-void topSideSolver(Cube *cube, int formulaNo, int arrSize);
-void fullTopSideSolver(Cube *cube);
-int topFaceDetermination(Cube *cube);
+void fullSideCornerSolver(Cube *cube);
+
+void topFaceSideSolver(Cube *cube, int formulaNo, int arrSize);
+void fullTopFaceSideSolver(Cube *cube);
+
+int topFaceDetermination(Cube *cube);	//to make sure top face is all White color
 void topFaceCornerSolver(Cube *cube);
 void fullTopFaceCornerSolver(Cube *cube);
+
 void topCornerSolver(Cube *cube, int formulaNo);
 void topCornerFullSolver(Cube *cube);
+
+void topSideSolver(Cube *cube);
 #endif // solver_H
