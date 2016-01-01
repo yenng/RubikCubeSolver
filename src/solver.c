@@ -3,6 +3,44 @@
 #include "cube.h"
 #include <stdio.h>
 #include <stdlib.h>
+/***************Base Formula**********************************/
+//formula when one of side of up face is yellow.
+int baseFormulaUp0B[] = {Ui,F,F};
+int baseFormulaUp0G[] = {U,B,B};
+int baseFormulaUp0R[] = {L,L};
+int baseFormulaUp0O[] = {U,U,R,R};
+int baseFormulaUp1B[] = {F,F};
+int baseFormulaUp1G[] = {U,U,B,B};
+int baseFormulaUp1R[] = {U,L,L};
+int baseFormulaUp1O[] = {Ui,R,R};
+int baseFormulaUp2B[] = {U,F,F};
+int baseFormulaUp2G[] = {Ui,B,B};
+int baseFormulaUp2R[] = {U,U,L,L};
+int baseFormulaUp2O[] = {R,R};
+int baseFormulaUp3B[] = {U,U,F,F};
+int baseFormulaUp3G[] = {B,B};
+int baseFormulaUp3R[] = {Ui,L,L};
+int baseFormulaUp3O[] = {U,R,R};
+
+//formula when one of side of left face is yellow.
+int baseFormulaleft0B[] = {Di,L,L,D,F};
+int baseFormulaleft0G[] = {B};
+int baseFormulaleft0R[] = {L,U,B,Li,Bi};
+int baseFormulaleft0O[] = {D,D,L,Ui,D,F,D,Ri};
+int baseFormulaleft1B[] = {Li,Fi};
+int baseFormulaleft1G[] = {L,B};
+int baseFormulaleft1R[] = {Li,D,F,Di};
+int baseFormulaleft1O[] = {Li,Di,Fi,D};
+int baseFormulaleft2B[] = {Fi};
+int baseFormulaleft2G[] = {D,D,Fi,D,D};
+int baseFormulaleft2R[] = {D,Fi,Di};
+int baseFormulaleft2O[] = {Di,Fi,D};
+int baseFormulaleft3B[] = {Di,L,D,Fi};
+int baseFormulaleft3G[] = {D,Li,Di,B};
+int baseFormulaleft3R[] = {L,D,Fi,Di};
+int baseFormulaleft3O[] = {D,D,L,D,Fi,D};
+
+//formula when one of side of front face is yellow.
 
 /***************Side Corner formula****************/
 // int FSRCFormula1[8] = {U,R,Ui,Ri,Ui,Fi,U,F};    //Solve Front Side Right Corner(FSRC), where the FSRC on the Front face.
@@ -130,7 +168,24 @@ int **ptrPtrTopSideFormula[4] = {ptrTopSideFormula0,ptrTopSideFormula1,ptrTopSid
          X X X
 */
 void baseSolver(Cube *cube){
-  
+  int sideSequence[24] = {cube->upFace->faceValue[3],cube->upFace->faceValue[7],cube->upFace->faceValue[5],cube->upFace->faceValue[1],
+													cube->leftFace->faceValue[3],cube->leftFace->faceValue[7],cube->leftFace->faceValue[5],cube->leftFace->faceValue[1],
+													cube->frontFace->faceValue[3],cube->frontFace->faceValue[7],cube->frontFace->faceValue[5],cube->frontFace->faceValue[1],
+													cube->rightFace->faceValue[3],cube->rightFace->faceValue[7],cube->rightFace->faceValue[5],cube->rightFace->faceValue[1],
+													cube->downFace->faceValue[3],cube->downFace->faceValue[7],cube->downFace->faceValue[5],cube->downFace->faceValue[1],
+													cube->backFace->faceValue[3],cube->backFace->faceValue[7],cube->backFace->faceValue[5],cube->backFace->faceValue[1]};
+  int sideRespectiveSequence[24] = {cube->leftFace->faceValue[1],cube->frontFace->faceValue[1],cube->rightFace->faceValue[5],cube->backFace->faceValue[7],
+																		cube->backFace->faceValue[3],cube->downFace->faceValue[3],cube->frontFace->faceValue[3],cube->upFace->faceValue[3],
+																		cube->leftFace->faceValue[5],cube->downFace->faceValue[1],cube->rightFace->faceValue[3],cube->upFace->faceValue[7],
+																		cube->frontFace->faceValue[5],cube->downFace->faceValue[5],cube->backFace->faceValue[5],cube->upFace->faceValue[5],
+																		cube->leftFace->faceValue[7],cube->backFace->faceValue[1],cube->rightFace->faceValue[7],cube->frontFace->faceValue[7],
+																		cube->leftFace->faceValue[3],cube->upFace->faceValue[1],cube->rightFace->faceValue[5],cube->downFace->faceValue[7]};
+	int i = 0;
+	while(i<24){
+		if(sideSequence[i]==cY){
+			
+		}
+	}
 }
 
 void sideCornerSolver(Cube *cube){
