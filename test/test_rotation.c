@@ -3,6 +3,13 @@
 #include "cube.h"
 #include "customAssertion.h"
 
+int correctValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+													{1,1,1,1,1,1,1,1,1},
+													{2,2,2,2,2,2,2,2,2},
+													{3,3,3,3,3,3,3,3,3},
+													{4,4,4,4,4,4,4,4,4},
+                          {5,5,5,5,5,5,5,5,5}};
+
 void setUp(void){}
 
 void tearDown(void){}
@@ -129,9 +136,14 @@ void test_create_rotation_down_face_clockwise(void){
   
   int rotation = D;
   
-	fullRotation(cube, rotation);
+	fullRotation(cube, rotation,0);
   
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+void test_create_messy_cube_and_display(void){
+	Cube *correctCube = createCube(correctValue);
+  createMessyCube(correctCube);
 }
 
 

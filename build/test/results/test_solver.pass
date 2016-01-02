@@ -22,119 +22,430 @@
   :line: 119
   :message: ''
 - :test: test_base_corner_solver_to_solve_one_corner
-  :line: 139
+  :line: 138
   :message: ''
 - :test: test_base_corner_solver_to_solve_two_corner_by_run_base_corner_solver_twice
-  :line: 159
+  :line: 157
   :message: ''
-- :test: test_front_side_corner_solver1
-  :line: 180
+- :test: test_base_corner_solver_to_solve_three_corner_by_run_base_corner_solver_three_times
+  :line: 178
   :message: ''
-- :test: test_front_side_corner_solver2
+- :test: test_base_corner_solver_to_solve_four_corner_by_run_base_corner_solver_four_times
   :line: 200
   :message: ''
+- :test: test_base_corner_full_solver_to_solve_four_corner
+  :line: 223
+  :message: ''
+- :test: test_front_side_corner_solver1
+  :line: 244
+  :message: ''
+- :test: test_front_side_corner_solver2
+  :line: 264
+  :message: ''
 - :test: test_side_corner_solver_one_by_one
-  :line: 220
+  :line: 284
   :message: ''
 - :test: test_solver_side_corner
-  :line: 239
+  :line: 303
   :message: ''
 - :test: test_solver_side_corner1
-  :line: 258
+  :line: 322
   :message: ''
 - :test: test_top_face_solver
-  :line: 278
+  :line: 342
   :message: ''
 - :test: test_top_face_full_solver_with_pattern_0
-  :line: 297
+  :line: 361
   :message: ''
 - :test: test_top_face_full_solver_with_pattern_3
-  :line: 316
+  :line: 380
   :message: ''
 - :test: test_top_face_full_solver_with_pattern_4
-  :line: 336
+  :line: 400
   :message: ''
 - :test: test_top_face_corner_solver
-  :line: 357
+  :line: 421
   :message: ''
 - :test: test_full_top_face_corner_solver
-  :line: 377
+  :line: 441
   :message: ''
 - :test: test_full_top_face_corner_solver_with_two_corners_is_white
-  :line: 397
+  :line: 461
   :message: ''
 - :test: test_full_top_face_corner_solver_with_no_corner_is_white
-  :line: 417
+  :line: 481
   :message: ''
 - :test: test_top_corner_solver_A_and_B_is_correct
-  :line: 437
+  :line: 501
   :message: ''
 - :test: test_top_corner_solver_A_and_C_is_correct
-  :line: 458
+  :line: 522
   :message: ''
 - :test: test_full_top_corner_solver_A_and_B_is_correct
-  :line: 479
+  :line: 543
   :message: ''
 - :test: test_full_top_corner_solver_A_and_C_is_correct
-  :line: 500
+  :line: 564
   :message: ''
 - :test: test_full_top_corner_solver_B_and_C_is_correct
-  :line: 520
+  :line: 584
   :message: ''
 - :test: test_full_top_corner_solver_B_and_D_is_correct
-  :line: 540
+  :line: 604
   :message: ''
 - :test: test_full_top_corner_solver_C_and_D_is_correct
-  :line: 560
+  :line: 624
   :message: ''
 - :test: test_full_top_corner_solver_A_and_D_is_correct
-  :line: 581
+  :line: 645
   :message: ''
 - :test: test_full_top_side_solver_no_side_is_correct
-  :line: 602
+  :line: 666
   :message: ''
 - :test: test_full_top_side_solver_side_A_is_correct
-  :line: 617
+  :line: 681
   :message: ''
 - :test: test_full_top_side_solver_side_B_is_correct
-  :line: 632
+  :line: 696
   :message: ''
 - :test: test_full_top_side_solver_side_C_is_correct
-  :line: 647
+  :line: 711
   :message: ''
 - :test: test_full_top_side_solver_side_D_is_correct
-  :line: 662
+  :line: 726
   :message: ''
 - :test: test_full_solver
-  :line: 676
+  :line: 740
   :message: ''
 - :test: test_full_solver1
-  :line: 690
+  :line: 753
+  :message: ''
+- :test: test_full_solver_with_random_cube_by_using_createMessyCube_function_with_correct_cube
+  :line: 766
+  :message: ''
+- :test: test_full_solver_with_random_cube_by_using_createMessyCube_function_with_correct_cube1
+  :line: 774
+  :message: ''
+- :test: test_full_solver_with_random_cube_by_using_createMessyCube_function_with_random_cube
+  :line: 789
+  :message: ''
+- :test: test_full_solver_with_random_cube_by_using_createMessyCube_function_with_random_cube1
+  :line: 804
+  :message: ''
+- :test: test_full_solver_with_random_cube_by_using_createMessyCube_function_with_random_cube2
+  :line: 819
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 36
-  :passed: 36
+  :total: 44
+  :passed: 44
   :failed: 0
   :ignored: 0
 :stdout:
-- "        2 1 5 \t\t"
-- "        3 0 5 \t\t"
-- "        3 3 3 \t\t"
-- ''
-- "1 2 5   0 5 0   2 0 1 \t"
-- "1 1 0   3 2 2   1 3 0 \t"
-- "1 1 1   2 2 2   3 3 3 \t"
-- ''
-- "        4 4 4 \t\t"
-- "        4 4 4 \t\t"
-- "        4 4 4 \t\t"
-- ''
-- "        5 5 5 \t\t"
-- "        0 5 2 \t\t"
-- "        0 5 0 \t\t"
-- ''
-- ''
-- ''
+- "Rotation = 0\t"
+- "Rotation = 10\t"
+- "Rotation = 10\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 6\t"
+- "Rotation = 6\t"
+- "Rotation = 9\t"
+- "Rotation = 2\t"
+- "Rotation = 2\t"
+- "Rotation = 8\t"
+- "Rotation = 4\t"
+- "Rotation = 4\t"
+- "Rotation = 4\t"
+- "Rotation = 8\t"
+- "Rotation = 8\t"
+- "Rotation = 7\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 0\t"
+- "Rotation = 8\t"
+- "Rotation = 8\t"
+- "Rotation = 8\t"
+- "Rotation = 5\t"
+- "Rotation = 1\t"
+- "Rotation = 4\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 0\t"
+- "Rotation = 8\t"
+- "Rotation = 6\t"
+- "Rotation = 0\t"
+- "Rotation = 7\t"
+- "Rotation = 9\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 8\t"
+- "Rotation = 8\t"
+- "Rotation = 5\t"
+- "Rotation = 1\t"
+- "Rotation = 4\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 9\t"
+- "Rotation = 6\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 7\t"
+- "Rotation = 1\t"
+- "Rotation = 6\t"
+- "Rotation = 0\t"
+- "Rotation = 7\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 5\t"
+- "Rotation = 1\t"
+- "Rotation = 4\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 5\t"
+- "Rotation = 1\t"
+- "Rotation = 4\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 9\t"
+- "Rotation = 0\t"
+- "Rotation = 5\t"
+- "Rotation = 1\t"
+- "Rotation = 4\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 6\t"
+- "Rotation = 1\t"
+- "Rotation = 7\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 1\t"
+- "Rotation = 7\t"
+- "Rotation = 0\t"
+- "Rotation = 6\t"
+- "Rotation = 0\t"
+- "Rotation = 10\t"
+- "Rotation = 1\t"
+- "Rotation = 11\t"
+- "Rotation = 1\t"
+- "Rotation = 0\t"
+- "Rotation = 10\t"
+- "Rotation = 1\t"
+- "Rotation = 11\t"
+- "Rotation = 1\t"
+- "Rotation = 7\t"
+- "Rotation = 0\t"
+- "Rotation = 6\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 0\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 0\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 0\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 0\t"
+- "Rotation = 1\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 0\t"
+- "Rotation = 6\t"
+- "Rotation = 1\t"
+- "Rotation = 7\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 6\t"
+- "Rotation = 1\t"
+- "Rotation = 7\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 1\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 0\t"
+- "Rotation = 6\t"
+- "Rotation = 1\t"
+- "Rotation = 7\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 6\t"
+- "Rotation = 1\t"
+- "Rotation = 7\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 1\t"
+- "Rotation = 11\t"
+- "Rotation = 0\t"
+- "Rotation = 10\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 1\t"
+- "Rotation = 3\t"
+- "Rotation = 1\t"
+- "Rotation = 11\t"
+- "Rotation = 0\t"
+- "Rotation = 10\t"
+- "Rotation = 4\t"
+- "Rotation = 6\t"
+- "Rotation = 0\t"
+- "Rotation = 7\t"
+- "Rotation = 1\t"
+- "Rotation = 5\t"
+- "Rotation = 0\t"
+- "Rotation = 0\t"
+- "Rotation = 7\t"
+- "Rotation = 4\t"
+- "Rotation = 7\t"
+- "Rotation = 10\t"
+- "Rotation = 10\t"
+- "Rotation = 6\t"
+- "Rotation = 5\t"
+- "Rotation = 7\t"
+- "Rotation = 10\t"
+- "Rotation = 10\t"
+- "Rotation = 6\t"
+- "Rotation = 6\t"
+- "Rotation = 1\t"
+- "Rotation = 1\t"
+- "Rotation = 4\t"
+- "Rotation = 4\t"
+- "Rotation = 0\t"
+- "Rotation = 2\t"
+- "Rotation = 7\t"
+- "Rotation = 4\t"
+- "Rotation = 4\t"
+- "Rotation = 3\t"
+- "Rotation = 6\t"
+- "Rotation = 0\t"
+- "Rotation = 4\t"
+- "Rotation = 4\t"
 - ''

@@ -30,7 +30,7 @@ void test_base_side_solver_one_time(){																//baseSideSolver solve the
 														{0,0,4,1,4,4,0,4,5},								//			X X X
 														{5,1,3,3,5,4,1,5,3}};
   Cube *expectedCube = createCube(expectedValue);
-	baseSideSolver(cube);
+	baseSideSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -49,8 +49,8 @@ void test_base_side_solver_two_times(){															//this test continue the t
 														{2,4,5,1,4,4,0,4,5},								//			X X X
 														{5,1,3,0,5,4,0,5,3}};
   Cube *expectedCube = createCube(expectedValue);
-	baseSideSolver(cube);
-	baseSideSolver(cube);
+	baseSideSolver(cube,0);
+	baseSideSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -69,9 +69,9 @@ void test_base_side_solver_three_times(){														//run baseSideSolver thre
 														{0,4,5,4,4,4,1,0,0},								//		X X X
 														{2,3,5,1,5,4,4,5,3}};
   Cube *expectedCube = createCube(expectedValue);
-	baseSideSolver(cube);
-	baseSideSolver(cube);
-	baseSideSolver(cube);
+	baseSideSolver(cube,0);
+	baseSideSolver(cube,0);
+	baseSideSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -90,10 +90,10 @@ void test_base_side_solver_four_times(){															//run baseSideSolver four
 														{0,4,5,4,4,4,3,4,4},								//		X Y X
 														{2,5,2,1,5,1,4,5,2}};
   Cube *expectedCube = createCube(expectedValue);
-	baseSideSolver(cube);
-	baseSideSolver(cube);
-	baseSideSolver(cube);
-	baseSideSolver(cube);
+	baseSideSolver(cube,0);
+	baseSideSolver(cube,0);
+	baseSideSolver(cube,0);
+	baseSideSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -112,7 +112,7 @@ void test_base_side_full_solver_with_same_cube_above(){					//baseSideFullSolver
 														{0,4,5,4,4,4,3,4,4},								//			X Y X
 														{2,5,2,1,5,1,4,5,2}};
   Cube *expectedCube = createCube(expectedValue);
-	baseSideFullSolver(cube);
+	baseSideFullSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -131,8 +131,7 @@ void test_base_side_full_solver_with_different_cube(){					//baseSideFullSolver 
 														{4,4,5,4,4,4,2,4,3},								//			X Y X
 														{1,5,5,0,5,1,2,1,5}};
   Cube *expectedCube = createCube(expectedValue);
-	baseSideFullSolver(cube);
-	// displayCube(cube);
+	baseSideFullSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -151,31 +150,96 @@ void test_base_corner_solver_to_solve_one_corner(){							//baseCornerSolver sol
 														{0,4,1,4,4,4,4,4,1},								//			Y Y X
 														{5,5,2,0,5,2,2,2,0}};
   Cube *expectedCube = createCube(expectedValue);
-	baseCornerSolver(cube);
-	// displayCube(cube);
+	baseCornerSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
 void test_base_corner_solver_to_solve_two_corner_by_run_base_corner_solver_twice(){	
-  int value[6][9] = {{cO,cO,cO,cW,cW,cR,cO,cG,cG},							//baseCornerSolver solve one of the corner.
+  int value[6][9] = {{cO,cO,cO,cW,cW,cR,cO,cG,cG},							//baseCornerSolver solve two of the corner.
                     {cW,cG,cY,cR,cR,cW,cB,cR,cR},								//			X X X
                     {cG,cR,cY,cO,cB,cB,cG,cB,cB},								//			X Y X
                     {cR,cB,cB,cO,cO,cW,cY,cO,cW},								//			X X X
                     {cW,cY,cR,cY,cY,cY,cW,cY,cR},								//
                     {cO,cG,cB,cW,cG,cB,cG,cG,cY}};							//				|	
   Cube *cube = createCube(value);																//				|
-  int expectedValue[6][9] = {{3,1,2,3,0,3,3,5,5},								//				V
-														{4,5,4,1,1,0,1,1,1},
-														{5,1,0,3,2,5,5,2,2},								//			X Y X
-														{3,2,3,0,3,0,4,3,0},								//			Y Y Y
-														{0,4,1,4,4,4,4,4,1},								//			Y Y X
-														{5,5,2,0,5,2,2,2,0}};
+  int expectedValue[6][9] = {{2,3,3,1,0,3,2,5,3},								//				V
+														{0,2,1,1,1,0,1,1,1},
+														{4,0,5,3,2,5,5,2,2},								//			X Y Y
+														{0,5,4,1,3,0,3,3,0},								//			Y Y Y
+														{0,4,4,4,4,4,4,4,1},								//			Y Y X
+														{5,5,2,0,5,2,3,2,5}};
   Cube *expectedCube = createCube(expectedValue);
-	baseCornerFullSolver(cube);
-	displayCube(cube);
-	// TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+	baseCornerSolver(cube,0);
+	baseCornerSolver(cube,0);
+	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
+
+void test_base_corner_solver_to_solve_three_corner_by_run_base_corner_solver_three_times(){	
+  int value[6][9] = {{cO,cO,cO,cW,cW,cR,cO,cG,cG},							//baseCornerSolver solve two of the corner.
+                    {cW,cG,cY,cR,cR,cW,cB,cR,cR},								//			X X X
+                    {cG,cR,cY,cO,cB,cB,cG,cB,cB},								//			X Y X
+                    {cR,cB,cB,cO,cO,cW,cY,cO,cW},								//			X X X
+                    {cW,cY,cR,cY,cY,cY,cW,cY,cR},								//
+                    {cO,cG,cB,cW,cG,cB,cG,cG,cY}};							//				|	
+  Cube *cube = createCube(value);																//				|
+  int expectedValue[6][9] = {{2,3,2,1,0,1,3,3,1},								//				V
+														{0,2,5,1,1,0,1,1,1},
+														{0,5,4,3,2,0,5,2,2},								//			X Y Y
+														{2,5,0,5,3,0,3,3,3},								//			Y Y Y
+														{0,4,4,4,4,4,4,4,4},								//			Y Y Y
+														{5,5,5,0,5,2,3,2,1}};
+  Cube *expectedCube = createCube(expectedValue);
+	baseCornerSolver(cube,0);
+	baseCornerSolver(cube,0);
+	baseCornerSolver(cube,0);
+	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+
+void test_base_corner_solver_to_solve_four_corner_by_run_base_corner_solver_four_times(){	
+  int value[6][9] = {{cO,cO,cO,cW,cW,cR,cO,cG,cG},							//baseCornerSolver solve two of the corner.
+                    {cW,cG,cY,cR,cR,cW,cB,cR,cR},								//			X X X
+                    {cG,cR,cY,cO,cB,cB,cG,cB,cB},								//			X Y X
+                    {cR,cB,cB,cO,cO,cW,cY,cO,cW},								//			X X X
+                    {cW,cY,cR,cY,cY,cY,cW,cY,cR},								//
+                    {cO,cG,cB,cW,cG,cB,cG,cG,cY}};							//				|	
+  Cube *cube = createCube(value);																//				|
+  int expectedValue[6][9] = {{2,1,5,3,0,5,3,3,3},								//				V
+														{1,2,5,1,1,0,1,1,1},
+														{0,5,0,3,2,2,2,2,2},								//			Y Y Y
+														{2,0,1,1,3,0,3,3,3},								//			Y Y Y
+														{4,4,4,4,4,4,4,4,4},								//			Y Y Y
+														{5,5,5,0,5,2,0,5,0}};
+  Cube *expectedCube = createCube(expectedValue);
+	baseCornerSolver(cube,0);
+	baseCornerSolver(cube,0);
+	baseCornerSolver(cube,0);
+	baseCornerSolver(cube,0);
+	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+
+void test_base_corner_full_solver_to_solve_four_corner(){	
+  int value[6][9] = {{cO,cO,cO,cW,cW,cR,cO,cG,cG},							//baseCornerSolver solve two of the corner.
+                    {cW,cG,cY,cR,cR,cW,cB,cR,cR},								//			X X X
+                    {cG,cR,cY,cO,cB,cB,cG,cB,cB},								//			X Y X
+                    {cR,cB,cB,cO,cO,cW,cY,cO,cW},								//			X X X
+                    {cW,cY,cR,cY,cY,cY,cW,cY,cR},								//
+                    {cO,cG,cB,cW,cG,cB,cG,cG,cY}};							//				|	
+  Cube *cube = createCube(value);																//				|
+  int expectedValue[6][9] = {{2,1,5,3,0,5,3,3,3},								//				V
+														{1,2,5,1,1,0,1,1,1},
+														{0,5,0,3,2,2,2,2,2},								//			Y Y Y
+														{2,0,1,1,3,0,3,3,3},								//			Y Y Y
+														{4,4,4,4,4,4,4,4,4},								//			Y Y Y
+														{5,5,5,0,5,2,0,5,0}};
+  Cube *expectedCube = createCube(expectedValue);
+	baseCornerFullSolver(cube,0);
+	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+	// displayCube(cube);
 
 void test_front_side_corner_solver1(void){
   int value[6][9] = {{cW,cW,cW,cW,cW,cO,cW,cW,cW},
@@ -192,7 +256,7 @@ void test_front_side_corner_solver1(void){
                {4,4,4,4,4,4,4,4,4},
                {5,5,5,5,5,2,2,3,0}};
   Cube *expectedCube = createCube(expectedValue);
-  sideCornerSolver(cube);
+  sideCornerSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -212,7 +276,7 @@ void test_front_side_corner_solver2(void){
                              {5,5,5,5,5,0,2,0,5}};
   Cube *expectedCube = createCube(expectedValue);
   Cube *cube = createCube(value);
-  sideCornerSolver(cube);
+  sideCornerSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -232,8 +296,8 @@ void test_side_corner_solver_one_by_one(void){
                              {5,5,5,5,5,5,0,0,0}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  sideCornerSolver(cube);
-  sideCornerSolver(cube);
+  sideCornerSolver(cube,0);
+  sideCornerSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 void test_solver_side_corner(){
@@ -251,7 +315,7 @@ void test_solver_side_corner(){
                              {5,5,5,5,5,5,0,3,3}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  fullSideCornerSolver(cube);
+  fullSideCornerSolver(cube,0);
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -271,7 +335,7 @@ void test_solver_side_corner1(){
   
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  fullSideCornerSolver(cube);
+  fullSideCornerSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -290,7 +354,7 @@ void test_top_face_solver(){
                              {5,5,5,5,5,5,0,5,0}}; 
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  topFaceSideSolver(cube, 2,8);
+  topFaceSideSolver(cube, 2,8,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -309,7 +373,7 @@ void test_top_face_full_solver_with_pattern_0(){					//top Face
                              {5,5,5,5,5,5,0,1,0}}; 
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  fullTopFaceSideSolver(cube);
+  fullTopFaceSideSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -328,7 +392,7 @@ void test_top_face_full_solver_with_pattern_3(){							//white color form 『 sh
                              {5,5,5,5,5,5,0,5,0}}; 
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  fullTopFaceSideSolver(cube);
+  fullTopFaceSideSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -349,7 +413,7 @@ void test_top_face_full_solver_with_pattern_4(){						//Top Face
 
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  fullTopFaceSideSolver(cube);
+  fullTopFaceSideSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -369,7 +433,7 @@ void test_top_face_corner_solver(){														//	Top face
                              {5,5,5,5,5,5,2,5,5}}; 
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  topFaceCornerSolver(cube);
+  topFaceCornerSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -389,7 +453,7 @@ void test_full_top_face_corner_solver(){											//	Top face
                              {5,5,5,5,5,5,1,1,3}}; 
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  fullTopFaceCornerSolver(cube);
+  fullTopFaceCornerSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -409,7 +473,7 @@ void test_full_top_face_corner_solver_with_two_corners_is_white(){//	Top face
                              {5,5,5,5,5,5,3,1,1}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  fullTopFaceCornerSolver(cube);
+  fullTopFaceCornerSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -429,7 +493,7 @@ void test_full_top_face_corner_solver_with_no_corner_is_white(){//	Top face
                              {5,5,5,5,5,5,5,1,2}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-  fullTopFaceCornerSolver(cube);
+  fullTopFaceCornerSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -450,7 +514,7 @@ void test_top_corner_solver_A_and_B_is_correct(){		//pattern1
                              {5,5,5,5,5,5,5,1,5}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-	topCornerSolver(cube,1);
+	topCornerSolver(cube,1,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -471,7 +535,7 @@ void test_top_corner_solver_A_and_C_is_correct(){		//pattern2
                              {5,5,5,5,5,5,5,5,5}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-	topCornerSolver(cube,2);
+	topCornerSolver(cube,2,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -492,7 +556,7 @@ void test_full_top_corner_solver_A_and_B_is_correct(){		//pattern1
                              {5,5,5,5,5,5,5,1,5}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-	topCornerFullSolver(cube);
+	topCornerFullSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -513,7 +577,7 @@ void test_full_top_corner_solver_A_and_C_is_correct(){		//pattern2
                              {5,5,5,5,5,5,5,5,5}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-	topCornerFullSolver(cube);
+	topCornerFullSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -533,7 +597,7 @@ void test_full_top_corner_solver_B_and_C_is_correct(){		//pattern3
                              {5,5,5,5,5,5,5,1,5}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-	topCornerFullSolver(cube);
+	topCornerFullSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -553,7 +617,7 @@ void test_full_top_corner_solver_B_and_D_is_correct(){		//pattern4
                              {5,5,5,5,5,5,5,1,5}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-	topCornerFullSolver(cube);
+	topCornerFullSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -573,7 +637,7 @@ void test_full_top_corner_solver_C_and_D_is_correct(){		//pattern5
                              {5,5,5,5,5,5,5,5,5}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-	topCornerFullSolver(cube);
+	topCornerFullSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -594,7 +658,7 @@ void test_full_top_corner_solver_A_and_D_is_correct(){		//pattern6
                              {5,5,5,5,5,5,5,3,5}};
   Cube *cube = createCube(value);
   Cube *expectedCube = createCube(expectedValue);
-	topCornerFullSolver(cube);
+	topCornerFullSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
@@ -609,7 +673,7 @@ void test_full_top_side_solver_no_side_is_correct(){			//
 																													//		|___|___|___|											|___|___|___|
   Cube *cube = createCube(value);
 	Cube *correctCube = createCube(correctValue);
-	topSideSolver(cube);
+	topSideSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
 }
 
@@ -624,7 +688,7 @@ void test_full_top_side_solver_side_A_is_correct(){			//
 																													//		|___|___|___|											|___|___|___|
   Cube *cube = createCube(value);
 	Cube *correctCube = createCube(correctValue);
-	topSideSolver(cube);
+	topSideSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
 }
 
@@ -639,7 +703,7 @@ void test_full_top_side_solver_side_B_is_correct(){			//
 																													//		|___|___|___|											|___|___|___|
   Cube *cube = createCube(value);
 	Cube *correctCube = createCube(correctValue);
-	topSideSolver(cube);
+	topSideSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
 }
 
@@ -654,7 +718,7 @@ void test_full_top_side_solver_side_C_is_correct(){			//
 																													//		|___|___|___|											|___|___|___|
   Cube *cube = createCube(value);
 	Cube *correctCube = createCube(correctValue);
-	topSideSolver(cube);
+	topSideSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
 }
 
@@ -669,7 +733,7 @@ void test_full_top_side_solver_side_D_is_correct(){			//
 																													//		|___|___|___|											|___|___|___|
   Cube *cube = createCube(value);
 	Cube *correctCube = createCube(correctValue);
-	topSideSolver(cube);
+	topSideSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
 }
 	
@@ -682,8 +746,7 @@ void test_full_solver(void){
                     {cG,cG,cG,cG,cG,cR,cO,cG,cB}};
   Cube *cube = createCube(value);
 	Cube *correctCube = createCube(correctValue);
-	fullSolver(cube);
-	// displayCube(cube);
+	fullSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
 }
 	
@@ -696,6 +759,76 @@ void test_full_solver1(void){
                     {cG,cG,cG,cG,cG,cR,cR,cW,cR}};
   Cube *cube = createCube(value);
 	Cube *correctCube = createCube(correctValue);
-	fullSolver(cube);
+	fullSolver(cube,0);
   TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
 }
+
+void test_full_solver_with_random_cube_by_using_createMessyCube_function_with_correct_cube(){
+	Cube *correctCube = createCube(correctValue);
+	Cube *cube = createCube(correctValue);
+  createMessyCube(cube);
+	fullSolver(cube,0);
+  TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
+}
+
+void test_full_solver_with_random_cube_by_using_createMessyCube_function_with_correct_cube1(){
+	Cube *correctCube = createCube(correctValue);
+  int value[6][9] = {{cG,cG,cB,cO,cW,cR,cB,cB,cG},
+                    {cW,cW,cO,cO,cR,cB,cR,cR,cR},
+                    {cW,cW,cW,cO,cB,cG,cB,cB,cB},
+                    {cO,cW,cW,cR,cO,cB,cO,cO,cO},
+                    {cY,cY,cY,cY,cY,cY,cY,cY,cY},
+                    {cG,cG,cG,cG,cG,cR,cR,cW,cR}};
+	Cube *cube = createCube(value);
+  createMessyCube(cube);
+  createMessyCube(cube);
+	fullSolver(cube,0);
+  TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
+}
+
+void test_full_solver_with_random_cube_by_using_createMessyCube_function_with_random_cube(){
+  int value[6][9] = {{cB,cR,cW,cW,cW,cO,cW,cB,cG},
+                    {cW,cG,cG,cO,cR,cB,cR,cR,cR},
+                    {cR,cW,cW,cO,cB,cR,cB,cB,cB},
+                    {cO,cW,cR,cW,cO,cB,cO,cO,cO},
+                    {cY,cY,cY,cY,cY,cY,cY,cY,cY},
+                    {cG,cG,cG,cG,cG,cR,cO,cG,cB}};
+	Cube *cube = createCube(value);
+	Cube *correctCube = createCube(correctValue);
+  createMessyCube(cube);
+  createMessyCube(cube);
+	fullSolver(cube,0);
+  TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
+}
+
+void test_full_solver_with_random_cube_by_using_createMessyCube_function_with_random_cube1(){
+  int value[6][9] = {{cW,cW,cY,cR,cW,cY,cY,cB,cG},							
+                    {cB,cG,cR,cB,cR,cB,cO,cB,cR},								
+                    {cG,cW,cO,cY,cB,cY,cG,cO,cO},								
+                    {cY,cO,cB,cG,cO,cG,cB,cW,cO},								
+                    {cW,cW,cW,cR,cY,cR,cW,cY,cB},								
+                    {cG,cR,cY,cO,cG,cO,cR,cG,cR}};	
+	Cube *cube = createCube(value);
+	Cube *correctCube = createCube(correctValue);
+  createMessyCube(cube);
+  createMessyCube(cube);
+	fullSolver(cube,0);
+  TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
+}
+
+void test_full_solver_with_random_cube_by_using_createMessyCube_function_with_random_cube2(){
+  int value[6][9] = {{cW,cW,cY,cR,cW,cY,cY,cB,cG},
+                    {cB,cG,cR,cB,cR,cB,cO,cB,cR},								
+                    {cG,cW,cO,cY,cB,cY,cG,cO,cO},								
+                    {cY,cO,cB,cG,cO,cG,cB,cW,cO},								
+                    {cW,cW,cW,cR,cY,cR,cW,cY,cB},
+                    {cG,cR,cY,cO,cG,cO,cR,cG,cR}};		
+	Cube *cube = createCube(value);
+	Cube *correctCube = createCube(correctValue);
+  createMessyCube(cube);
+  createMessyCube(cube);
+	fullSolver(cube,1);
+  TEST_ASSERT_EQUAL_CUBE(correctCube, cube); 
+}
+
+

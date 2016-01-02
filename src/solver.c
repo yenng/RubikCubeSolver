@@ -202,6 +202,7 @@ int *ptrBaseCornerFormula[] = {baseCornerFormula0,baseCornerFormula1,baseCornerF
 
 
 
+
 /***************Side Corner formula****************/
 // int FSRCFormula1[8] = {U,R,Ui,Ri,Ui,Fi,U,F};    //Solve Front Side Right Corner(FSRC), where the FSRC on the Front face.
 // int FSRCFormula2[8] = {Ui,Fi,U,F,U,R,Ui,Ri};    //Solve Front Side Right Corner(FSRC), where the FSRC on the Right face.
@@ -327,7 +328,7 @@ int **ptrPtrTopSideFormula[4] = {ptrTopSideFormula0,ptrTopSideFormula1,ptrTopSid
          X G X              
          X X X
 */
-void baseSideSolver(Cube *cube){
+void baseSideSolver(Cube *cube, int print){
   int sideSequence[24] = {cube->upFace->faceValue[3],cube->upFace->faceValue[7],cube->upFace->faceValue[5],cube->upFace->faceValue[1],
 													cube->leftFace->faceValue[3],cube->leftFace->faceValue[7],cube->leftFace->faceValue[5],cube->leftFace->faceValue[1],
 													cube->frontFace->faceValue[3],cube->frontFace->faceValue[7],cube->frontFace->faceValue[5],cube->frontFace->faceValue[1],
@@ -355,22 +356,22 @@ void baseSideSolver(Cube *cube){
 	ptrPtrFormula = ptrToPtrFormula[i];
 	ptrFormula = ptrPtrFormula[sideRespectiveSequence[i]];
 	while(ptrFormula[j] != EOA){
-		fullRotation(cube,ptrFormula[j]);
+		fullRotation(cube,ptrFormula[j], print);
 		// printf("rotation = %d\n", ptrFormula[j]);
 		j++;
 	}
 }
 
-void baseSideFullSolver(Cube *cube){
+void baseSideFullSolver(Cube *cube, int print){
 	while(cube->downFace->faceValue[1] != cY || cube->downFace->faceValue[3] != cY || cube->downFace->faceValue[5] != cY || cube->downFace->faceValue[7] != cY){
-		baseSideSolver(cube);
+		baseSideSolver(cube, print);
 	}
 }
 
-void baseCornerSolver(Cube *cube){
+void baseCornerSolver(Cube *cube, int print){
 	int noTurn = 0;
 	while(cube->frontFace->faceValue[2]!=cY&&cube->rightFace->faceValue[0]!=cY&&cube->upFace->faceValue[8]!=cY&&noTurn<4){
-		fullRotation(cube,U);
+		fullRotation(cube,U, print);
 		noTurn++;
 	}
 	int frontTopRightCorner[3] = {cube->frontFace->faceValue[2],cube->rightFace->faceValue[0],cube->upFace->faceValue[8]};
@@ -381,7 +382,7 @@ void baseCornerSolver(Cube *cube){
 	if(noTurn>=4){
 		ptrTobaseCornerFormula = ptrBaseCornerFormula[rand()%3];
 		while(i<(rand()%4)){
-			fullRotation(cube,Di);
+			fullRotation(cube,Di, print);
 			i++;
 		}	
 		i=0;
@@ -400,30 +401,39 @@ void baseCornerSolver(Cube *cube){
 		j = 0;
 		while((respectiveColor[0]!=cube->frontFace->faceValue[7]||respectiveColor[1]!=cube->rightFace->faceValue[7])&&
 					(respectiveColor[1]!=cube->frontFace->faceValue[7]||respectiveColor[0]!=cube->rightFace->faceValue[7])){
-						fullRotation(cube,D);
+						fullRotation(cube,D,print);
 						noTurn++;
 					}
 		ptrTobaseCornerFormula = ptrBaseCornerFormula[pattern];
 	}
 	while(ptrTobaseCornerFormula[j] != EOA){
-		fullRotation(cube,ptrTobaseCornerFormula[j]);
+		fullRotation(cube,ptrTobaseCornerFormula[j],print);
 		j++;
 	}
 	while(noTurn>0){
-		fullRotation(cube,Di);
+		fullRotation(cube,Di,print);
 		noTurn--;
 	}
 }
 
-void baseCornerFullSolver(Cube *cube){
-	int noTurn = 0;
+void baseCornerFullSolver(Cube *cube, int print){
+	int cornerCorrectSequence[8] = {cR,cR,cB,cB,cO,cO,cG,cG};
+	int i = 0;
 	while(cube->downFace->faceValue[0] != cY || cube->downFace->faceValue[2] != cY || cube->downFace->faceValue[6] != cY || cube->downFace->faceValue[8] != cY){
-		baseCornerSolver(cube);
+		baseCornerSolver(cube, print);
+	}
+	int cornerCorrespondingSequence[8] = {cube->leftFace->faceValue[6],cube->leftFace->faceValue[8],cube->frontFace->faceValue[6],cube->frontFace->faceValue[8],
+																			 cube->rightFace->faceValue[6],cube->rightFace->faceValue[8],cube->backFace->faceValue[2],cube->backFace->faceValue[0]};
+	
+	while(i<8){
+		if(cornerCorrespondingSequence[i]!=cornerCorrectSequence[i])
+			baseCornerFullSolver(cube, print);
+		i++;
 	}
 }
 
 
-void sideCornerSolver(Cube *cube){
+void sideCornerSolver(Cube *cube, int print){
 	int *formula;
 	int **ptrToPtr;
 	int count = 0;
@@ -438,14 +448,14 @@ void sideCornerSolver(Cube *cube){
 	i = 0;
 	if(count<4){
 		while(cube->frontFace->faceValue[1]==cW ||cube->upFace->faceValue[7]==cW)
-			fullRotation(cube,U);
+			fullRotation(cube,U, print);
 		ptrToPtr = formulaPtrPtr[cube->frontFace->faceValue[1]];
 		formula = ptrToPtr[cube->upFace->faceValue[7]];
 	}
 	else
 		formula = formulaForRandom[rand()%8];
 	while(i<(10)){
-		fullRotation(cube,formula[i]);
+		fullRotation(cube,formula[i], print);
 		i++;
 	}
 }
@@ -467,12 +477,12 @@ void sideCornerSolver(Cube *cube){
          G G G              
          X X X
 */
-void fullSideCornerSolver(Cube *cube){
+void fullSideCornerSolver(Cube *cube, int print){
   while(cube->frontFace->faceValue[3] != cB || cube->leftFace->faceValue[5]  != cR ||
         cube->frontFace->faceValue[5] != cB || cube->rightFace->faceValue[3] != cO || 
         cube->rightFace->faceValue[5] != cO || cube->backFace->faceValue[5]  != cG ||
         cube->backFace->faceValue[3]  != cG || cube->leftFace->faceValue[3]  != cR){
-    sideCornerSolver(cube);
+    sideCornerSolver(cube, print);
   }
 }
 
@@ -493,17 +503,17 @@ void fullSideCornerSolver(Cube *cube){
          G G G              
          X X X
 */
-void topFaceSideSolver(Cube *cube, int formulaNo, int arrSize){
+void topFaceSideSolver(Cube *cube, int formulaNo, int arrSize, int print){
 	int *upFormula = ptrTopFormula[formulaNo]; 
 	int i = 0;
   while(i<arrSize){
-    fullRotation(cube,upFormula[i]);
+    fullRotation(cube,upFormula[i], print);
     i++;
   }
 }
 
 
-void fullTopFaceSideSolver(Cube *cube){
+void fullTopFaceSideSolver(Cube *cube, int print){
 	int upFaceCrossValue[4] = {cube->upFace->faceValue[1],cube->upFace->faceValue[5],
 														 cube->upFace->faceValue[7],cube->upFace->faceValue[3]};
 	int i = 0;
@@ -521,26 +531,26 @@ void fullTopFaceSideSolver(Cube *cube){
 	if(count != 4){												//if count == 4, top face side is all white.
 		switch(pattern){
 			case pattern0:
-				topFaceSideSolver(cube,0,6);
-				fullTopFaceSideSolver(cube);
+				topFaceSideSolver(cube,0,6, print);
+				fullTopFaceSideSolver(cube, print);
 				break;
 			case pattern1:
-				topFaceSideSolver(cube,3,7);
+				topFaceSideSolver(cube,3,7,print);
 				break;
 			case pattern2:
-				topFaceSideSolver(cube,4,7);
+				topFaceSideSolver(cube,4,7,print);
 				break;
 			case pattern3:
-				topFaceSideSolver(cube,2,8);
+				topFaceSideSolver(cube,2,8,print);
 				break;
 			case pattern4:
-				topFaceSideSolver(cube,5,6);
+				topFaceSideSolver(cube,5,6,print);
 				break;
 			case pattern5:
-				topFaceSideSolver(cube,1,7);
+				topFaceSideSolver(cube,1,7,print);
 				break;
 			case pattern6:
-				topFaceSideSolver(cube,0,6);
+				topFaceSideSolver(cube,0,6,print);
 				break;
 		}
 	}
@@ -562,7 +572,7 @@ void fullTopFaceSideSolver(Cube *cube){
          G G G              
          X X X
 */
-void topFaceCornerSolver(Cube *cube){
+void topFaceCornerSolver(Cube *cube, int print){
 	int upCornerValue[4] = {cube->upFace->faceValue[0],cube->upFace->faceValue[2],
 														 cube->upFace->faceValue[6],cube->upFace->faceValue[8]};
 	int i = 0;
@@ -575,14 +585,14 @@ void topFaceCornerSolver(Cube *cube){
 	}
 	if(count == 1){
 		while(cube->upFace->faceValue[6]!= 0)
-			fullRotation(cube,U);
+			fullRotation(cube,U,print);
 	}
 	else{
 		while(cube->leftFace->faceValue[2]!=0)
-			fullRotation(cube,U);
+			fullRotation(cube,U,print);
 	}
 	while(j<8){
-		fullRotation(cube,topFaceCornerFormula[j]);
+		fullRotation(cube,topFaceCornerFormula[j],print);
 		j++;
 	}
 }
@@ -601,10 +611,10 @@ int topFaceDetermination(Cube *cube){									//if topFace is all White color
 		return 0;
 }
 
-void fullTopFaceCornerSolver(Cube *cube){
+void fullTopFaceCornerSolver(Cube *cube, int print){
 	int topAllWhite = topFaceDetermination(cube);
 	while(topAllWhite != 1){
-		topFaceCornerSolver(cube);
+		topFaceCornerSolver(cube,print);
 		topAllWhite = topFaceDetermination(cube);
 	}
 }
@@ -639,17 +649,17 @@ void fullTopFaceCornerSolver(Cube *cube){
 			| C |   | D |
 			|___|___|___|
  */
-void topCornerSolver(Cube *cube, int formulaNo){
+void topCornerSolver(Cube *cube, int formulaNo, int print){
 	int *topFormula = ptrTopCornerFormula[formulaNo];
 	int topFormulaArrSize = topCornerFormulaLength[formulaNo];
 	int i = 0;
   while(i<topFormulaArrSize){
-    fullRotation(cube,topFormula[i]);
+    fullRotation(cube,topFormula[i],print);
     i++;
   }
 }
 
-void topCornerFullSolver(Cube *cube){																																	//		 ___________
+void topCornerFullSolver(Cube *cube, int print){																											//		 ___________
 	int topA[2] = {cube->leftFace->faceValue[0],cube->backFace->faceValue[6]};													//		| A |		|	B |
 	int topB[2] = {cube->backFace->faceValue[8],cube->rightFace->faceValue[2]};													//		|___|___|___|
 	int topC[2] = {cube->frontFace->faceValue[0],cube->leftFace->faceValue[2]};													//		|		|   |   |
@@ -686,8 +696,8 @@ void topCornerFullSolver(Cube *cube){																																	//		 _____
 		j++;
 	}
 	if(count!=2){
-		fullRotation(cube,U);
-		topCornerFullSolver(cube);
+		fullRotation(cube,U,print);
+		topCornerFullSolver(cube,print);
 	}
 	else{
 		while(i<7){
@@ -696,7 +706,7 @@ void topCornerFullSolver(Cube *cube){																																	//		 _____
 			}
 			i++;
 		}
-		topCornerSolver(cube, topCornerFormulaNo);
+		topCornerSolver(cube, topCornerFormulaNo,print);
 	}
 }
 /******************Top side Solver***********************
@@ -706,7 +716,7 @@ void topCornerFullSolver(Cube *cube){																																	//		 _____
 **********************************************************/
 
 
-void topSideSolver(Cube *cube){
+void topSideSolver(Cube *cube, int print){
 	int topSide[4] = {cube->leftFace->faceValue[1],cube->frontFace->faceValue[1],cube->rightFace->faceValue[1],cube->backFace->faceValue[7]};
 	int topSideSequence[4], topPattern[3];
 	int **ptrPtrFormula;
@@ -731,12 +741,12 @@ void topSideSolver(Cube *cube){
 	i = 0;
 	if(count == 0){
 		while(i<12){
-			fullRotation(cube,topSideFormula0[i]);
+			fullRotation(cube,topSideFormula0[i],print);
 			i++;
 		}	
-		topSideSolver(cube);
+		topSideSolver(cube,print);
 	}
-	else{
+	else if(count != 4){
 		while(i<3){
 			if(topSideSequence[j]==j){
 				j++;
@@ -752,19 +762,21 @@ void topSideSolver(Cube *cube){
 			ptrFormula = ptrPtrFormula[1];
 		i = 0;
 		while(i<12){
-			fullRotation(cube,ptrFormula[i]);
+			fullRotation(cube,ptrFormula[i],print);
 			i++;
 		}	
 	}
 }
 
 
-void fullSolver(Cube *cube){
-	fullSideCornerSolver(cube);
-	fullTopFaceSideSolver(cube);
-	fullTopFaceCornerSolver(cube);
-	topCornerFullSolver(cube);
-	topSideSolver(cube);
+void fullSolver(Cube *cube, int print){
+	baseSideFullSolver(cube,print);
+	baseCornerFullSolver(cube,print);
+	fullSideCornerSolver(cube,print);
+	fullTopFaceSideSolver(cube,print);
+	fullTopFaceCornerSolver(cube,print);
+	topCornerFullSolver(cube,print);
+	topSideSolver(cube,print);
 }
 
 

@@ -143,11 +143,19 @@ void faceSideRotation(Cube *cube, Rotate *rotate){
   }
 }
 
-void fullRotation(Cube *cube, int rotation){
+void fullRotation(Cube *cube, int rotation, int print){
   Rotate *rotate = createRotation(cube, rotation);
   faceSideRotation(cube, rotate);
   faceRotation(rotate->direction, rotate->face);
+	if(print == 1)
+		printf("Rotation = %d	\n", rotation);
 }
 
-
+void createMessyCube(Cube *cube){
+	int i = rand()%40;
+	while(i>0){
+		fullRotation(cube,rand()%12,0);
+		i--;
+	}
+}
 

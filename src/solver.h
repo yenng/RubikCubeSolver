@@ -14,24 +14,24 @@
 
 #define EOA 100 		//EOA is end of array
 
-void baseSideSolver(Cube *cube);
-void baseSideFullSolver(Cube *cube);
+void baseSideSolver(Cube *cube, int print);
+void baseSideFullSolver(Cube *cube, int print);
 
-void sideCornerSolver(Cube *cube);
-void sideCornerFullSolver(Cube *cube)
+void baseCornerSolver(Cube *cube, int print);
+void baseCornerFullSolver(Cube *cube, int print);
 
-void sideCornerSolver(Cube *cube);
-void fullSideCornerSolver(Cube *cube);
+void sideCornerSolver(Cube *cube, int print);
+void fullSideCornerSolver(Cube *cube, int print);
 
-void topFaceSideSolver(Cube *cube, int formulaNo, int arrSize);
-void fullTopFaceSideSolver(Cube *cube);
+void topFaceSideSolver(Cube *cube, int formulaNo, int arrSize, int print);
+void fullTopFaceSideSolver(Cube *cube, int print);
 
 int topFaceDetermination(Cube *cube);	//to make sure top face is all White color
-void topFaceCornerSolver(Cube *cube);
-void fullTopFaceCornerSolver(Cube *cube);
+void topFaceCornerSolver(Cube *cube, int print);
+void fullTopFaceCornerSolver(Cube *cube, int print);
 
-void topCornerSolver(Cube *cube, int formulaNo);
-void topCornerFullSolver(Cube *cube);
+void topCornerSolver(Cube *cube, int formulaNo, int print);
+void topCornerFullSolver(Cube *cube, int print);
 
-void topSideSolver(Cube *cube);
+void topSideSolver(Cube *cube, int print);
 #endif // solver_H

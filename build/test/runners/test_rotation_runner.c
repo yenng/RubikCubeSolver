@@ -37,6 +37,7 @@ extern void test_create_rotation_anticlockwise(void);
 extern void test_create_side_rotation_up_face_anticlockwise(void);
 extern void test_create_side_rotation_down_face_clockwise(void);
 extern void test_create_rotation_down_face_clockwise(void);
+extern void test_create_messy_cube_and_display(void);
 
 
 //=======Test Reset Option=====
@@ -52,13 +53,14 @@ void resetTest(void)
 int main(void)
 {
   UnityBegin("test_rotation.c");
-  RUN_TEST(test_face_rotation_clockwise, 10);
-  RUN_TEST(test_face_rotation_anticlockwise, 21);
-  RUN_TEST(test_create_rotation_clockwise, 32);
-  RUN_TEST(test_create_rotation_anticlockwise, 50);
-  RUN_TEST(test_create_side_rotation_up_face_anticlockwise, 67);
-  RUN_TEST(test_create_side_rotation_down_face_clockwise, 91);
-  RUN_TEST(test_create_rotation_down_face_clockwise, 114);
+  RUN_TEST(test_face_rotation_clockwise, 17);
+  RUN_TEST(test_face_rotation_anticlockwise, 28);
+  RUN_TEST(test_create_rotation_clockwise, 39);
+  RUN_TEST(test_create_rotation_anticlockwise, 57);
+  RUN_TEST(test_create_side_rotation_up_face_anticlockwise, 74);
+  RUN_TEST(test_create_side_rotation_down_face_clockwise, 98);
+  RUN_TEST(test_create_rotation_down_face_clockwise, 121);
+  RUN_TEST(test_create_messy_cube_and_display, 144);
 
   return (UnityEnd());
 }

@@ -4,6 +4,20 @@
 #include "unity.h"
 
 
+int correctValue[6][9] = {{0,0,0,0,0,0,0,0,0},
+
+             {1,1,1,1,1,1,1,1,1},
+
+             {2,2,2,2,2,2,2,2,2},
+
+             {3,3,3,3,3,3,3,3,3},
+
+             {4,4,4,4,4,4,4,4,4},
+
+                          {5,5,5,5,5,5,5,5,5}};
+
+
+
 void setUp(void){}
 
 
@@ -28,7 +42,7 @@ void test_face_rotation_clockwise(void){
 
 
 
- ; customTestAssertFace(face_expected, face, 18);;
+ ; customTestAssertFace(face_expected, face, 25);;
 
 }
 
@@ -50,7 +64,7 @@ void test_face_rotation_anticlockwise(void){
 
 
 
- ; customTestAssertFace(face_expected, face, 29);;
+ ; customTestAssertFace(face_expected, face, 36);;
 
 }
 
@@ -82,9 +96,9 @@ void test_create_rotation_clockwise(void){
 
 
 
-  UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((rotate->direction)), (((void *)0)), (_U_UINT)45, UNITY_DISPLAY_STYLE_INT);
+  UnityAssertEqualNumber((_U_SINT)((0)), (_U_SINT)((rotate->direction)), (((void *)0)), (_U_UINT)52, UNITY_DISPLAY_STYLE_INT);
 
- ; customTestAssertFace(face_expected, rotate->face, 46);;
+ ; customTestAssertFace(face_expected, rotate->face, 53);;
 
 }
 
@@ -118,9 +132,9 @@ void test_create_rotation_anticlockwise(void){
 
 
 
-  UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((rotate->direction)), (((void *)0)), (_U_UINT)63, UNITY_DISPLAY_STYLE_INT);
+  UnityAssertEqualNumber((_U_SINT)((1)), (_U_SINT)((rotate->direction)), (((void *)0)), (_U_UINT)70, UNITY_DISPLAY_STYLE_INT);
 
- ; customTestAssertFace(face_expected, rotate->face, 64);;
+ ; customTestAssertFace(face_expected, rotate->face, 71);;
 
 }
 
@@ -168,7 +182,7 @@ void test_create_side_rotation_up_face_anticlockwise(void){
 
 
 
- ; customTestAssertCube(expectedCube, cube, 88);;
+ ; customTestAssertCube(expectedCube, cube, 95);;
 
 }
 
@@ -214,7 +228,7 @@ void test_create_side_rotation_down_face_clockwise(void){
 
 
 
- ; customTestAssertCube(expectedCube, cube, 111);;
+ ; customTestAssertCube(expectedCube, cube, 118);;
 
 }
 
@@ -256,10 +270,20 @@ void test_create_rotation_down_face_clockwise(void){
 
 
 
- fullRotation(cube, rotation);
+ fullRotation(cube, rotation,0);
 
 
 
- ; customTestAssertCube(expectedCube, cube, 134);;
+ ; customTestAssertCube(expectedCube, cube, 141);;
+
+}
+
+
+
+void test_create_messy_cube_and_display(void){
+
+ Cube *correctCube = createCube(correctValue);
+
+  createMessyCube(correctCube);
 
 }
