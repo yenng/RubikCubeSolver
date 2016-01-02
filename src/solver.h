@@ -12,7 +12,9 @@
 #define pattern5 5			//white color form a 7  shape										//C and D is correct							| C |   | D |
 #define pattern6 6			//white color form a 』 shape										//A and D is correct							|___|___|___|
 
+#define EOA 100 		//EOA is end of array
 
+void baseSideSolver(Cube *cube);
 
 void sideCornerSolver(Cube *cube);
 void fullSideCornerSolver(Cube *cube);

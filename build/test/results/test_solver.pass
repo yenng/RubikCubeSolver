@@ -3,113 +3,131 @@
   :path: test
   :file: test_solver.c
 :successes:
-- :test: test_front_side_corner_solver1
+- :test: test_base_side_solver_one_time
   :line: 18
   :message: ''
+- :test: test_base_side_solver_two_times
+  :line: 37
+  :message: ''
+- :test: test_base_side_solver_three_times
+  :line: 57
+  :message: ''
+- :test: test_base_side_solver_four_times
+  :line: 78
+  :message: ''
+- :test: test_base_side_full_solver_with_same_cube_above
+  :line: 100
+  :message: ''
+- :test: test_base_side_full_solver_with_different_cube
+  :line: 119
+  :message: ''
+- :test: test_front_side_corner_solver1
+  :line: 140
+  :message: ''
 - :test: test_front_side_corner_solver2
-  :line: 38
+  :line: 160
   :message: ''
 - :test: test_side_corner_solver_one_by_one
-  :line: 58
+  :line: 180
   :message: ''
 - :test: test_solver_side_corner
-  :line: 77
+  :line: 199
   :message: ''
 - :test: test_solver_side_corner1
-  :line: 96
+  :line: 218
   :message: ''
 - :test: test_top_face_solver
-  :line: 116
+  :line: 238
   :message: ''
 - :test: test_top_face_full_solver_with_pattern_0
-  :line: 135
+  :line: 257
   :message: ''
 - :test: test_top_face_full_solver_with_pattern_3
-  :line: 154
+  :line: 276
   :message: ''
 - :test: test_top_face_full_solver_with_pattern_4
-  :line: 174
-  :message: ''
-- :test: test_top_face_corner_solver
-  :line: 195
-  :message: ''
-- :test: test_full_top_face_corner_solver
-  :line: 215
-  :message: ''
-- :test: test_full_top_face_corner_solver_with_two_corners_is_white
-  :line: 235
-  :message: ''
-- :test: test_full_top_face_corner_solver_with_no_corner_is_white
-  :line: 255
-  :message: ''
-- :test: test_top_corner_solver_A_and_B_is_correct
-  :line: 275
-  :message: ''
-- :test: test_top_corner_solver_A_and_C_is_correct
   :line: 296
   :message: ''
-- :test: test_full_top_corner_solver_A_and_B_is_correct
+- :test: test_top_face_corner_solver
   :line: 317
   :message: ''
+- :test: test_full_top_face_corner_solver
+  :line: 337
+  :message: ''
+- :test: test_full_top_face_corner_solver_with_two_corners_is_white
+  :line: 357
+  :message: ''
+- :test: test_full_top_face_corner_solver_with_no_corner_is_white
+  :line: 377
+  :message: ''
+- :test: test_top_corner_solver_A_and_B_is_correct
+  :line: 397
+  :message: ''
+- :test: test_top_corner_solver_A_and_C_is_correct
+  :line: 418
+  :message: ''
+- :test: test_full_top_corner_solver_A_and_B_is_correct
+  :line: 439
+  :message: ''
 - :test: test_full_top_corner_solver_A_and_C_is_correct
-  :line: 338
+  :line: 460
   :message: ''
 - :test: test_full_top_corner_solver_B_and_C_is_correct
-  :line: 358
+  :line: 480
   :message: ''
 - :test: test_full_top_corner_solver_B_and_D_is_correct
-  :line: 378
-  :message: ''
-- :test: test_full_top_corner_solver_C_and_D_is_correct
-  :line: 398
-  :message: ''
-- :test: test_full_top_corner_solver_A_and_D_is_correct
-  :line: 419
-  :message: ''
-- :test: test_full_top_side_solver_no_side_is_correct
-  :line: 440
-  :message: ''
-- :test: test_full_top_side_solver_side_A_is_correct
-  :line: 455
-  :message: ''
-- :test: test_full_top_side_solver_side_B_is_correct
-  :line: 470
-  :message: ''
-- :test: test_full_top_side_solver_side_C_is_correct
-  :line: 485
-  :message: ''
-- :test: test_full_top_side_solver_side_D_is_correct
   :line: 500
   :message: ''
+- :test: test_full_top_corner_solver_C_and_D_is_correct
+  :line: 520
+  :message: ''
+- :test: test_full_top_corner_solver_A_and_D_is_correct
+  :line: 541
+  :message: ''
+- :test: test_full_top_side_solver_no_side_is_correct
+  :line: 562
+  :message: ''
+- :test: test_full_top_side_solver_side_A_is_correct
+  :line: 577
+  :message: ''
+- :test: test_full_top_side_solver_side_B_is_correct
+  :line: 592
+  :message: ''
+- :test: test_full_top_side_solver_side_C_is_correct
+  :line: 607
+  :message: ''
+- :test: test_full_top_side_solver_side_D_is_correct
+  :line: 622
+  :message: ''
 - :test: test_full_solver
-  :line: 514
+  :line: 636
   :message: ''
 - :test: test_full_solver1
-  :line: 528
+  :line: 650
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 28
-  :passed: 28
+  :total: 34
+  :passed: 34
   :failed: 0
   :ignored: 0
 :stdout:
-- "        0 0 0 \t\t"
-- "        0 0 0 \t\t"
-- "        0 0 0 \t\t"
+- "        3 0 1 \t\t"
+- "        3 0 3 \t\t"
+- "        0 2 2 \t\t"
 - ''
-- "1 1 1   2 2 2   3 3 3 \t"
-- "1 1 1   2 2 2   3 3 3 \t"
-- "1 1 1   2 2 2   3 3 3 \t"
+- "4 2 2   3 0 1   4 5 0 \t"
+- "3 1 5   1 2 5   0 3 2 \t"
+- "0 1 3   5 2 1   4 3 0 \t"
 - ''
+- "        4 4 5 \t\t"
 - "        4 4 4 \t\t"
-- "        4 4 4 \t\t"
-- "        4 4 4 \t\t"
+- "        2 4 3 \t\t"
 - ''
-- "        5 5 5 \t\t"
-- "        5 5 5 \t\t"
-- "        5 5 5 \t\t"
+- "        1 5 5 \t\t"
+- "        0 5 1 \t\t"
+- "        2 1 5 \t\t"
 - ''
 - ''
 - ''

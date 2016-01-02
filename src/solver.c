@@ -3,44 +3,180 @@
 #include "cube.h"
 #include <stdio.h>
 #include <stdlib.h>
-/***************Base Formula**********************************/
-//formula when one of side of up face is yellow.
-int baseFormulaUp0B[] = {Ui,F,F};
-int baseFormulaUp0G[] = {U,B,B};
-int baseFormulaUp0R[] = {L,L};
-int baseFormulaUp0O[] = {U,U,R,R};
-int baseFormulaUp1B[] = {F,F};
-int baseFormulaUp1G[] = {U,U,B,B};
-int baseFormulaUp1R[] = {U,L,L};
-int baseFormulaUp1O[] = {Ui,R,R};
-int baseFormulaUp2B[] = {U,F,F};
-int baseFormulaUp2G[] = {Ui,B,B};
-int baseFormulaUp2R[] = {U,U,L,L};
-int baseFormulaUp2O[] = {R,R};
-int baseFormulaUp3B[] = {U,U,F,F};
-int baseFormulaUp3G[] = {B,B};
-int baseFormulaUp3R[] = {Ui,L,L};
-int baseFormulaUp3O[] = {U,R,R};
+/***************Base Formula To solve the base into cross shape**********************************
+ *
+ *				Down Face													Down Face
+ *				___________											 ___________
+ *			 | X | X | X |										| X | Y | X |
+ *			 |___|___|___|										|___|___|___|
+ *			 | X | Y | X |			\\\\\					| Y | Y | Y |
+ *			 |___|___|___|			/////					|___|___|___|
+ *			 | X | X | X |										| X | Y | X |
+ *			 |___|___|___|										|___|___|___|
+ *
+ ************************************************************************************************/
+//formula when one of side of up face is yellow.										UP face
+int baseFormulaUp0B[] = {Ui,F,F,EOA};									//								 x x x
+int baseFormulaUp0G[] = {U,B,B,EOA};									//								 Y x x		
+int baseFormulaUp0R[] = {L,L,EOA};										//								 x x x
+int baseFormulaUp0O[] = {U,U,R,R,EOA};								//
+								 
+int baseFormulaUp1B[] = {F,F,EOA};										//								 x x x
+int baseFormulaUp1G[] = {U,U,B,B,EOA};								//								 x x x
+int baseFormulaUp1R[] = {U,L,L,EOA};									//								 x Y x
+int baseFormulaUp1O[] = {Ui,R,R,EOA};									//	
+							 
+int baseFormulaUp2B[] = {U,F,F,EOA};									//								 x x x
+int baseFormulaUp2G[] = {Ui,B,B,EOA};									//								 x x Y
+int baseFormulaUp2R[] = {U,U,L,L,EOA};								//								 x x x
+int baseFormulaUp2O[] = {R,R,EOA};										//	
+							 
+int baseFormulaUp3B[] = {U,U,F,F,EOA};								//								 x Y x
+int baseFormulaUp3G[] = {B,B,EOA};										//								 x x x
+int baseFormulaUp3R[] = {Ui,L,L,EOA};									//								 x x x
+int baseFormulaUp3O[] = {U,R,R,EOA};									//
 
 //formula when one of side of left face is yellow.
-int baseFormulaleft0B[] = {Di,L,L,D,F};
-int baseFormulaleft0G[] = {B};
-int baseFormulaleft0R[] = {L,U,B,Li,Bi};
-int baseFormulaleft0O[] = {D,D,L,Ui,D,F,D,Ri};
-int baseFormulaleft1B[] = {Li,Fi};
-int baseFormulaleft1G[] = {L,B};
-int baseFormulaleft1R[] = {Li,D,F,Di};
-int baseFormulaleft1O[] = {Li,Di,Fi,D};
-int baseFormulaleft2B[] = {Fi};
-int baseFormulaleft2G[] = {D,D,Fi,D,D};
-int baseFormulaleft2R[] = {D,Fi,Di};
-int baseFormulaleft2O[] = {Di,Fi,D};
-int baseFormulaleft3B[] = {Di,L,D,Fi};
-int baseFormulaleft3G[] = {D,Li,Di,B};
-int baseFormulaleft3R[] = {L,D,Fi,Di};
-int baseFormulaleft3O[] = {D,D,L,D,Fi,D};
+int baseFormulaLeft0B[] = {Di,L,L,D,F,EOA};						
+int baseFormulaLeft0G[] = {B,EOA};
+int baseFormulaLeft0R[] = {L,U,B,Li,Bi,EOA};
+int baseFormulaLeft0O[] = {D,B,Di,EOA};
+
+int baseFormulaLeft1B[] = {Li,Fi,EOA};
+int baseFormulaLeft1G[] = {L,B,EOA};
+int baseFormulaLeft1R[] = {Li,D,F,Di,EOA};
+int baseFormulaLeft1O[] = {Li,Di,Fi,D,EOA};
+
+int baseFormulaLeft2B[] = {Fi,EOA};
+int baseFormulaLeft2G[] = {D,D,Fi,D,D,EOA};
+int baseFormulaLeft2R[] = {D,Fi,Di,EOA};
+int baseFormulaLeft2O[] = {Di,Fi,D,EOA};
+
+int baseFormulaLeft3B[] = {Di,L,D,Fi,EOA};
+int baseFormulaLeft3G[] = {D,Li,Di,B,EOA};
+int baseFormulaLeft3R[] = {L,D,Fi,Di,EOA};
+int baseFormulaLeft3O[] = {Ui,Di,F,D,Ri,EOA};
 
 //formula when one of side of front face is yellow.
+int baseFormulaFront0B[] = {Di,L,D,EOA};
+int baseFormulaFront0G[] = {D,L,Di,EOA};
+int baseFormulaFront0R[] = {L,EOA};
+int baseFormulaFront0O[] = {Di,F,F,D,Ri,EOA};
+
+int baseFormulaFront1B[] = {Fi,D,Ri,Di,EOA};
+int baseFormulaFront1G[] = {Fi,Di,Ri,D,EOA};
+int baseFormulaFront1R[] = {F,L,EOA};
+int baseFormulaFront1O[] = {Fi,Ri,EOA};
+
+int baseFormulaFront2B[] = {D,Ri,Di,EOA};
+int baseFormulaFront2G[] = {Di,Ri,D,EOA};
+int baseFormulaFront2R[] = {D,D,Ri,Di,Di,EOA};
+int baseFormulaFront2O[] = {Ri,EOA};
+
+int baseFormulaFront3B[] = {F,D,Ri,Di,EOA};
+int baseFormulaFront3G[] = {Ui,Di,R,D,Bi,EOA};
+int baseFormulaFront3R[] = {D,Fi,Di,L,EOA};
+int baseFormulaFront3O[] = {Di,F,D,Ri,EOA};
+
+//formula when one of side of right face is yellow.
+int baseFormulaRight0B[] = {F,EOA};
+int baseFormulaRight0G[] = {D,D,F,D,D,EOA};
+int baseFormulaRight0R[] = {D,F,Di,EOA};
+int baseFormulaRight0O[] = {Di,F,D,EOA};
+
+int baseFormulaRight1B[] = {R,F,EOA};
+int baseFormulaRight1G[] = {Ri,Bi,EOA};
+int baseFormulaRight1R[] = {R,D,F,Di,EOA};
+int baseFormulaRight1O[] = {Ri,D,Bi,Di,EOA};
+
+int baseFormulaRight2B[] = {D,D,Bi,D,D,EOA};
+int baseFormulaRight2G[] = {Bi,EOA};
+int baseFormulaRight2R[] = {Di,Bi,D,EOA};
+int baseFormulaRight2O[] = {D,Bi,Di,EOA};
+
+int baseFormulaRight3B[] = {D,Ri,Di,F,EOA};
+int baseFormulaRight3G[] = {Di,R,D,Bi,EOA};
+int baseFormulaRight3R[] = {U,D,Fi,Di,L,EOA};
+int baseFormulaRight3O[] = {R,D,Bi,Di,EOA};
+
+//formula when one of side of back face is yellow.
+int baseFormulaBack0B[] = {D,R,Di,EOA};
+int baseFormulaBack0G[] = {Di,R,D,EOA};
+int baseFormulaBack0R[] = {D,D,R,Di,Di,EOA};
+int baseFormulaBack0O[] = {R,EOA};
+
+int baseFormulaBack1B[] = {B,D,R,Di,EOA};
+int baseFormulaBack1G[] = {Di,R,D,EOA};
+int baseFormulaBack1R[] = {Bi,Di,B,D,EOA};
+int baseFormulaBack1O[] = {B,R,EOA};
+
+int baseFormulaBack2B[] = {Di,Li,D,EOA};
+int baseFormulaBack2G[] = {D,Li,Di,EOA};
+int baseFormulaBack2R[] = {Li,EOA};
+int baseFormulaBack2O[] = {D,D,Li,Di,Di,EOA};
+
+int baseFormulaBack3B[] = {Ui,Di,L,D,Fi,EOA};
+int baseFormulaBack3G[] = {B,D,Li,Di,EOA};
+int baseFormulaBack3R[] = {Di,B,D,Li,EOA};
+int baseFormulaBack3O[] = {D,Bi,Di,R,EOA};
+
+//formula when one of side of down face is yellow.
+int baseFormulaDown0B[] = {D,F,Di,Fi,EOA};
+int baseFormulaDown0G[] = {Di,Bi,D,B,EOA};
+int baseFormulaDown0R[] = {EOA};
+int baseFormulaDown0O[] = {D,D,R,D,D,Ri,EOA};
+
+int baseFormulaDown1B[] = {B,B,U,U,F,F,EOA};
+int baseFormulaDown1G[] = {EOA};
+int baseFormulaDown1R[] = {D,Li,Di,L,EOA};
+int baseFormulaDown1O[] = {Di,Ri,D,R,EOA};
+
+int baseFormulaDown2B[] = {Di,Fi,D,F,EOA};
+int baseFormulaDown2G[] = {D,Bi,Di,B,EOA};
+int baseFormulaDown2R[] = {R,R,U,U,L,L,EOA};
+int baseFormulaDown2O[] = {EOA};
+
+int baseFormulaDown3B[] = {EOA};
+int baseFormulaDown3G[] = {F,F,U,U,B,B,EOA};
+int baseFormulaDown3R[] = {Di,Li,D,L,EOA};
+int baseFormulaDown3O[] = {D,R,Di,Ri,EOA};
+
+//base Formula pointer declaration
+int *baseFormulaUp0[] = {NULL,baseFormulaUp0R,baseFormulaUp0B,baseFormulaUp0O,NULL,baseFormulaUp0G};
+int *baseFormulaUp1[] = {NULL,baseFormulaUp1R,baseFormulaUp1B,baseFormulaUp1O,NULL,baseFormulaUp1G};
+int *baseFormulaUp2[] = {NULL,baseFormulaUp2R,baseFormulaUp2B,baseFormulaUp2O,NULL,baseFormulaUp2G};
+int *baseFormulaUp3[] = {NULL,baseFormulaUp3R,baseFormulaUp3B,baseFormulaUp3O,NULL,baseFormulaUp3G};
+
+int *baseFormulaLeft0[] = {NULL,baseFormulaLeft0R,baseFormulaLeft0B,baseFormulaLeft0O,NULL,baseFormulaLeft0G};
+int *baseFormulaLeft1[] = {NULL,baseFormulaLeft1R,baseFormulaLeft1B,baseFormulaLeft1O,NULL,baseFormulaLeft1G};
+int *baseFormulaLeft2[] = {NULL,baseFormulaLeft2R,baseFormulaLeft2B,baseFormulaLeft2O,NULL,baseFormulaLeft2G};
+int *baseFormulaLeft3[] = {NULL,baseFormulaLeft3R,baseFormulaLeft3B,baseFormulaLeft3O,NULL,baseFormulaLeft3G};
+
+int *baseFormulaFront0[] = {NULL,baseFormulaFront0R,baseFormulaFront0B,baseFormulaFront0O,NULL,baseFormulaFront0G};
+int *baseFormulaFront1[] = {NULL,baseFormulaFront1R,baseFormulaFront1B,baseFormulaFront1O,NULL,baseFormulaFront1G};
+int *baseFormulaFront2[] = {NULL,baseFormulaFront2R,baseFormulaFront2B,baseFormulaFront2O,NULL,baseFormulaFront2G};
+int *baseFormulaFront3[] = {NULL,baseFormulaFront3R,baseFormulaFront3B,baseFormulaFront3O,NULL,baseFormulaFront3G};
+
+int *baseFormulaRight0[] = {NULL,baseFormulaRight0R,baseFormulaRight0B,baseFormulaRight0O,NULL,baseFormulaRight0G};
+int *baseFormulaRight1[] = {NULL,baseFormulaRight1R,baseFormulaRight1B,baseFormulaRight1O,NULL,baseFormulaRight1G};
+int *baseFormulaRight2[] = {NULL,baseFormulaRight2R,baseFormulaRight2B,baseFormulaRight2O,NULL,baseFormulaRight2G};
+int *baseFormulaRight3[] = {NULL,baseFormulaRight3R,baseFormulaRight3B,baseFormulaRight3O,NULL,baseFormulaRight3G};
+
+int *baseFormulaBack0[] = {NULL,baseFormulaBack0R,baseFormulaBack0B,baseFormulaBack0O,NULL,baseFormulaBack0G};
+int *baseFormulaBack1[] = {NULL,baseFormulaBack1R,baseFormulaBack1B,baseFormulaBack1O,NULL,baseFormulaBack1G};
+int *baseFormulaBack2[] = {NULL,baseFormulaBack2R,baseFormulaBack2B,baseFormulaBack2O,NULL,baseFormulaBack2G};
+int *baseFormulaBack3[] = {NULL,baseFormulaBack3R,baseFormulaBack3B,baseFormulaBack3O,NULL,baseFormulaBack3G};
+
+int *baseFormulaDown0[] = {NULL,baseFormulaDown0R,baseFormulaDown0B,baseFormulaDown0O,NULL,baseFormulaDown0G};
+int *baseFormulaDown1[] = {NULL,baseFormulaDown1R,baseFormulaDown1B,baseFormulaDown1O,NULL,baseFormulaDown1G};
+int *baseFormulaDown2[] = {NULL,baseFormulaDown2R,baseFormulaDown2B,baseFormulaDown2O,NULL,baseFormulaDown2G};
+int *baseFormulaDown3[] = {NULL,baseFormulaDown3R,baseFormulaDown3B,baseFormulaDown3O,NULL,baseFormulaDown3G};
+
+int **ptrToPtrFormula[24] = {baseFormulaUp0,baseFormulaUp1,baseFormulaUp2,baseFormulaUp3,baseFormulaLeft0,baseFormulaLeft1,baseFormulaLeft2,baseFormulaLeft3,
+														 baseFormulaFront0,baseFormulaFront1,baseFormulaFront2,baseFormulaFront3,baseFormulaRight0,baseFormulaRight1,baseFormulaRight2,baseFormulaRight3,
+														 baseFormulaDown0,baseFormulaDown1,baseFormulaDown2,baseFormulaDown3,baseFormulaBack0,baseFormulaBack1,baseFormulaBack2,baseFormulaBack3};
+
+/*******************End of base Formula******************************/
 
 /***************Side Corner formula****************/
 // int FSRCFormula1[8] = {U,R,Ui,Ri,Ui,Fi,U,F};    //Solve Front Side Right Corner(FSRC), where the FSRC on the Front face.
@@ -167,24 +303,43 @@ int **ptrPtrTopSideFormula[4] = {ptrTopSideFormula0,ptrTopSideFormula1,ptrTopSid
          X G X              
          X X X
 */
-void baseSolver(Cube *cube){
+void baseSideSolver(Cube *cube){
   int sideSequence[24] = {cube->upFace->faceValue[3],cube->upFace->faceValue[7],cube->upFace->faceValue[5],cube->upFace->faceValue[1],
 													cube->leftFace->faceValue[3],cube->leftFace->faceValue[7],cube->leftFace->faceValue[5],cube->leftFace->faceValue[1],
 													cube->frontFace->faceValue[3],cube->frontFace->faceValue[7],cube->frontFace->faceValue[5],cube->frontFace->faceValue[1],
 													cube->rightFace->faceValue[3],cube->rightFace->faceValue[7],cube->rightFace->faceValue[5],cube->rightFace->faceValue[1],
 													cube->downFace->faceValue[3],cube->downFace->faceValue[7],cube->downFace->faceValue[5],cube->downFace->faceValue[1],
-													cube->backFace->faceValue[3],cube->backFace->faceValue[7],cube->backFace->faceValue[5],cube->backFace->faceValue[1]};
-  int sideRespectiveSequence[24] = {cube->leftFace->faceValue[1],cube->frontFace->faceValue[1],cube->rightFace->faceValue[5],cube->backFace->faceValue[7],
+													cube->backFace->faceValue[5],cube->backFace->faceValue[1],cube->backFace->faceValue[3],cube->backFace->faceValue[7]};
+  int sideRespectiveSequence[24] = {cube->leftFace->faceValue[1],cube->frontFace->faceValue[1],cube->rightFace->faceValue[1],cube->backFace->faceValue[7],
 																		cube->backFace->faceValue[3],cube->downFace->faceValue[3],cube->frontFace->faceValue[3],cube->upFace->faceValue[3],
 																		cube->leftFace->faceValue[5],cube->downFace->faceValue[1],cube->rightFace->faceValue[3],cube->upFace->faceValue[7],
 																		cube->frontFace->faceValue[5],cube->downFace->faceValue[5],cube->backFace->faceValue[5],cube->upFace->faceValue[5],
 																		cube->leftFace->faceValue[7],cube->backFace->faceValue[1],cube->rightFace->faceValue[7],cube->frontFace->faceValue[7],
-																		cube->leftFace->faceValue[3],cube->upFace->faceValue[1],cube->rightFace->faceValue[5],cube->downFace->faceValue[7]};
+																		cube->rightFace->faceValue[5],cube->downFace->faceValue[7],cube->leftFace->faceValue[3],cube->upFace->faceValue[1]};
 	int i = 0;
-	while(i<24){
-		if(sideSequence[i]==cY){
-			
-		}
+	int j = 0;
+	int **ptrPtrFormula;
+	int *ptrFormula;
+	while(sideSequence[i]!=cY)
+		i++;
+	while((i==16&&sideRespectiveSequence[i]==1)||(i==17&&sideRespectiveSequence[i]==5)||(i==18&&sideRespectiveSequence[i]==3)||(i==19&&sideRespectiveSequence[i]==2)){
+		i++;
+		while(sideSequence[i]!=cY)
+			i++;		
+	}
+	// printf("i = %d	Side = %d	SideSequnce = %d\n",i,sideRespectiveSequence[i],sideSequence[i]);
+	ptrPtrFormula = ptrToPtrFormula[i];
+	ptrFormula = ptrPtrFormula[sideRespectiveSequence[i]];
+	while(ptrFormula[j] != EOA){
+		fullRotation(cube,ptrFormula[j]);
+		// printf("rotation = %d\n", ptrFormula[j]);
+		j++;
+	}
+}
+
+void baseSideFullSolver(Cube *cube){
+	while(cube->downFace->faceValue[1] != cY || cube->downFace->faceValue[3] != cY || cube->downFace->faceValue[5] != cY || cube->downFace->faceValue[7] != cY){
+		baseSideSolver(cube);
 	}
 }
 
@@ -395,15 +550,15 @@ void fullTopFaceCornerSolver(Cube *cube){
 /************top corner solver **************************
  *	solve the top corner to the correct sequence.				*
  ********************************************************/
-//		Correct Sequence.
-//		 ___________
-//		| A |		|	B |
-//		|___|___|___|
-//		|		|   |   |
-//		|___|___|___|
-//		| C |   | D |
-//		|___|___|___|
-
+/*		Correct Sequence.
+			___________
+			| A |		|	B |
+			|___|___|___|
+			|		|   |   |
+			|___|___|___|
+			| C |   | D |
+			|___|___|___|
+ */
 void topCornerSolver(Cube *cube, int formulaNo){
 	int *topFormula = ptrTopCornerFormula[formulaNo];
 	int topFormulaArrSize = topCornerFormulaLength[formulaNo];
@@ -464,11 +619,11 @@ void topCornerFullSolver(Cube *cube){																																	//		 _____
 		topCornerSolver(cube, topCornerFormulaNo);
 	}
 }
-
-//××××××××××××××××× Top side Solver××××××××××××××××××××××××××××××××××××/
-// This is the final step to solve the rubik's cube
-// this solver solve the top side of the cube
-// and the cube is done.
+/******************Top side Solver***********************
+ *This is the final step to solve the rubik's cube
+ *this solver solve the top side of the cube
+ *and the cube is done.
+**********************************************************/
 
 
 void topSideSolver(Cube *cube){
