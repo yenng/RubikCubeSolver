@@ -136,6 +136,46 @@ void test_base_side_full_solver_with_different_cube(){					//baseSideFullSolver 
 	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
 }
 
+void test_base_corner_solver_to_solve_one_corner(){							//baseCornerSolver solve one of the corner.
+  int value[6][9] = {{cO,cO,cO,cW,cW,cR,cO,cG,cG},							//
+                    {cW,cG,cY,cR,cR,cW,cB,cR,cR},								//			X X X
+                    {cG,cR,cY,cO,cB,cB,cG,cB,cB},								//			X Y X
+                    {cR,cB,cB,cO,cO,cW,cY,cO,cW},								//			X X X
+                    {cW,cY,cR,cY,cY,cY,cW,cY,cR},								//
+                    {cO,cG,cB,cW,cG,cB,cG,cG,cY}};							//				|	
+  Cube *cube = createCube(value);																//				|
+  int expectedValue[6][9] = {{3,1,2,3,0,3,3,5,5},								//				V
+														{4,5,4,1,1,0,1,1,1},
+														{5,1,0,3,2,5,5,2,2},								//			X Y X
+														{3,2,3,0,3,0,4,3,0},								//			Y Y Y
+														{0,4,1,4,4,4,4,4,1},								//			Y Y X
+														{5,5,2,0,5,2,2,2,0}};
+  Cube *expectedCube = createCube(expectedValue);
+	baseCornerSolver(cube);
+	// displayCube(cube);
+	TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
+void test_base_corner_solver_to_solve_two_corner_by_run_base_corner_solver_twice(){	
+  int value[6][9] = {{cO,cO,cO,cW,cW,cR,cO,cG,cG},							//baseCornerSolver solve one of the corner.
+                    {cW,cG,cY,cR,cR,cW,cB,cR,cR},								//			X X X
+                    {cG,cR,cY,cO,cB,cB,cG,cB,cB},								//			X Y X
+                    {cR,cB,cB,cO,cO,cW,cY,cO,cW},								//			X X X
+                    {cW,cY,cR,cY,cY,cY,cW,cY,cR},								//
+                    {cO,cG,cB,cW,cG,cB,cG,cG,cY}};							//				|	
+  Cube *cube = createCube(value);																//				|
+  int expectedValue[6][9] = {{3,1,2,3,0,3,3,5,5},								//				V
+														{4,5,4,1,1,0,1,1,1},
+														{5,1,0,3,2,5,5,2,2},								//			X Y X
+														{3,2,3,0,3,0,4,3,0},								//			Y Y Y
+														{0,4,1,4,4,4,4,4,1},								//			Y Y X
+														{5,5,2,0,5,2,2,2,0}};
+  Cube *expectedCube = createCube(expectedValue);
+	baseCornerFullSolver(cube);
+	displayCube(cube);
+	// TEST_ASSERT_EQUAL_CUBE(expectedCube, cube); 
+}
+
 
 void test_front_side_corner_solver1(void){
   int value[6][9] = {{cW,cW,cW,cW,cW,cO,cW,cW,cW},

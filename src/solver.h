@@ -15,6 +15,10 @@
 #define EOA 100 		//EOA is end of array
 
 void baseSideSolver(Cube *cube);
+void baseSideFullSolver(Cube *cube);
+
+void sideCornerSolver(Cube *cube);
+void sideCornerFullSolver(Cube *cube)
 
 void sideCornerSolver(Cube *cube);
 void fullSideCornerSolver(Cube *cube);

@@ -3,7 +3,7 @@
 #include "cube.h"
 #include <stdio.h>
 #include <stdlib.h>
-/***************Base Formula To solve the base into cross shape**********************************
+/***************Base Side Formula To solve the base into cross shape**********************************
  *
  *				Down Face													Down Face
  *				___________											 ___________
@@ -15,7 +15,7 @@
  *			 |___|___|___|										|___|___|___|
  *
  ************************************************************************************************/
-//formula when one of side of up face is yellow.										UP face
+//formula when one of side of up face is yellow.												UP face
 int baseFormulaUp0B[] = {Ui,F,F,EOA};									//								 x x x
 int baseFormulaUp0G[] = {U,B,B,EOA};									//								 Y x x		
 int baseFormulaUp0R[] = {L,L,EOA};										//								 x x x
@@ -141,7 +141,7 @@ int baseFormulaDown3G[] = {F,F,U,U,B,B,EOA};
 int baseFormulaDown3R[] = {Di,Li,D,L,EOA};
 int baseFormulaDown3O[] = {D,R,Di,Ri,EOA};
 
-//base Formula pointer declaration
+//base side Formula pointer declaration
 int *baseFormulaUp0[] = {NULL,baseFormulaUp0R,baseFormulaUp0B,baseFormulaUp0O,NULL,baseFormulaUp0G};
 int *baseFormulaUp1[] = {NULL,baseFormulaUp1R,baseFormulaUp1B,baseFormulaUp1O,NULL,baseFormulaUp1G};
 int *baseFormulaUp2[] = {NULL,baseFormulaUp2R,baseFormulaUp2B,baseFormulaUp2O,NULL,baseFormulaUp2G};
@@ -175,8 +175,32 @@ int *baseFormulaDown3[] = {NULL,baseFormulaDown3R,baseFormulaDown3B,baseFormulaD
 int **ptrToPtrFormula[24] = {baseFormulaUp0,baseFormulaUp1,baseFormulaUp2,baseFormulaUp3,baseFormulaLeft0,baseFormulaLeft1,baseFormulaLeft2,baseFormulaLeft3,
 														 baseFormulaFront0,baseFormulaFront1,baseFormulaFront2,baseFormulaFront3,baseFormulaRight0,baseFormulaRight1,baseFormulaRight2,baseFormulaRight3,
 														 baseFormulaDown0,baseFormulaDown1,baseFormulaDown2,baseFormulaDown3,baseFormulaBack0,baseFormulaBack1,baseFormulaBack2,baseFormulaBack3};
+/*******************End of base Side Formula******************************/
 
-/*******************End of base Formula******************************/
+/*******************Base corner Formula******************************/
+ /*      X X X          	      	   X X X              
+         X X X           		   			 X X X              	R = Red
+         X X X          	   			   X X X              	B = Blue
+																													O = Orange
+ X X X   X X X   X X X   	   X X X   X X X   X X X      	G = Green	
+ X R X   X B X   X O X  >> 	 X R X   X B X   X O X      	Y = Yellow
+ X R X   X B X   X O X  	 	 R R R   B B B   O O O      	X = unknown
+ 
+         X Y X            					 Y Y Y              
+         Y Y Y              				 Y Y Y              
+         X Y X            					 Y Y Y              
+	
+         X G X	            				 G G G              
+         X G X  	         					 X G X              
+         X X X    	   							 X X X
+*/
+int baseCornerFormula0[] = {Fi,Ui,F,EOA};
+int baseCornerFormula1[] = {R,U,Ri,EOA};
+int baseCornerFormula2[] = {R,U,U,Ri,Ui,R,U,Ri,EOA};
+
+int *ptrBaseCornerFormula[] = {baseCornerFormula0,baseCornerFormula1,baseCornerFormula2};
+
+
 
 /***************Side Corner formula****************/
 // int FSRCFormula1[8] = {U,R,Ui,Ri,Ui,Fi,U,F};    //Solve Front Side Right Corner(FSRC), where the FSRC on the Front face.
@@ -342,6 +366,62 @@ void baseSideFullSolver(Cube *cube){
 		baseSideSolver(cube);
 	}
 }
+
+void baseCornerSolver(Cube *cube){
+	int noTurn = 0;
+	while(cube->frontFace->faceValue[2]!=cY&&cube->rightFace->faceValue[0]!=cY&&cube->upFace->faceValue[8]!=cY&&noTurn<4){
+		fullRotation(cube,U);
+		noTurn++;
+	}
+	int frontTopRightCorner[3] = {cube->frontFace->faceValue[2],cube->rightFace->faceValue[0],cube->upFace->faceValue[8]};
+	int respectiveColor[2];
+	int i = 0;
+	int j = 0;
+	int *ptrTobaseCornerFormula, pattern;
+	if(noTurn>=4){
+		ptrTobaseCornerFormula = ptrBaseCornerFormula[rand()%3];
+		while(i<(rand()%4)){
+			fullRotation(cube,Di);
+			i++;
+		}	
+		i=0;
+	}
+	else{
+		noTurn=0;
+		while(i<3){
+			if(frontTopRightCorner[i]==cY)
+				pattern = i;
+			else{
+				respectiveColor[j] = frontTopRightCorner[i];
+				j++;
+			}
+			i++; 
+		}
+		j = 0;
+		while((respectiveColor[0]!=cube->frontFace->faceValue[7]||respectiveColor[1]!=cube->rightFace->faceValue[7])&&
+					(respectiveColor[1]!=cube->frontFace->faceValue[7]||respectiveColor[0]!=cube->rightFace->faceValue[7])){
+						fullRotation(cube,D);
+						noTurn++;
+					}
+		ptrTobaseCornerFormula = ptrBaseCornerFormula[pattern];
+	}
+	while(ptrTobaseCornerFormula[j] != EOA){
+		fullRotation(cube,ptrTobaseCornerFormula[j]);
+		j++;
+	}
+	while(noTurn>0){
+		fullRotation(cube,Di);
+		noTurn--;
+	}
+}
+
+void baseCornerFullSolver(Cube *cube){
+	int noTurn = 0;
+	while(cube->downFace->faceValue[0] != cY || cube->downFace->faceValue[2] != cY || cube->downFace->faceValue[6] != cY || cube->downFace->faceValue[8] != cY){
+		baseCornerSolver(cube);
+	}
+}
+
 
 void sideCornerSolver(Cube *cube){
 	int *formula;
