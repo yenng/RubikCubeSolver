@@ -201,37 +201,23 @@ int baseCornerFormula2[] = {R,U,U,Ri,Ui,R,U,Ri,EOA};
 int *ptrBaseCornerFormula[] = {baseCornerFormula0,baseCornerFormula1,baseCornerFormula2};
 
 
-
-
-/***************Side Corner formula****************/
-// int FSRCFormula1[8] = {U,R,Ui,Ri,Ui,Fi,U,F};    //Solve Front Side Right Corner(FSRC), where the FSRC on the Front face.
-// int FSRCFormula2[8] = {Ui,Fi,U,F,U,R,Ui,Ri};    //Solve Front Side Right Corner(FSRC), where the FSRC on the Right face.
-// int LSRCFormula1[8] = {U,F,Ui,Fi,Ui,Li,U,L};    //Solve Left Side Right Corner(LSRC), where the LSRC on the Left face.
-// int LSRCFormula2[8] = {Ui,Li,U,L,U,F,Ui,Fi};    //Solve Left Side Right Corner(LSRC), where the LSRC on the Front face.
-// int BSRCFormula1[8] = {U,L,Ui,Li,Ui,Bi,U,B};    //Solve Back Side Right Corner(BSRC), where the BSRC on the Back face.
-// int BSRCFormula2[8] = {Ui,Bi,U,B,U,L,Ui,Li};    //Solve Back Side Right Corner(BSRC), where the BSRC on the Left face.
-// int RSRCFormula1[8] = {U,B,Ui,Bi,Ui,Ri,U,R};    //Solve Right Side Right Corner(RSRC), where the RSRC on the Right face.
-// int RSRCFormula2[8] = {Ui,Ri,U,R,U,B,Ui,Bi};    //Solve Right Side Right Corner(RSRC), where the RSRC on the Back face.
-
-// int *formulaPtr[] = {FSRCFormula1,FSRCFormula2,LSRCFormula1,LSRCFormula2,BSRCFormula1,BSRCFormula2,RSRCFormula1,RSRCFormula2};
-
 /***************Side Corner formula***************************************/
 int formulaRW[1] = {U};
 int formulaBW[1] = {U};
 int formulaOW[1] = {U};
 int formulaGW[1] = {U};
 
-int formulaBR[10] = {U,U,F,Ui,Fi,Ui,Li,U,L,U};        //FrontValue[1] is RED and UpValue[7] is BLUE
-int formulaGR[10] = {U,Ui,Bi,U,B,U,L,Ui,Li,U};        //FrontValue[1] is RED and UpValue[7] is GREEN
+int formulaBR[] = {U,U,F,Ui,Fi,Ui,Li,U,L,EOA};        //FrontValue[1] is RED and UpValue[7] is BLUE
+int formulaGR[] = {U,Ui,Bi,U,B,U,L,Ui,Li,EOA};        //FrontValue[1] is RED and UpValue[7] is GREEN
 
-int formulaRB[10] = {Ui,Li,U,L,U,F,Ui,Fi,U,U};          //FrontValue[1] is BLUE and UpValue[7] is RED
-int formulaOB[10] = {U,R,Ui,Ri,Ui,Fi,U,F,U,U};          //FrontValue[1] is BLUE and UpValue[7] is ORANGE
+int formulaRB[] = {Ui,Li,U,L,U,F,Ui,Fi,EOA};          //FrontValue[1] is BLUE and UpValue[7] is RED
+int formulaOB[] = {U,R,Ui,Ri,Ui,Fi,U,F,EOA};          //FrontValue[1] is BLUE and UpValue[7] is ORANGE
 
-int formulaBO[10] = {Ui,Ui,Fi,U,F,U,R,Ui,Ri,U};       //FrontValue[1] is ORANGE and UpValue[7] is BLUE
-int formulaGO[10] = {Ui,U,B,Ui,Bi,Ui,Ri,U,R,U};       //FrontValue[1] is ORANGE and UpValue[7] is GREEN
+int formulaBO[] = {Ui,Ui,Fi,U,F,U,R,Ui,Ri,EOA};       //FrontValue[1] is ORANGE and UpValue[7] is BLUE
+int formulaGO[] = {Ui,U,B,Ui,Bi,Ui,Ri,U,R,EOA};       //FrontValue[1] is ORANGE and UpValue[7] is GREEN
 
-int formulaRG[10] = {U,U,U,L,Ui,Li,Ui,Bi,U,B};      //FrontValue[1] is GREEN and UpValue[7] is RED
-int formulaOG[10] = {U,U,Ui,Ri,U,R,U,B,Ui,Bi};      //FrontValue[1] is GREEN and UpValue[7] is ORANGE
+int formulaRG[] = {U,U,U,L,Ui,Li,Ui,Bi,U,B,EOA};      //FrontValue[1] is GREEN and UpValue[7] is RED
+int formulaOG[] = {U,U,Ui,Ri,U,R,U,B,Ui,Bi,EOA};      //FrontValue[1] is GREEN and UpValue[7] is ORANGE
 
 int *formulaWPtr[6] = {NULL,formulaRW,formulaBW,formulaOW,NULL,formulaGW};
 int *formulaRPtr[6] = {NULL,NULL,formulaBR,NULL,NULL,formulaGR};
@@ -241,7 +227,7 @@ int *formulaGPtr[6] = {NULL,formulaRG,NULL,formulaOG,NULL,NULL};
 
 int *formulaForRandom[8] = {formulaBR,formulaGR,formulaRB,formulaOB,formulaBO,formulaGO,formulaRG,formulaOG};
 
-int **formulaPtrPtr[6] = {formulaWPtr,formulaRPtr,formulaBPtr,formulaOPtr,NULL,formulaGPtr};
+int **formulaPtrPtr[6] = {NULL,formulaRPtr,formulaBPtr,formulaOPtr,NULL,formulaGPtr};
 
 /***************************Top Face formula********************************/
 /*														TOP FACE VALUE	
@@ -454,7 +440,7 @@ void sideCornerSolver(Cube *cube, int print){
 	}
 	else
 		formula = formulaForRandom[rand()%8];
-	while(i<(10)){
+	while(formula[i]!=EOA){
 		fullRotation(cube,formula[i], print);
 		i++;
 	}

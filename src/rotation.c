@@ -142,13 +142,49 @@ void faceSideRotation(Cube *cube, Rotate *rotate){
     i++;
   }
 }
-
 void fullRotation(Cube *cube, int rotation, int print){
   Rotate *rotate = createRotation(cube, rotation);
   faceSideRotation(cube, rotate);
   faceRotation(rotate->direction, rotate->face);
-	if(print == 1)
-		printf("Rotation = %d	\n", rotation);
+	if(print == 1)		
+		switch(rotation){
+			case U:
+				printf("U	:UpFace Clockwise.\n");
+				break;
+			case Ui:
+				printf("Ui	:UpFace Anti-Clockwise.\n");
+				break;
+			case L:
+				printf("L	:LeftFace Clockwise.\n");
+				break;
+			case Li:
+				printf("Li	:LeftFace Anti-Clockwise.\n");
+				break;
+			case F:
+				printf("F	:FrontFace Clockwise.\n");
+				break;
+			case Fi:
+				printf("Fi	:FrontFace Anti-Clockwise.\n");
+				break;
+			case R:
+				printf("R	:RightFace Clockwise.\n");
+				break;
+			case Ri:
+				printf("Ri	:RightFace Anti-Clockwise.\n");
+				break;
+			case D:
+				printf("D	:DownFace Clockwise.\n");
+				break;
+			case Di:
+				printf("Di	:DownFace Anti-Clockwise.\n");
+				break;
+			case B:
+				printf("B	:BackFace Clockwise.\n");
+				break;
+			case Bi:
+				printf("Bi	:BackFace Anti-Clockwise.\n");
+				break;
+		}
 }
 
 void createMessyCube(Cube *cube){

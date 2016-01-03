@@ -495,17 +495,17 @@ void test_front_side_corner_solver1(void){
 
   Cube *cube = createCube(value);
 
-  int expectedValue[6][9] = {{0,0,5,0,0,2,0,5,2},
+  int expectedValue[6][9] = {{2,5,0,2,0,0,5,0,0},
 
-               {3,5,3,1,1,0,1,1,1},
+               {1,0,1,1,1,0,1,1,1},
 
-               {5,3,0,1,2,2,2,2,2},
+               {0,3,2,1,2,2,2,2,2},
 
-               {1,0,1,3,3,1,3,3,3},
+               {3,5,3,3,3,1,3,3,3},
 
                {4,4,4,4,4,4,4,4,4},
 
-               {5,5,5,5,5,2,2,3,0}};
+               {5,5,5,5,5,2,0,3,5}};
 
   Cube *expectedCube = createCube(expectedValue);
 
@@ -533,17 +533,17 @@ void test_front_side_corner_solver2(void){
 
                     {5,5,5,5,5,0,1,2,3}};
 
-  int expectedValue[6][9] = {{1,3,0,3,0,2,5,1,2},
+  int expectedValue[6][9] = {{0,2,2,3,0,1,1,3,5},
 
-                             {0,2,1,1,1,1,1,1,1},
+                             {5,0,2,1,1,1,1,1,1},
 
-                             {0,0,3,2,2,5,2,2,2},
+                             {0,2,1,2,2,5,2,2,2},
 
                              {0,0,3,3,3,5,3,3,3},
 
                              {4,4,4,4,4,4,4,4,4},
 
-                             {5,5,5,5,5,0,2,0,5}};
+                             {5,5,5,5,5,0,3,0,0}};
 
   Cube *expectedCube = createCube(expectedValue);
 
@@ -573,17 +573,17 @@ void test_side_corner_solver_one_by_one(void){
 
                     {5,5,5,5,5,0,3,0,0}};
 
-  int expectedValue[6][9] = {{5,5,5,1,0,3,0,2,0},
+  int expectedValue[6][9] = {{5,3,0,5,0,2,5,1,0},
 
-                             {3,0,2,1,1,1,1,1,1},
+                             {0,0,0,1,1,1,1,1,1},
 
-                             {3,0,1,2,2,2,2,2,2},
+                             {3,0,2,2,2,2,2,2,2},
 
-                             {2,0,1,3,3,3,3,3,3},
+                             {3,0,1,3,3,3,3,3,3},
 
                              {4,4,4,4,4,4,4,4,4},
 
-                             {5,5,5,5,5,5,0,0,0}};
+                             {5,5,5,5,5,5,1,0,2}};
 
   Cube *cube = createCube(value);
 
@@ -611,17 +611,17 @@ void test_solver_side_corner(){
 
                      {5,5,5,1,5,2,0,5,0}};
 
-  int expectedValue[6][9] = {{2,0,5,0,0,0,5,0,2},
+  int expectedValue[6][9] = {{0,3,0,2,0,5,0,1,0},
 
-                             {1,5,1,1,1,1,1,1,1},
+                             {3,0,3,1,1,1,1,1,1},
 
-                             {0,1,3,2,2,2,2,2,2},
+                             {5,0,5,2,2,2,2,2,2},
 
-                             {0,2,0,3,3,3,3,3,3},
+                             {1,0,1,3,3,3,3,3,3},
 
                              {4,4,4,4,4,4,4,4,4},
 
-                             {5,5,5,5,5,5,0,3,3}};
+                             {5,5,5,5,5,5,2,0,2}};
 
   Cube *cube = createCube(value);
 
@@ -649,17 +649,17 @@ void test_solver_side_corner1(){
 
                      {5,5,5,5,5,3,2,5,2}};
 
-  int expectedValue[6][9] = {{0,1,0,2,0,0,0,0,0},
+  int expectedValue[6][9] = {{2,0,5,3,0,0,2,5,5},
 
                              {1,0,3,1,1,1,1,1,1},
 
-                             {5,5,1,2,2,2,2,2,2},
+                             {0,0,0,2,2,2,2,2,2},
 
-                             {2,3,2,3,3,3,3,3,3},
+                             {3,2,1,3,3,3,3,3,3},
 
                              {4,4,4,4,4,4,4,4,4},
 
-                             {5,5,5,5,5,5,5,0,3}};
+                             {5,5,5,5,5,5,0,1,0}};
 
 
 
@@ -669,7 +669,9 @@ void test_solver_side_corner1(){
 
   fullSideCornerSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 339);;
+
+
+  ; customTestAssertCube(expectedCube, cube, 340);;
 
 }
 
@@ -707,7 +709,7 @@ void test_top_face_solver(){
 
   topFaceSideSolver(cube, 2,8,0);
 
-  ; customTestAssertCube(expectedCube, cube, 358);;
+  ; customTestAssertCube(expectedCube, cube, 359);;
 
 }
 
@@ -745,7 +747,7 @@ void test_top_face_full_solver_with_pattern_0(){
 
   fullTopFaceSideSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 377);;
+  ; customTestAssertCube(expectedCube, cube, 378);;
 
 }
 
@@ -783,7 +785,7 @@ void test_top_face_full_solver_with_pattern_3(){
 
   fullTopFaceSideSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 396);;
+  ; customTestAssertCube(expectedCube, cube, 397);;
 
 }
 
@@ -825,7 +827,7 @@ void test_top_face_full_solver_with_pattern_4(){
 
   fullTopFaceSideSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 417);;
+  ; customTestAssertCube(expectedCube, cube, 418);;
 
 }
 
@@ -865,7 +867,7 @@ void test_top_face_corner_solver(){
 
   topFaceCornerSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 437);;
+  ; customTestAssertCube(expectedCube, cube, 438);;
 
 }
 
@@ -905,7 +907,7 @@ void test_full_top_face_corner_solver(){
 
   fullTopFaceCornerSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 457);;
+  ; customTestAssertCube(expectedCube, cube, 458);;
 
 }
 
@@ -945,7 +947,7 @@ void test_full_top_face_corner_solver_with_two_corners_is_white(){
 
   fullTopFaceCornerSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 477);;
+  ; customTestAssertCube(expectedCube, cube, 478);;
 
 }
 
@@ -985,7 +987,7 @@ void test_full_top_face_corner_solver_with_no_corner_is_white(){
 
   fullTopFaceCornerSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 497);;
+  ; customTestAssertCube(expectedCube, cube, 498);;
 
 }
 
@@ -1027,7 +1029,7 @@ void test_top_corner_solver_A_and_B_is_correct(){
 
  topCornerSolver(cube,1,0);
 
-  ; customTestAssertCube(expectedCube, cube, 518);;
+  ; customTestAssertCube(expectedCube, cube, 519);;
 
 }
 
@@ -1069,7 +1071,7 @@ void test_top_corner_solver_A_and_C_is_correct(){
 
  topCornerSolver(cube,2,0);
 
-  ; customTestAssertCube(expectedCube, cube, 539);;
+  ; customTestAssertCube(expectedCube, cube, 540);;
 
 }
 
@@ -1111,7 +1113,7 @@ void test_full_top_corner_solver_A_and_B_is_correct(){
 
  topCornerFullSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 560);;
+  ; customTestAssertCube(expectedCube, cube, 561);;
 
 }
 
@@ -1153,7 +1155,7 @@ void test_full_top_corner_solver_A_and_C_is_correct(){
 
  topCornerFullSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 581);;
+  ; customTestAssertCube(expectedCube, cube, 582);;
 
 }
 
@@ -1193,7 +1195,7 @@ void test_full_top_corner_solver_B_and_C_is_correct(){
 
  topCornerFullSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 601);;
+  ; customTestAssertCube(expectedCube, cube, 602);;
 
 }
 
@@ -1233,7 +1235,7 @@ void test_full_top_corner_solver_B_and_D_is_correct(){
 
  topCornerFullSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 621);;
+  ; customTestAssertCube(expectedCube, cube, 622);;
 
 }
 
@@ -1273,7 +1275,7 @@ void test_full_top_corner_solver_C_and_D_is_correct(){
 
  topCornerFullSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 641);;
+  ; customTestAssertCube(expectedCube, cube, 642);;
 
 }
 
@@ -1315,7 +1317,7 @@ void test_full_top_corner_solver_A_and_D_is_correct(){
 
  topCornerFullSolver(cube,0);
 
-  ; customTestAssertCube(expectedCube, cube, 662);;
+  ; customTestAssertCube(expectedCube, cube, 663);;
 
 }
 
@@ -1345,7 +1347,7 @@ void test_full_top_side_solver_no_side_is_correct(){
 
  topSideSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 677);;
+  ; customTestAssertCube(correctCube, cube, 678);;
 
 }
 
@@ -1375,7 +1377,7 @@ void test_full_top_side_solver_side_A_is_correct(){
 
  topSideSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 692);;
+  ; customTestAssertCube(correctCube, cube, 693);;
 
 }
 
@@ -1405,7 +1407,7 @@ void test_full_top_side_solver_side_B_is_correct(){
 
  topSideSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 707);;
+  ; customTestAssertCube(correctCube, cube, 708);;
 
 }
 
@@ -1435,7 +1437,7 @@ void test_full_top_side_solver_side_C_is_correct(){
 
  topSideSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 722);;
+  ; customTestAssertCube(correctCube, cube, 723);;
 
 }
 
@@ -1465,7 +1467,7 @@ void test_full_top_side_solver_side_D_is_correct(){
 
  topSideSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 737);;
+  ; customTestAssertCube(correctCube, cube, 738);;
 
 }
 
@@ -1491,7 +1493,7 @@ void test_full_solver(void){
 
  fullSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 750);;
+  ; customTestAssertCube(correctCube, cube, 751);;
 
 }
 
@@ -1517,7 +1519,7 @@ void test_full_solver1(void){
 
  fullSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 763);;
+  ; customTestAssertCube(correctCube, cube, 764);;
 
 }
 
@@ -1533,7 +1535,7 @@ void test_full_solver_with_random_cube_by_using_createMessyCube_function_with_co
 
  fullSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 771);;
+  ; customTestAssertCube(correctCube, cube, 772);;
 
 }
 
@@ -1563,7 +1565,7 @@ void test_full_solver_with_random_cube_by_using_createMessyCube_function_with_co
 
  fullSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 786);;
+  ; customTestAssertCube(correctCube, cube, 787);;
 
 }
 
@@ -1593,7 +1595,7 @@ void test_full_solver_with_random_cube_by_using_createMessyCube_function_with_ra
 
  fullSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 801);;
+  ; customTestAssertCube(correctCube, cube, 802);;
 
 }
 
@@ -1623,7 +1625,7 @@ void test_full_solver_with_random_cube_by_using_createMessyCube_function_with_ra
 
  fullSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 816);;
+  ; customTestAssertCube(correctCube, cube, 817);;
 
 }
 
@@ -1651,8 +1653,8 @@ void test_full_solver_with_random_cube_by_using_createMessyCube_function_with_ra
 
   createMessyCube(cube);
 
- fullSolver(cube,1);
+ fullSolver(cube,0);
 
-  ; customTestAssertCube(correctCube, cube, 831);;
+  ; customTestAssertCube(correctCube, cube, 832);;
 
 }
