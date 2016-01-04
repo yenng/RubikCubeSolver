@@ -2,6 +2,7 @@
 #include "cube.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 /********Face translationTable declaration.*************************/
 int translationTable0[9] = {2,5,8,1,4,7,0,3,6};				//clockwise
@@ -188,7 +189,9 @@ void fullRotation(Cube *cube, int rotation, int print){
 }
 
 void createMessyCube(Cube *cube){
+	// srand(time(NULL));
 	int i = rand()%40;
+	// printf("%d",i);
 	while(i>0){
 		fullRotation(cube,rand()%12,0);
 		i--;

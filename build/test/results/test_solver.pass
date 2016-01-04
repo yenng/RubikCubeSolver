@@ -4,142 +4,145 @@
   :file: test_solver.c
 :successes:
 - :test: test_base_side_solver_one_time
-  :line: 18
+  :line: 20
   :message: ''
 - :test: test_base_side_solver_two_times
-  :line: 37
+  :line: 39
   :message: ''
 - :test: test_base_side_solver_three_times
-  :line: 57
+  :line: 59
   :message: ''
 - :test: test_base_side_solver_four_times
-  :line: 78
+  :line: 80
   :message: ''
 - :test: test_base_side_full_solver_with_same_cube_above
-  :line: 100
+  :line: 101
   :message: ''
 - :test: test_base_side_full_solver_with_different_cube
-  :line: 119
+  :line: 120
   :message: ''
 - :test: test_base_corner_solver_to_solve_one_corner
-  :line: 138
+  :line: 139
   :message: ''
 - :test: test_base_corner_solver_to_solve_two_corner_by_run_base_corner_solver_twice
-  :line: 157
+  :line: 158
   :message: ''
 - :test: test_base_corner_solver_to_solve_three_corner_by_run_base_corner_solver_three_times
-  :line: 178
+  :line: 179
   :message: ''
 - :test: test_base_corner_solver_to_solve_four_corner_by_run_base_corner_solver_four_times
-  :line: 200
+  :line: 201
   :message: ''
 - :test: test_base_corner_full_solver_to_solve_four_corner
-  :line: 223
+  :line: 224
   :message: ''
 - :test: test_front_side_corner_solver1
-  :line: 244
+  :line: 245
   :message: ''
 - :test: test_front_side_corner_solver2
-  :line: 264
+  :line: 265
   :message: ''
 - :test: test_side_corner_solver_one_by_one
-  :line: 284
+  :line: 285
   :message: ''
 - :test: test_solver_side_corner
-  :line: 303
+  :line: 304
   :message: ''
 - :test: test_solver_side_corner1
-  :line: 322
+  :line: 325
   :message: ''
 - :test: test_top_face_solver
-  :line: 343
+  :line: 346
   :message: ''
 - :test: test_top_face_full_solver_with_pattern_0
-  :line: 362
+  :line: 365
   :message: ''
 - :test: test_top_face_full_solver_with_pattern_3
-  :line: 381
+  :line: 384
   :message: ''
 - :test: test_top_face_full_solver_with_pattern_4
-  :line: 401
+  :line: 404
   :message: ''
 - :test: test_top_face_corner_solver
-  :line: 422
+  :line: 425
   :message: ''
 - :test: test_full_top_face_corner_solver
-  :line: 442
+  :line: 445
   :message: ''
 - :test: test_full_top_face_corner_solver_with_two_corners_is_white
-  :line: 462
+  :line: 465
   :message: ''
 - :test: test_full_top_face_corner_solver_with_no_corner_is_white
-  :line: 482
+  :line: 485
   :message: ''
 - :test: test_top_corner_solver_A_and_B_is_correct
-  :line: 502
+  :line: 505
   :message: ''
 - :test: test_top_corner_solver_A_and_C_is_correct
-  :line: 523
+  :line: 526
   :message: ''
 - :test: test_full_top_corner_solver_A_and_B_is_correct
-  :line: 544
+  :line: 547
   :message: ''
 - :test: test_full_top_corner_solver_A_and_C_is_correct
-  :line: 565
+  :line: 568
   :message: ''
 - :test: test_full_top_corner_solver_B_and_C_is_correct
-  :line: 585
+  :line: 588
   :message: ''
 - :test: test_full_top_corner_solver_B_and_D_is_correct
-  :line: 605
+  :line: 608
   :message: ''
 - :test: test_full_top_corner_solver_C_and_D_is_correct
-  :line: 625
+  :line: 628
   :message: ''
 - :test: test_full_top_corner_solver_A_and_D_is_correct
-  :line: 646
+  :line: 649
   :message: ''
 - :test: test_full_top_side_solver_no_side_is_correct
-  :line: 667
+  :line: 670
   :message: ''
 - :test: test_full_top_side_solver_side_A_is_correct
-  :line: 682
+  :line: 685
   :message: ''
 - :test: test_full_top_side_solver_side_B_is_correct
-  :line: 697
+  :line: 700
   :message: ''
 - :test: test_full_top_side_solver_side_C_is_correct
-  :line: 712
+  :line: 715
   :message: ''
 - :test: test_full_top_side_solver_side_D_is_correct
-  :line: 727
+  :line: 730
   :message: ''
 - :test: test_full_solver
-  :line: 741
+  :line: 744
   :message: ''
 - :test: test_full_solver1
-  :line: 754
+  :line: 759
   :message: ''
 - :test: test_full_solver_with_random_cube_by_using_createMessyCube_function_with_correct_cube
-  :line: 767
+  :line: 772
   :message: ''
 - :test: test_full_solver_with_random_cube_by_using_createMessyCube_function_with_correct_cube1
-  :line: 775
+  :line: 780
   :message: ''
 - :test: test_full_solver_with_random_cube_by_using_createMessyCube_function_with_random_cube
-  :line: 790
+  :line: 794
   :message: ''
 - :test: test_full_solver_with_random_cube_by_using_createMessyCube_function_with_random_cube1
-  :line: 805
+  :line: 808
   :message: ''
 - :test: test_full_solver_with_random_cube_by_using_createMessyCube_function_with_random_cube2
-  :line: 820
+  :line: 822
+  :message: ''
+- :test: test_base_side_full_solver_with_random_cube
+  :line: 836
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 44
-  :passed: 44
+  :total: 45
+  :passed: 45
   :failed: 0
   :ignored: 0
 :stdout:

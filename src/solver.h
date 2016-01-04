@@ -17,6 +17,7 @@
 void baseSideSolver(Cube *cube, int print);
 void baseSideFullSolver(Cube *cube, int print);
 
+int baseCornerDetermination(Cube *cube);
 void baseCornerSolver(Cube *cube, int print);
 void baseCornerFullSolver(Cube *cube, int print);
 

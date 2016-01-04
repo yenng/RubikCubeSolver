@@ -3,6 +3,7 @@
 #include "cube.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 /***************Base Side Formula To solve the base into cross shape**********************************
  *
  *				Down Face													Down Face
@@ -401,20 +402,25 @@ void baseCornerSolver(Cube *cube, int print){
 		noTurn--;
 	}
 }
-
-void baseCornerFullSolver(Cube *cube, int print){
+int baseCornerDetermination(Cube *cube){
 	int cornerCorrectSequence[8] = {cR,cR,cB,cB,cO,cO,cG,cG};
 	int i = 0;
-	while(cube->downFace->faceValue[0] != cY || cube->downFace->faceValue[2] != cY || cube->downFace->faceValue[6] != cY || cube->downFace->faceValue[8] != cY){
-		baseCornerSolver(cube, print);
-	}
 	int cornerCorrespondingSequence[8] = {cube->leftFace->faceValue[6],cube->leftFace->faceValue[8],cube->frontFace->faceValue[6],cube->frontFace->faceValue[8],
 																			 cube->rightFace->faceValue[6],cube->rightFace->faceValue[8],cube->backFace->faceValue[2],cube->backFace->faceValue[0]};
 	
 	while(i<8){
 		if(cornerCorrespondingSequence[i]!=cornerCorrectSequence[i])
-			baseCornerFullSolver(cube, print);
+			return 1;
 		i++;
+	}
+	return 0;
+	
+}
+void baseCornerFullSolver(Cube *cube, int print){
+	while(baseCornerDetermination(cube)==1){
+		while(cube->downFace->faceValue[0] != cY || cube->downFace->faceValue[2] != cY || cube->downFace->faceValue[6] != cY || cube->downFace->faceValue[8] != cY){
+			baseCornerSolver(cube, print);
+		}
 	}
 }
 
@@ -662,38 +668,52 @@ void topCornerFullSolver(Cube *cube, int print){																											//		 
 	int topCornerPattern = 0;
 	int *actualCorner;
 	int *expectedCorner;
-	while(j<4){
-		expectedCorner = topCornerCorrect[j];
-		actualCorner = topCorner[j];
-		if(actualCorner[0]==expectedCorner[0] && actualCorner[1]==expectedCorner[1])
-			count++;
-		while(i<4){
-			actualCorner = topCorner[i];
+	while(count<2){
+		count = 0;
+		topCornerPattern = 0;
+		topA[0] = cube->leftFace->faceValue[0];
+		topA[1] = cube->backFace->faceValue[6];
+		topB[0] = cube->backFace->faceValue[8];
+		topB[1] = cube->rightFace->faceValue[2];
+		topC[0] = cube->frontFace->faceValue[0];
+		topC[1] = cube->leftFace->faceValue[2];
+		topD[0] = cube->rightFace->faceValue[0];
+		topD[1] = cube->frontFace->faceValue[2];
+		
+		topCorner[0] = topA;
+		topCorner[1] = topB;
+		topCorner[2] = topC;
+		topCorner[3] = topD;
+		while(j<4){
+			expectedCorner = topCornerCorrect[j];
+			actualCorner = topCorner[j];
 			if(actualCorner[0]==expectedCorner[0] && actualCorner[1]==expectedCorner[1])
-				topCornerSequence[j] = i;
-			i++;
-		}
-		i = 0;
-		if(topCornerSequence[j] == j){
-			topCornerPattern += j;
-			if(topCornerPattern == 3 && j == 3)
-				topCornerPattern *= 2;
-		}
-		j++;
-	}
-	if(count!=2){
-		fullRotation(cube,U,print);
-		topCornerFullSolver(cube,print);
-	}
-	else{
-		while(i<7){
-			if(topCornerPattern == i){
-				topCornerFormulaNo = i;
+				count++;
+			while(i<4){
+				actualCorner = topCorner[i];
+				if(actualCorner[0]==expectedCorner[0] && actualCorner[1]==expectedCorner[1])
+					topCornerSequence[j] = i;
+				i++;
 			}
-			i++;
+			i = 0;
+			if(topCornerSequence[j] == j){
+				topCornerPattern = topCornerPattern + j;
+				if(topCornerPattern == 3 && j == 3)
+					topCornerPattern *= 2;
+			}
+			j++;
 		}
-		topCornerSolver(cube, topCornerFormulaNo,print);
+		if(count<2)
+			fullRotation(cube,U,print);
+		j = 0;
 	}
+	while(i<7){
+		if(topCornerPattern == i){
+			topCornerFormulaNo = i;
+		}
+		i++;
+	}
+	topCornerSolver(cube, topCornerFormulaNo,print);
 }
 /******************Top side Solver***********************
  *This is the final step to solve the rubik's cube
