@@ -298,7 +298,7 @@ int *ptrTopSideFormula3[2] = {topSideFormula6,topSideFormula7};
 
 int **ptrPtrTopSideFormula[4] = {ptrTopSideFormula0,ptrTopSideFormula1,ptrTopSideFormula2,ptrTopSideFormula3};
 	
- /*baseSolver solve the cube to the following result.
+ /*baseSolver (baseSideFullSolver + baseCornerFullSolver) solve the cube to the following result.
 				 X X X              X: any color
          X X X              R: Red color
          X X X              B: Blue color
@@ -312,6 +312,24 @@ int **ptrPtrTopSideFormula[4] = {ptrTopSideFormula0,ptrTopSideFormula1,ptrTopSid
          Y Y Y              
 
          G G G               
+         X G X              
+         X X X
+*/
+
+ /*baseSideFullSolver solve the cube from a random cube to the following result.
+				 X X X              X: any color
+         X X X              R: Red color
+         X X X              B: Blue color
+														O: Orange color
+ X X X   X X X   X X X      Y: Yellow color
+ X R X   X B X   X O X      G: Green color  
+ X R X   X B X   X O X      
+ 
+         X Y X              
+         Y Y Y              
+         X Y X              
+
+         X G X               
          X G X              
          X X X
 */
@@ -332,31 +350,52 @@ void baseSideSolver(Cube *cube, int print){
 	int j = 0;
 	int **ptrPtrFormula;
 	int *ptrFormula;
-	while(sideSequence[i]!=cY)
+	while(sideSequence[i]!=cY)	//check the cube value one by one until one of the value is yellow color.
 		i++;
+	//the value that the function looking is yellow, check the value that connected to the cube to pick the repective formula.
 	while((i==16&&sideRespectiveSequence[i]==1)||(i==17&&sideRespectiveSequence[i]==5)||(i==18&&sideRespectiveSequence[i]==3)||(i==19&&sideRespectiveSequence[i]==2)){
 		i++;
 		while(sideSequence[i]!=cY)
 			i++;		
 	}
-	// printf("i = %d	Side = %d	SideSequnce = %d\n",i,sideRespectiveSequence[i],sideSequence[i]);
 	ptrPtrFormula = ptrToPtrFormula[i];
 	ptrFormula = ptrPtrFormula[sideRespectiveSequence[i]];
+	//formula was picked, make the cube rotate with the formula.
 	while(ptrFormula[j] != EOA){
 		fullRotation(cube,ptrFormula[j], print);
-		// printf("rotation = %d\n", ptrFormula[j]);
 		j++;
 	}
 }
 
+//baseSideSolver will repeat until all the base side is done in correct sequence.
 void baseSideFullSolver(Cube *cube, int print){
 	while(cube->downFace->faceValue[1] != cY || cube->downFace->faceValue[3] != cY || cube->downFace->faceValue[5] != cY || cube->downFace->faceValue[7] != cY){
 		baseSideSolver(cube, print);
 	}
 }
 
+ /*baseSideFullSolver.
+				 X X X              				 X X X              X: any color
+         X X X                       X X X              R: Red color
+         X X X                       X X X              B: Blue color
+																												O: Orange color
+ X X X   X X X   X X X       X X X   X X X   X X X      Y: Yellow color
+ X R X   X B X   X O X  >>>  X R X   X B X   X O X      G: Green color  
+ X R X   X B X   X O X       R R R   B B B   O O O      
+ 
+         X Y X                       Y Y Y              
+         Y Y Y                       Y Y Y              
+         X Y X                       Y Y Y              
+
+         X G X                  		 G G G               
+         X G X                  	   X G X              
+         X X X         							 X X X
+*/
 void baseCornerSolver(Cube *cube, int print){
 	int noTurn = 0;
+	//this solver will only look at the front face top right corner.
+	//the solver will rotate up face clockwise until the corner that the solver looking is yellow color.
+	//or until it rotates 4 times (which means there are no yellow color at top 4 corner.)
 	while(cube->frontFace->faceValue[2]!=cY&&cube->rightFace->faceValue[0]!=cY&&cube->upFace->faceValue[8]!=cY&&noTurn<4){
 		fullRotation(cube,U, print);
 		noTurn++;
@@ -366,6 +405,8 @@ void baseCornerSolver(Cube *cube, int print){
 	int i = 0;
 	int j = 0;
 	int *ptrTobaseCornerFormula, pattern;
+	//if there are no yellow color at top four corner, the solver will make the cube rotate with one of the formula randomly.
+	//to make the yellow color to spin to the top corner so the solver can solve the base corner.
 	if(noTurn>=4){
 		ptrTobaseCornerFormula = ptrBaseCornerFormula[rand()%3];
 		while(i<(rand()%4)){
@@ -374,6 +415,7 @@ void baseCornerSolver(Cube *cube, int print){
 		}	
 		i=0;
 	}
+	//if one of the corner have yellow color, the solver will solve the corner with repective formula.
 	else{
 		noTurn=0;
 		while(i<3){
@@ -386,6 +428,9 @@ void baseCornerSolver(Cube *cube, int print){
 			i++; 
 		}
 		j = 0;
+		//the while loop below is to check the location of the base corner, 
+		//the solver will rotate the down face until the front down right corner match the color on front top right corner.
+		//noTurn is the number of rotation of down clockwise.
 		while((respectiveColor[0]!=cube->frontFace->faceValue[7]||respectiveColor[1]!=cube->rightFace->faceValue[7])&&
 					(respectiveColor[1]!=cube->frontFace->faceValue[7]||respectiveColor[0]!=cube->rightFace->faceValue[7])){
 						fullRotation(cube,D,print);
@@ -397,11 +442,15 @@ void baseCornerSolver(Cube *cube, int print){
 		fullRotation(cube,ptrTobaseCornerFormula[j],print);
 		j++;
 	}
+	//rotate down anti-clockwise with noTurn times to make the down face rotate to the correct location.
 	while(noTurn>0){
 		fullRotation(cube,Di,print);
 		noTurn--;
 	}
 }
+
+//this function used to determine the location of the base corner.
+//if all the base corner is at its correct location it return 0, else return 1.
 int baseCornerDetermination(Cube *cube){
 	int cornerCorrectSequence[8] = {cR,cR,cB,cB,cO,cO,cG,cG};
 	int i = 0;
@@ -416,6 +465,8 @@ int baseCornerDetermination(Cube *cube){
 	return 0;
 	
 }
+
+//keep calling baseCornerSolver if the base corner is not done.
 void baseCornerFullSolver(Cube *cube, int print){
 	while(baseCornerDetermination(cube)==1){
 		while(cube->downFace->faceValue[0] != cY || cube->downFace->faceValue[2] != cY || cube->downFace->faceValue[6] != cY || cube->downFace->faceValue[8] != cY){
@@ -425,34 +476,7 @@ void baseCornerFullSolver(Cube *cube, int print){
 }
 
 
-void sideCornerSolver(Cube *cube, int print){
-	int *formula;
-	int **ptrToPtr;
-	int count = 0;
-	int i = 0;
-	int sideCornerSequence[8] = {cube->upFace->faceValue[3],cube->leftFace->faceValue[1],cube->upFace->faceValue[7],cube->frontFace->faceValue[1],
-															cube->upFace->faceValue[5],cube->rightFace->faceValue[1],cube->upFace->faceValue[1],cube->backFace->faceValue[7]};
-	while(i<8){
-		if(sideCornerSequence[i]==cW)
-			count++;
-		i++;
-	}
-	i = 0;
-	if(count<4){
-		while(cube->frontFace->faceValue[1]==cW ||cube->upFace->faceValue[7]==cW)
-			fullRotation(cube,U, print);
-		ptrToPtr = formulaPtrPtr[cube->frontFace->faceValue[1]];
-		formula = ptrToPtr[cube->upFace->faceValue[7]];
-	}
-	else
-		formula = formulaForRandom[rand()%8];
-	while(formula[i]!=EOA){
-		fullRotation(cube,formula[i], print);
-		i++;
-	}
-}
-
- /* Side corner solver solve the cube to the following result.
+ /* fullSideCornerSolver solve the cube to the following result.
 				 X X X              X: any color
          X X X              R: Red color
          X X X              B: Blue color
@@ -469,6 +493,38 @@ void sideCornerSolver(Cube *cube, int print){
          G G G              
          X X X
 */
+void sideCornerSolver(Cube *cube, int print){
+	int *formula;
+	int **ptrToPtr;
+	int count = 0;
+	int i = 0;
+	int sideCornerSequence[8] = {cube->upFace->faceValue[3],cube->leftFace->faceValue[1],cube->upFace->faceValue[7],cube->frontFace->faceValue[1],
+															cube->upFace->faceValue[5],cube->rightFace->faceValue[1],cube->upFace->faceValue[1],cube->backFace->faceValue[7]};
+	//check the color of the up side corner, if the count = 4, it means that all the top side corner has white color,
+	//this situation does not have any formula, so it will random run one of the formula to make the white color go to the sideCorner,
+	//then only can use formula to done the side corner.
+	while(i<8){
+		if(sideCornerSequence[i]==cW)
+			count++;
+		i++;
+	}
+	i = 0;
+	//determine the formula for respective case.
+	if(count<4){
+		while(cube->frontFace->faceValue[1]==cW ||cube->upFace->faceValue[7]==cW)
+			fullRotation(cube,U, print);
+		ptrToPtr = formulaPtrPtr[cube->frontFace->faceValue[1]];
+		formula = ptrToPtr[cube->upFace->faceValue[7]];
+	}
+	else
+		formula = formulaForRandom[rand()%8];
+	while(formula[i]!=EOA){
+		fullRotation(cube,formula[i], print);
+		i++;
+	}
+}
+
+//keep run sideCornerSolver until the side corner is done.
 void fullSideCornerSolver(Cube *cube, int print){
   while(cube->frontFace->faceValue[3] != cB || cube->leftFace->faceValue[5]  != cR ||
         cube->frontFace->faceValue[5] != cB || cube->rightFace->faceValue[3] != cO || 
@@ -503,7 +559,23 @@ void topFaceSideSolver(Cube *cube, int formulaNo, int arrSize, int print){
     i++;
   }
 }
-
+/***************************Top Face side********************************/
+/*														TOP FACE VALUE	
+ * ____________________________________________________________________________
+ * |topFormula0				topFormula1				topFormula2					topFormula3				 |
+ * |	X W X							X W X							X X X								X X X						 |
+ * |	W W X							X W W							X W W								W W X            |
+ * |	X	X X 						X X X             X W X								X W X						 |
+ * | pattern6					 pattern1					 pattern3						 pattern5					 |
+ * |																																					 |
+ * |topFormula4			 			 topFormula5																				 |
+ * |	X W X										X X X																						 |
+ * |	X W X										W W W																						 |
+ * |	X W	X										X X	X																						 |
+ * | pattern2							 	 pattern4																					 |
+ * |___________________________________________________________________________|
+ *		PS:  W = white colour, X = any color.
+ */
 
 void fullTopFaceSideSolver(Cube *cube, int print){
 	int upFaceCrossValue[4] = {cube->upFace->faceValue[1],cube->upFace->faceValue[5],
@@ -564,6 +636,17 @@ void fullTopFaceSideSolver(Cube *cube, int print){
          G G G              
          X X X
 */
+/*		UpFace
+			X W W					X W X							X W X							W W W
+			W W W		>>> 	W W W			>>>			W W W			>>>		  W W W
+			X W W					X	W X							W W X							W W W
+			
+			or
+			
+			W W X					X W X							X W X							W W W
+			W W W		>>> 	W W W			>>>			W W W			>>>		  W W W
+			X W W					X	W X							W W X							W W W
+ */
 void topFaceCornerSolver(Cube *cube, int print){
 	int upCornerValue[4] = {cube->upFace->faceValue[0],cube->upFace->faceValue[2],
 														 cube->upFace->faceValue[6],cube->upFace->faceValue[8]};
@@ -571,16 +654,16 @@ void topFaceCornerSolver(Cube *cube, int print){
 	int j = 0;
 	int count = 0;
 	while(i<4){
-		if(upCornerValue[i] == 0)
+		if(upCornerValue[i] == cW)
 			count++;
 		i++;
 	}
 	if(count == 1){
-		while(cube->upFace->faceValue[6]!= 0)
+		while(cube->upFace->faceValue[6]!= cW)
 			fullRotation(cube,U,print);
 	}
 	else{
-		while(cube->leftFace->faceValue[2]!=0)
+		while(cube->leftFace->faceValue[2]!=cW)
 			fullRotation(cube,U,print);
 	}
 	while(j<8){
@@ -593,7 +676,7 @@ int topFaceDetermination(Cube *cube){									//if topFace is all White color
 	int i = 0;																					//			W W W
 	int count = 0;																			//			W W W
 	while(i<9){																					//			W W W
-		if(cube->upFace->faceValue[i]==0)									//return 1. Else return 0.
+		if(cube->upFace->faceValue[i]==cW)									//return 1. Else return 0.
 			count++;
 		i++;
 	}
@@ -603,6 +686,7 @@ int topFaceDetermination(Cube *cube){									//if topFace is all White color
 		return 0;
 }
 
+//keep run topFaceCornerSolver until top face all is white color.
 void fullTopFaceCornerSolver(Cube *cube, int print){
 	int topAllWhite = topFaceDetermination(cube);
 	while(topAllWhite != 1){
@@ -724,6 +808,7 @@ void topCornerFullSolver(Cube *cube, int print){																											//		 
 
 void topSideSolver(Cube *cube, int print){
 	int topSide[4] = {cube->leftFace->faceValue[1],cube->frontFace->faceValue[1],cube->rightFace->faceValue[1],cube->backFace->faceValue[7]};
+	//topSide is the actual sequence of the top side.
 	int topSideSequence[4], topPattern[3];
 	int **ptrPtrFormula;
 	int *ptrFormula;
@@ -745,6 +830,8 @@ void topSideSolver(Cube *cube, int print){
 		i++;
 	}
 	i = 0;
+	//count = 0 shows that no side corner is correct, count = 4 means all the side corner is correct, also means the cube is done.
+	//if count = 0, don't have direct formula, have to run a topSideFormula0 once then call topSideSolver again.
 	if(count == 0){
 		while(i<12){
 			fullRotation(cube,topSideFormula0[i],print);
@@ -752,6 +839,7 @@ void topSideSolver(Cube *cube, int print){
 		}	
 		topSideSolver(cube,print);
 	}
+	//determin the respective formula and rotate with the formula.
 	else if(count != 4){
 		while(i<3){
 			if(topSideSequence[j]==j){
@@ -774,7 +862,7 @@ void topSideSolver(Cube *cube, int print){
 	}
 }
 
-
+//combination of all the solver.
 void fullSolver(Cube *cube, int print){
 	baseSideFullSolver(cube,print);
 	baseCornerFullSolver(cube,print);
