@@ -7,38 +7,38 @@
 /***************Base Side Formula To solve the base into cross shape**********************************
  *
  *				Down Face													Down Face
- *				___________											 ___________
- *			 | X | X | X |										| X | Y | X |
- *			 |___|___|___|										|___|___|___|
+ *			  ___________								 ___________
+ *			 | X | X | X |								| X | Y | X |
+ *			 |___|___|___|								|___|___|___|
  *			 | X | Y | X |			\\\\\					| Y | Y | Y |
  *			 |___|___|___|			/////					|___|___|___|
- *			 | X | X | X |										| X | Y | X |
- *			 |___|___|___|										|___|___|___|
+ *			 | X | X | X |								| X | Y | X |
+ *			 |___|___|___|								|___|___|___|
  *
  ************************************************************************************************/
 //formula when one of side of up face is yellow.												UP face
-int baseFormulaUp0B[] = {Ui,F,F,EOA};									//								 x x x
-int baseFormulaUp0G[] = {U,B,B,EOA};									//								 Y x x		
-int baseFormulaUp0R[] = {L,L,EOA};										//								 x x x
-int baseFormulaUp0O[] = {U,U,R,R,EOA};								//
+int baseFormulaUp0B[] = {Ui,F,F,EOA};	//								 x x x
+int baseFormulaUp0G[] = {U,B,B,EOA};	//								 Y x x		
+int baseFormulaUp0R[] = {L,L,EOA};	//								 x x x
+int baseFormulaUp0O[] = {U,U,R,R,EOA};	//
 								 
-int baseFormulaUp1B[] = {F,F,EOA};										//								 x x x
-int baseFormulaUp1G[] = {U,U,B,B,EOA};								//								 x x x
-int baseFormulaUp1R[] = {U,L,L,EOA};									//								 x Y x
-int baseFormulaUp1O[] = {Ui,R,R,EOA};									//	
+int baseFormulaUp1B[] = {F,F,EOA};	//								 x x x
+int baseFormulaUp1G[] = {U,U,B,B,EOA};	//								 x x x
+int baseFormulaUp1R[] = {U,L,L,EOA};	//								 x Y x
+int baseFormulaUp1O[] = {Ui,R,R,EOA};						
 							 
-int baseFormulaUp2B[] = {U,F,F,EOA};									//								 x x x
-int baseFormulaUp2G[] = {Ui,B,B,EOA};									//								 x x Y
-int baseFormulaUp2R[] = {U,U,L,L,EOA};								//								 x x x
-int baseFormulaUp2O[] = {R,R,EOA};										//	
+int baseFormulaUp2B[] = {U,F,F,EOA};	//								 x x x
+int baseFormulaUp2G[] = {Ui,B,B,EOA};	//								 x x Y
+int baseFormulaUp2R[] = {U,U,L,L,EOA};	//								 x x x
+int baseFormulaUp2O[] = {R,R,EOA};	//	
 							 
-int baseFormulaUp3B[] = {U,U,F,F,EOA};								//								 x Y x
-int baseFormulaUp3G[] = {B,B,EOA};										//								 x x x
-int baseFormulaUp3R[] = {Ui,L,L,EOA};									//								 x x x
-int baseFormulaUp3O[] = {U,R,R,EOA};									//
+int baseFormulaUp3B[] = {U,U,F,F,EOA};	//								 x Y x
+int baseFormulaUp3G[] = {B,B,EOA};	//								 x x x
+int baseFormulaUp3R[] = {Ui,L,L,EOA};	//								 x x x
+int baseFormulaUp3O[] = {U,R,R,EOA};	//
 
 //formula when one of side of left face is yellow.
-int baseFormulaLeft0B[] = {Di,L,L,D,F,EOA};						
+int baseFormulaLeft0B[] = {Di,L,L,D,F,EOA};	
 int baseFormulaLeft0G[] = {B,EOA};
 int baseFormulaLeft0R[] = {L,U,B,Li,Bi,EOA};
 int baseFormulaLeft0O[] = {D,B,Di,EOA};
@@ -180,20 +180,20 @@ int **ptrToPtrFormula[24] = {baseFormulaUp0,baseFormulaUp1,baseFormulaUp2,baseFo
 
 /*******************Base corner Formula******************************/
  /*      X X X          	      	   X X X              
-         X X X           		   			 X X X              	R = Red
-         X X X          	   			   X X X              	B = Blue
+         X X X           		   X X X              	R = Red
+         X X X          	   	   X X X              	B = Blue
 																													O = Orange
  X X X   X X X   X X X   	   X X X   X X X   X X X      	G = Green	
- X R X   X B X   X O X  >> 	 X R X   X B X   X O X      	Y = Yellow
- X R X   X B X   X O X  	 	 R R R   B B B   O O O      	X = unknown
+ X R X   X B X   X O X  >> 	   X R X   X B X   X O X      	Y = Yellow
+ X R X   X B X   X O X  	   R R R   B B B   O O O      	X = unknown
  
-         X Y X            					 Y Y Y              
-         Y Y Y              				 Y Y Y              
-         X Y X            					 Y Y Y              
+	 X Y X             	   	   Y Y Y              
+         Y Y Y              		   Y Y Y              
+         X Y X            		   Y Y Y              
 	
-         X G X	            				 G G G              
-         X G X  	         					 X G X              
-         X X X    	   							 X X X
+         X G X	            		   G G G              
+         X G X  	         	   X G X              
+         X X X    	   		   X X X
 */
 int baseCornerFormula0[] = {Fi,Ui,F,EOA};
 int baseCornerFormula1[] = {R,U,Ri,EOA};
@@ -231,19 +231,19 @@ int *formulaForRandom[8] = {formulaBR,formulaGR,formulaRB,formulaOB,formulaBO,fo
 int **formulaPtrPtr[6] = {NULL,formulaRPtr,formulaBPtr,formulaOPtr,NULL,formulaGPtr};
 
 /***************************Top Face formula********************************/
-/*														TOP FACE VALUE	
+/*	TOP FACE VALUE	
  * ____________________________________________________________________________
- * |topFormula0				topFormula1				topFormula2					topFormula3				 |
- * |	X W X							X W X							X X X								X X X						 |
- * |	W W X							X W W							X W W								W W X            |
- * |	X	X X 						X X X             X W X								X W X						 |
- * | pattern6					 pattern1					 pattern3						 pattern5					 |
- * |																																					 |
- * |topFormula4			 			 topFormula5																				 |
- * |	X W X										X X X																						 |
- * |	X W X										W W W																						 |
- * |	X W	X										X X	X																						 |
- * | pattern2							 	 pattern4																					 |
+ * |topFormula0		topFormula1	topFormula2	topFormula3	       |
+ * |	X W X		  X W X		  X X X		  X X X		       |
+ * |	W W X		  X W W		  X W W		  W W X                |
+ * |	X X X 		  X X X           X W X		  X W X		       |
+ * | pattern6		pattern1	 pattern3	 pattern5	       |
+ * |									       |
+ * |topFormula4		topFormula5		   			       |
+ * |	X W X		  X X X					 	       |
+ * |	X W X		  W W W						       |
+ * |	X W X		  X X X						       |
+ * | pattern2		 pattern4					       |
  * |___________________________________________________________________________|
  *		PS:  W = white colour, X = any color.
  */
@@ -258,7 +258,7 @@ int topFormula5[6] = {F,R,U,Ri,Ui,Fi};
 int *ptrTopFormula[] = {topFormula0,topFormula1,topFormula2,topFormula3,topFormula4,topFormula5};
 
 //××××××××××××××Top Face Corner Solver×××××××××××××××××××××××××××××××××××××××/
-int topFaceCornerFormula[8]={R,U,Ri,U,R,U,U,Ri};					//solve the top face corner only. Ignore the location of the top corner.
+int topFaceCornerFormula[8]={R,U,Ri,U,R,U,U,Ri};//solve the top face corner only. Ignore the location of the top corner.
 
 /***************Top corner correct sequence***********************************************/
 int topAcorrect[2] = {cR,cG}; //1 5
@@ -299,10 +299,10 @@ int *ptrTopSideFormula3[2] = {topSideFormula6,topSideFormula7};
 int **ptrPtrTopSideFormula[4] = {ptrTopSideFormula0,ptrTopSideFormula1,ptrTopSideFormula2,ptrTopSideFormula3};
 	
  /*baseSolver (baseSideFullSolver + baseCornerFullSolver) solve the cube to the following result.
-				 X X X              X: any color
+	 X X X              X: any color
          X X X              R: Red color
          X X X              B: Blue color
-														O: Orange color
+			    O: Orange color
  X X X   X X X   X X X      Y: Yellow color
  X R X   X B X   X O X      G: Green color  
  R R R   B B B   O O O      
@@ -317,10 +317,10 @@ int **ptrPtrTopSideFormula[4] = {ptrTopSideFormula0,ptrTopSideFormula1,ptrTopSid
 */
 
  /*baseSideFullSolver solve the cube from a random cube to the following result.
-				 X X X              X: any color
+	 X X X              X: any color
          X X X              R: Red color
          X X X              B: Blue color
-														O: Orange color
+			    O: Orange color
  X X X   X X X   X X X      Y: Yellow color
  X R X   X B X   X O X      G: Green color  
  X R X   X B X   X O X      
@@ -375,7 +375,7 @@ void baseSideFullSolver(Cube *cube, int print){
 }
 
  /*baseSideFullSolver.
-				 X X X              				 X X X              X: any color
+	 X X X              	     X X X              X: any color
          X X X                       X X X              R: Red color
          X X X                       X X X              B: Blue color
 																												O: Orange color
@@ -387,9 +387,9 @@ void baseSideFullSolver(Cube *cube, int print){
          Y Y Y                       Y Y Y              
          X Y X                       Y Y Y              
 
-         X G X                  		 G G G               
-         X G X                  	   X G X              
-         X X X         							 X X X
+         X G X                       G G G               
+         X G X                       X G X              
+         X X X         		     X X X
 */
 void baseCornerSolver(Cube *cube, int print){
 	int noTurn = 0;
@@ -477,10 +477,10 @@ void baseCornerFullSolver(Cube *cube, int print){
 
 
  /* fullSideCornerSolver solve the cube to the following result.
-				 X X X              X: any color
+	 X X X              X: any color
          X X X              R: Red color
          X X X              B: Blue color
-														O: Orange color
+			    O: Orange color
  X X X   X X X   X X X      Y: Yellow color
  R R R   B B B   O O O      G: Green color
  R R R   B B B   O O O      
@@ -535,10 +535,10 @@ void fullSideCornerSolver(Cube *cube, int print){
 }
 
  /*Top face side solver solve the cube to the following result.
-				 X W X              X: any color
+	 X W X              X: any color
          W W W              R: Red color
          X W X              B: Blue color
-														O: Orange color
+			    O: Orange color
  X X X   X X X   X X X      Y: Yellow color
  R R R   B B B   O O O      G: Green color
  R R R   B B B   O O O      W: White color
@@ -560,20 +560,20 @@ void topFaceSideSolver(Cube *cube, int formulaNo, int arrSize, int print){
   }
 }
 /***************************Top Face side********************************/
-/*														TOP FACE VALUE	
+/*	TOP FACE VALUE	
  * ____________________________________________________________________________
- * |topFormula0				topFormula1				topFormula2					topFormula3				 |
- * |	X W X							X W X							X X X								X X X						 |
- * |	W W X							X W W							X W W								W W X            |
- * |	X	X X 						X X X             X W X								X W X						 |
- * | pattern6					 pattern1					 pattern3						 pattern5					 |
- * |																																					 |
- * |topFormula4			 			 topFormula5																				 |
- * |	X W X										X X X																						 |
- * |	X W X										W W W																						 |
- * |	X W	X										X X	X																						 |
- * | pattern2							 	 pattern4																					 |
- * |___________________________________________________________________________|
+ * |topFormula0		topFormula1	topFormula2	topFormula3	 	|
+ * |	X W X		 X W X		 X X X		 X X X			|
+ * |	W W X		 X W W		 X W W		 W W X            	|
+ * |	X X X 		 X X X           X W X		 X W X			|
+ * | pattern6		pattern1	pattern3	pattern5		|
+ * |										|
+ * | topFormula4		  topFormula5					|
+ * |	X W X			   X X X					|
+ * |	X W X			   W W W				 	|
+ * |	X W X			   X X X					|
+ * |   pattern2			   pattern4					|
+ * |___________________________________________________________________________ |
  *		PS:  W = white colour, X = any color.
  */
 
@@ -592,7 +592,7 @@ void fullTopFaceSideSolver(Cube *cube, int print){
 		}
 		i++;
 	}
-	if(count != 4){												//if count == 4, top face side is all white.
+	if(count != 4){		//if count == 4, top face side is all white.
 		switch(pattern){
 			case pattern0:
 				topFaceSideSolver(cube,0,6, print);
@@ -620,10 +620,10 @@ void fullTopFaceSideSolver(Cube *cube, int print){
 	}
 }
  /*Top face corner solver solve the cube to the following result.
-				 W W W              X: any color
+	 W W W              X: any color
          W W W              R: Red color
          W W W              B: Blue color
-														O: Orange color
+			    O: Orange color
  X X X   X X X   X X X      Y: Yellow color
  R R R   B B B   O O O      G: Green color
  R R R   B B B   O O O      W: White color
@@ -637,15 +637,15 @@ void fullTopFaceSideSolver(Cube *cube, int print){
          X X X
 */
 /*		UpFace
-			X W W					X W X							X W X							W W W
-			W W W		>>> 	W W W			>>>			W W W			>>>		  W W W
-			X W W					X	W X							W W X							W W W
+			X W W			X W X			X W X				W W W
+			W W W		>>> 	W W W		>>>	W W W		>>>		W W W
+			X W W			X W X			W W X				W W W
 			
 			or
 			
-			W W X					X W X							X W X							W W W
-			W W W		>>> 	W W W			>>>			W W W			>>>		  W W W
-			X W W					X	W X							W W X							W W W
+			W W X			X W X			X W X				W W W
+			W W W		>>> 	W W W		>>>	W W W		>>>		W W W
+			X W W			X W X			W W X				W W W
  */
 void topFaceCornerSolver(Cube *cube, int print){
 	int upCornerValue[4] = {cube->upFace->faceValue[0],cube->upFace->faceValue[2],
@@ -696,10 +696,10 @@ void fullTopFaceCornerSolver(Cube *cube, int print){
 }
 
  /*Top corner solver solve the cube to the following result.
-				 W W W              X: any color
+	 W W W              X: any color
          W W W              R: Red color
          W W W              B: Blue color
-														O: Orange color
+			   O: Orange color
  R X R   B X B   O X O      Y: Yellow color
  R R R   B B B   O O O      G: Green color
  R R R   B B B   O O O      W: White color
@@ -717,10 +717,10 @@ void fullTopFaceCornerSolver(Cube *cube, int print){
  *	solve the top corner to the correct sequence.				*
  ********************************************************/
 /*		Correct Sequence.
-			___________
-			| A |		|	B |
+			 ___________
+			| A |	| B |
 			|___|___|___|
-			|		|   |   |
+			|   |   |   |
 			|___|___|___|
 			| C |   | D |
 			|___|___|___|
